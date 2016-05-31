@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://asanzjx.com/"/>
+  <link href="http://asanzjx.ren/"/>
   <updated>2016-05-31T00:17:32.807Z</updated>
-  <id>http://asanzjx.com/</id>
+  <id>http://asanzjx.ren/</id>
   
   <author>
     <name>Asan</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>新博客</title>
-    <link href="http://asanzjx.com/2016/05/30/%E6%96%B0%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://asanzjx.com/2016/05/30/新博客/</id>
+    <link href="http://asanzjx.ren/2016/05/30/%E6%96%B0%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://asanzjx.ren/2016/05/30/新博客/</id>
     <published>2016-05-30T13:09:41.000Z</published>
     <updated>2016-05-31T00:17:32.807Z</updated>
     
@@ -31,17 +31,17 @@
     
     </summary>
     
-      <category term="心情" scheme="http://asanzjx.com/categories/%E5%BF%83%E6%83%85/"/>
+      <category term="心情" scheme="http://asanzjx.ren/categories/%E5%BF%83%E6%83%85/"/>
     
     
-      <category term="blog" scheme="http://asanzjx.com/tags/blog/"/>
+      <category term="blog" scheme="http://asanzjx.ren/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://asanzjx.com/2016/05/30/Hello-World/"/>
-    <id>http://asanzjx.com/2016/05/30/Hello-World/</id>
+    <link href="http://asanzjx.ren/2016/05/30/Hello-World/"/>
+    <id>http://asanzjx.ren/2016/05/30/Hello-World/</id>
     <published>2016-05-30T12:41:33.566Z</published>
     <updated>2016-05-30T12:41:33.566Z</updated>
     
