@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://asanzjx.ren/2016/06/15/Test/</loc>
+    
+    <lastmod>2016-06-14T23:45:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://asanzjx.ren/2016/06/15/%E5%AF%BC%E5%87%BAPPT%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/</loc>
     
     <lastmod>2016-06-14T23:05:44.097Z</lastmod>
@@ -23,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
+    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
+    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
@@ -72,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/11/2015-04-11-pycharm%E6%9C%89%E4%B8%AD%E6%96%87%E6%B3%A8%E9%87%8A%E6%8A%A5%E9%94%99/</loc>
+    <loc>http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++%E4%BF%AE%E6%94%B9%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2016-06-01T05:08:25.140Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++%E4%BF%AE%E6%94%B9%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/</loc>
+    <loc>http://asanzjx.ren/2015/04/11/2015-04-11-pycharm%E6%9C%89%E4%B8%AD%E6%96%87%E6%B3%A8%E9%87%8A%E6%8A%A5%E9%94%99/</loc>
     
     <lastmod>2016-06-01T05:08:25.140Z</lastmod>
     
@@ -107,7 +114,7 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos6.5%E9%85%8D%E7%BD%AEmongodb/</loc>
+    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos%E5%AE%89%E8%A3%85pymongo,pip,setuptools%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4/</loc>
     
     <lastmod>2016-06-01T05:08:25.137Z</lastmod>
     
@@ -121,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos%E5%AE%89%E8%A3%85pymongo,pip,setuptools%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4/</loc>
+    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos6.5%E9%85%8D%E7%BD%AEmongodb/</loc>
     
     <lastmod>2016-06-01T05:08:25.137Z</lastmod>
     
@@ -135,14 +142,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/06/10/2015-06-10-/</loc>
+    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://asanzjx.ren/2015/06/10/2015-06-10-/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
@@ -156,21 +163,21 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
+    <loc>http://asanzjx.ren/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://asanzjx.ren/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2016-06-01T05:08:25.134Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2016-06-01T05:08:25.134Z</lastmod>
     
@@ -184,14 +191,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/09/03/2015-09-03-kali%20%E5%AE%89%E8%A3%85VMwareToos/</loc>
+    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-Markdwown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</loc>
     
     <lastmod>2016-06-01T05:08:25.132Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-Markdwown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</loc>
+    <loc>http://asanzjx.ren/2015/09/03/2015-09-03-kali%20%E5%AE%89%E8%A3%85VMwareToos/</loc>
     
     <lastmod>2016-06-01T05:08:25.132Z</lastmod>
     
