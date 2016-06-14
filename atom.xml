@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Asan&#39;world</title>
-  <subtitle>我拥有的都是侥幸啊，我失去的都是人生啊！</subtitle>
+  <subtitle>我给你描述一个灵魂</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asanzjx.ren/"/>
-  <updated>2016-05-31T02:28:47.099Z</updated>
+  <updated>2016-06-14T16:50:57.290Z</updated>
   <id>http://asanzjx.ren/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>导出PPT中的图片</title>
+    <link href="http://asanzjx.ren/2016/06/15/%E5%AF%BC%E5%87%BAPPT%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/"/>
+    <id>http://asanzjx.ren/2016/06/15/导出PPT中的图片/</id>
+    <published>2016-06-14T16:01:14.000Z</published>
+    <updated>2016-06-14T16:50:57.290Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;problem&quot;&gt;&lt;a href=&quot;#Problem&amp;#xFF1A;&quot; class=&quot;headerlink&quot; title=&quot;Problem&amp;#xFF1A;&quot;&gt;&lt;/a&gt;Problem&amp;#xFF1A;&lt;/h1&gt;&lt;p&gt;&amp;#x9700;&amp;#x8981;&amp;#x5BFC;&amp;#x51FA;PPT&amp;#x4E2D;&amp;#x7684;&amp;#x56FE;&amp;#x7247;&amp;#xFF0C;&amp;#x4E00;&amp;#x5F20;&amp;#x4E00;&amp;#x5F20;&amp;#x201C;&amp;#x53E6;&amp;#x5B58;&amp;#x4E3A;&amp;#x201D;&amp;#x6548;&amp;#x7387;&amp;#x592A;&amp;#x4F4E;&amp;#x4E86;&amp;#x3002;&lt;/p&gt;
+&lt;h1 id=&quot;try&quot;&gt;&lt;a href=&quot;#Try&quot; class=&quot;headerlink&quot; title=&quot;Try&quot;&gt;&lt;/a&gt;Try&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&amp;#x786E;&amp;#x8BA4;&amp;#x6E90;&amp;#x6587;&amp;#x4EF6;&amp;#x683C;&amp;#x5F0F;&amp;#x4E3A;.pptx&amp;#xFF0C;&amp;#x5426;&amp;#x5219;&amp;#x7528;office&amp;#x6253;&amp;#x5F00;&amp;#x53E6;&amp;#x5B58;&amp;#x4E3A;pptx&amp;#x683C;&amp;#x5F0F;&amp;#xFF1B;&lt;/li&gt;
+&lt;li&gt;&amp;#x76F4;&amp;#x63A5;&amp;#x4FEE;&amp;#x6539;&amp;#x540E;&amp;#x7F00;&amp;#x540D;&amp;#xFF0C;&amp;#x6539;&amp;#x4E3A;.rar&amp;#x6216;&amp;#x8005;.zip&amp;#x7B49;&amp;#x538B;&amp;#x7F29;&amp;#x6587;&amp;#x4EF6;&amp;#x683C;&amp;#x5F0F;&amp;#xFF1B;&lt;/li&gt;
+&lt;li&gt;&amp;#x89E3;&amp;#x538B;&amp;#x7F29;&amp;#x6587;&amp;#x4EF6;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x5F97;&amp;#x5230;&amp;#x5982;&amp;#x56FE;&amp;#x6240;&amp;#x793A;&amp;#x7684;&amp;#x76EE;&amp;#x5F55;&amp;#x7ED3;&amp;#x6784;;&lt;/li&gt;
+&lt;li&gt;&amp;#x5728;ppt/media&amp;#x6587;&amp;#x4EF6;&amp;#x5939;&amp;#x5373;&amp;#x53EF;&amp;#x627E;&amp;#x5230;&amp;#x6240;&amp;#x6709;&amp;#x5BFC;&amp;#x51FA;&amp;#x7684;&amp;#x56FE;&amp;#x7247;&amp;#x3002;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;./images/20160615-1.PNG&quot; alt=&quot;&amp;#x76EE;&amp;#x5F55;&amp;#x7ED3;&amp;#x6784;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;problem&quot;&gt;&lt;a href=&quot;#Problem&amp;#xFF1A;&quot; class=&quot;headerlink&quot; title=&quot;Problem&amp;#xFF1A;&quot;&gt;&lt;/a&gt;Problem&amp;#xFF1A;&lt;/h1&gt;&lt;p&gt;&amp;#x9700;&amp;#x8981;&amp;#x5BFC;&amp;#
+    
+    </summary>
+    
+      <category term="效率" scheme="http://asanzjx.ren/categories/%E6%95%88%E7%8E%87/"/>
+    
+    
+      <category term="PPT" scheme="http://asanzjx.ren/tags/PPT/"/>
+    
+  </entry>
   
   <entry>
     <title>新博客</title>
@@ -734,29 +764,6 @@
     
     
       <category term="PuTTY" scheme="http://asanzjx.ren/tags/PuTTY/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Notepad++修改配色方案</title>
-    <link href="http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++%E4%BF%AE%E6%94%B9%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/"/>
-    <id>http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++修改配色方案/</id>
-    <published>2015-04-13T06:13:35.000Z</published>
-    <updated>2016-06-01T05:08:25.140Z</updated>
-    
-    <content type="html">&lt;p&gt;&amp;#x5728;Notpad++&amp;#x4E0B;&amp;#x9009;&amp;#x62E9;&amp;#x8BBE;&amp;#x7F6E;&amp;#x2014;&amp;gt;&amp;#x8BED;&amp;#x8A00;&amp;#x683C;&amp;#x5F0F;&amp;#x8BBE;&amp;#x7F6E;&amp;#x2014;&amp;gt;&amp;#x9009;&amp;#x62E9;&amp;#x4E3B;&amp;#x9898;&amp;#xFF0C;&amp;#xFF0C;&amp;#xFF0C;&amp;#x7528;Choco&amp;#x4E3B;&amp;#x9898;&amp;#x7528;&amp;#x5F97;&amp;#x6BD4;&amp;#x8F83;&amp;#x987A;&amp;#x624B;&amp;#xFF01;&amp;#xFF01;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;#x5728;Notpad++&amp;#x4E0B;&amp;#x9009;&amp;#x62E9;&amp;#x8BBE;&amp;#x7F6E;&amp;#x2014;&amp;gt;&amp;#x8BED;&amp;#x8A00;&amp;#x683C;&amp;#x5F0F;&amp;#x8BBE;&amp;#x7F6E;&amp;#x2014;&amp;gt;&amp;#x9009;&amp;
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://asanzjx.ren/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="Notpad++" scheme="http://asanzjx.ren/tags/Notpad/"/>
     
   </entry>
   

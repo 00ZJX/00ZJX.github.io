@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://asanzjx.ren/2016/06/15/%E5%AF%BC%E5%87%BAPPT%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/</loc>
+    
+    <lastmod>2016-06-14T16:50:57.290Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://asanzjx.ren/about/index.html</loc>
     
     <lastmod>2016-06-06T15:00:41.091Z</lastmod>
@@ -16,14 +23,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
+    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
+    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/10/2015-04-10-%E5%AE%89%E8%A3%85beautiful/</loc>
+    <loc>http://asanzjx.ren/2015/04/10/2015-04-10-python%E7%88%AC%E8%99%AB%E4%B9%8B%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91/</loc>
     
     <lastmod>2016-06-01T05:08:25.142Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/10/2015-04-10-python%E7%88%AC%E8%99%AB%E4%B9%8B%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91/</loc>
+    <loc>http://asanzjx.ren/2015/04/10/2015-04-10-%E5%AE%89%E8%A3%85beautiful/</loc>
     
     <lastmod>2016-06-01T05:08:25.142Z</lastmod>
     
@@ -100,13 +107,6 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos%E5%AE%89%E8%A3%85pymongo,pip,setuptools%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4/</loc>
-    
-    <lastmod>2016-06-01T05:08:25.137Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://asanzjx.ren/2015/04/19/2015-04-19-%E7%94%A8vim%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%EF%BC%9A%20Taglist%20%20%E3%80%82%E3%80%82%E3%80%82%E3%80%82not%20found/</loc>
     
     <lastmod>2016-06-01T05:08:25.137Z</lastmod>
@@ -121,6 +121,13 @@
   </url>
   
   <url>
+    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos%E5%AE%89%E8%A3%85pymongo,pip,setuptools%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4/</loc>
+    
+    <lastmod>2016-06-01T05:08:25.137Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://asanzjx.ren/2015/05/19/2015-05-19-nmap/</loc>
     
     <lastmod>2016-06-01T05:08:25.136Z</lastmod>
@@ -128,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
+    <loc>http://asanzjx.ren/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2016-06-01T05:08:25.134Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://asanzjx.ren/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2016-06-01T05:08:25.134Z</lastmod>
     
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2016-06-01T05:08:25.122Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <loc>http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2016-06-01T05:08:25.122Z</lastmod>
     
