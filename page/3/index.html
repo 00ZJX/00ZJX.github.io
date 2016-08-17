@@ -255,6 +255,139 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/16/2015-04-16-PuTTY(远程登录软件)/" itemprop="url">
+                  PuTTY(远程登录软件)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-16T21:44:54+08:00" content="2015-04-16">
+              2015-04-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PuTTY &#x662F;&#x4E00;&#x5957;&#x514D;&#x8D39;&#x7684;SSH / Telnet &#x7A0B;&#x5E8F;&#xFF0C;&#x662F;&#x5728;Windows 32&#x5E73;&#x53F0;&#x4E0B;&#x7684;telnet&#x3001;rlogin&#x548C;ssh&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x8DE8;&#x5E73;&#x53F0;&#x7684;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x5DE5;&#x5177;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x7EC4;&#x7A0B;&#x5E8F;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;</p>
+<ul>
+<li><p>PuTTY (Telnet &#x548C; SSH &#x5BA2;&#x6237;&#x7AEF;)</p>
+</li>
+<li><p>PSCP (SCP &#x5BA2;&#x6237;&#x7AEF;, &#x547D;&#x4EE4;&#x884C;&#x4E0B;&#x901A;&#x8FC7; SSH &#x62F7;&#x8D1D;&#x6587;&#x4EF6;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; Unix/Linux &#x4E0B;&#x7684; scp &#x547D;&#x4EE4;)</p>
+</li>
+<li><p>PSFTP (SFTP &#x7684;&#x547D;&#x4EE4;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; FTP &#x7684;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x4F7F;&#x7528;&#x7684;&#x662F; SSH &#x7684; 22 &#x7AEF;&#x53E3;&#xFF0C;</p>
+</li>
+</ul>
+<p>&#x800C;&#x975E; FTP &#x7684; 21 &#x7AEF;&#x53E3;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; Unix/Linux &#x4E0B;&#x7684; sftp &#x547D;&#x4EE4;)</p>
+<ul>
+<li><p>PuTTYtel (&#x4EC5;&#x4EC5;&#x662F;&#x4E00;&#x4E2A; Telnet &#x5BA2;&#x6237;&#x7AEF;)</p>
+</li>
+<li><p>Plink (&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x6267;&#x884C;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x547D;&#x4EE4;)</p>
+</li>
+<li><p>Pageant (PuTTY&#x3001;PSCP&#x3001;Plink &#x7684; SSH &#x8BA4;&#x8BC1;&#x4EE3;&#x7406;&#xFF0C;&#x7528;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x6BCF;&#x6B21;&#x90FD;&#x8F93;&#x5165;&#x53E3;&#x4EE4;&#x4E86;)</p>
+</li>
+<li><p>PuTTYgen (&#x7528;&#x6765;&#x751F;&#x6210; RSA &#x548C; DSA &#x5BC6;&#x94A5;&#x7684;&#x5DE5;&#x5177;). </p>
+</li>
+</ul>
+<p>PuTTY&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E5F;&#x5B58;&#x5728;&#x4E8E;&#x4F17;&#x591A;&#x8F6F;&#x4EF6;&#x4E2D;&#xFF0C;&#x6BD4;&#x5982; FileZilla&#x3001;WinSCP&#xFF0C;&#x9ED8;&#x8BA4;&#x767B;&#x5F55;&#x534F;&#x8BAE;&#x662F;SSH(&#x5B89;&#x5168;&#x547D;&#x4EE4;&#x89E3;&#x91CA;&#x7A0B;&#x5E8F;)&#xFF0C;&#x901A;&#x8FC7;ssh&#x53EF;&#x4EE5;&#x4F7F;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x901A;&#x8BAF;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;,&#x8FD9;&#x4E5F;&#x662F;Putty&#x5F3A;&#x5927;&#x529F;&#x80FD;&#x6240;&#x5728;.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/13/2015-04-13-Notepad++修改配色方案/" itemprop="url">
                   Notepad++修改配色方案
                 </a>
@@ -1494,7 +1627,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1502,7 +1635,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1511,7 +1644,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

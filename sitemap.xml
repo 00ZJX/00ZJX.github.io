@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://asanzjx.ren/2016/05/29/%E5%9C%A8Github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    
+    <lastmod>2016-08-17T16:49:12.520Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://asanzjx.ren/about/index.html</loc>
     
     <lastmod>2016-08-17T14:40:10.212Z</lastmod>
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
+    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/03/21/2015-03-21-python%20urlopen%E5%87%BD%E6%95%B0/</loc>
+    <loc>http://asanzjx.ren/2015/03/19/2015-03-19-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%97%E7%AC%A6%E9%9B%86/</loc>
     
     <lastmod>2016-06-01T05:08:25.145Z</lastmod>
     
@@ -79,6 +86,13 @@
   </url>
   
   <url>
+    <loc>http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++%E4%BF%AE%E6%94%B9%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/</loc>
+    
+    <lastmod>2016-06-01T05:08:25.140Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://asanzjx.ren/2015/04/11/2015-04-11-pycharm%E6%9C%89%E4%B8%AD%E6%96%87%E6%B3%A8%E9%87%8A%E6%8A%A5%E9%94%99/</loc>
     
     <lastmod>2016-06-01T05:08:25.140Z</lastmod>
@@ -86,9 +100,9 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/13/2015-04-13-Notepad++%E4%BF%AE%E6%94%B9%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/</loc>
+    <loc>http://asanzjx.ren/2015/04/16/2015-04-16-PuTTY(%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E8%BD%AF%E4%BB%B6)/</loc>
     
-    <lastmod>2016-06-01T05:08:25.140Z</lastmod>
+    <lastmod>2016-06-01T05:08:25.138Z</lastmod>
     
   </url>
   
@@ -107,9 +121,9 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/04/16/2015-04-16-PuTTY(%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E8%BD%AF%E4%BB%B6)/</loc>
+    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-%E7%94%A8vim%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%EF%BC%9A%20Taglist%20%20%E3%80%82%E3%80%82%E3%80%82%E3%80%82not%20found/</loc>
     
-    <lastmod>2016-06-01T05:08:25.138Z</lastmod>
+    <lastmod>2016-06-01T05:08:25.137Z</lastmod>
     
   </url>
   
@@ -122,13 +136,6 @@
   
   <url>
     <loc>http://asanzjx.ren/2015/04/19/2015-04-19-Centos6.5%E9%85%8D%E7%BD%AEmongodb/</loc>
-    
-    <lastmod>2016-06-01T05:08:25.137Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://asanzjx.ren/2015/04/19/2015-04-19-%E7%94%A8vim%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%EF%BC%9A%20Taglist%20%20%E3%80%82%E3%80%82%E3%80%82%E3%80%82not%20found/</loc>
     
     <lastmod>2016-06-01T05:08:25.137Z</lastmod>
     
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
+    <loc>http://asanzjx.ren/2015/06/10/2015-06-10-/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2015/06/10/2015-06-10-/</loc>
+    <loc>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</loc>
     
     <lastmod>2016-06-01T05:08:25.135Z</lastmod>
     
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2016-06-01T05:08:25.122Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://asanzjx.ren/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <loc>http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2016-06-01T05:08:25.122Z</lastmod>
     
