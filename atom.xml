@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asanzjx.ren/"/>
-  <updated>2016-08-17T14:08:23.102Z</updated>
+  <updated>2016-08-18T08:25:05.989Z</updated>
   <id>http://asanzjx.ren/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pandoc</title>
+    <link href="http://asanzjx.ren/2016/08/18/Pandoc/"/>
+    <id>http://asanzjx.ren/2016/08/18/Pandoc/</id>
+    <published>2016-08-18T07:54:11.000Z</published>
+    <updated>2016-08-18T08:25:05.989Z</updated>
+    
+    <content type="html">&lt;p&gt;&amp;#x5B98;&amp;#x7F51;&amp;#xFF1A;&lt;a href=&quot;http://pandoc.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pandoc.org/&lt;/a&gt;&amp;#xFF0C;&amp;#x652F;&amp;#x6301;&amp;#x8F6C;&amp;#x6362;&amp;#x7684;&amp;#x683C;&amp;#x5F0F;&amp;#xFF1A;&lt;a href=&quot;http://pandoc.org/diagram.jpg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pandoc.org/diagram.jpg&lt;/a&gt;&amp;#x3002;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;title=&amp;quot;&amp;#x5E38;&amp;#x7528;&amp;#x547D;&amp;#x4EE4;&amp;quot;}&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pandoc -o &amp;lt;outputFileName&amp;gt; &amp;lt;inputFileName&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# example&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pandoc -o outputfile.md inputfile.tex&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&amp;#x8FD9;&amp;#x6837;&amp;#x5C31;&amp;#x628A;tex&amp;#x6587;&amp;#x4EF6;&amp;#x8F6C;&amp;#x5316;&amp;#x4E3A;md&amp;#x683C;&amp;#x5F0F;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#xFF0C;&amp;#x6548;&amp;#x679C;&amp;#x8FD8;&amp;#x662F;&amp;#x4E0D;&amp;#x9519;&amp;#x7684;&amp;#x3002;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;#x5B98;&amp;#x7F51;&amp;#xFF1A;&lt;a href=&quot;http://pandoc.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pandoc.org/&lt;/a&gt;&amp;#xFF0C;&amp;#x652F;&amp;#x6301;&amp;#x8F6C
+    
+    </summary>
+    
+      <category term="ToolView" scheme="http://asanzjx.ren/categories/ToolView/"/>
+    
+    
+      <category term="Pandoc" scheme="http://asanzjx.ren/tags/Pandoc/"/>
+    
+  </entry>
   
   <entry>
     <title>导出PPT中的图片</title>
@@ -262,13 +287,13 @@ toc:
       <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="wordpress" scheme="http://asanzjx.ren/tags/wordpress/"/>
-    
       <category term="Windows server 2003" scheme="http://asanzjx.ren/tags/Windows-server-2003/"/>
     
       <category term="FTP" scheme="http://asanzjx.ren/tags/FTP/"/>
     
       <category term="wamperserver" scheme="http://asanzjx.ren/tags/wamperserver/"/>
+    
+      <category term="wordpress" scheme="http://asanzjx.ren/tags/wordpress/"/>
     
   </entry>
   
@@ -319,11 +344,11 @@ toc:
       <category term="PT" scheme="http://asanzjx.ren/categories/PT/"/>
     
     
+      <category term="PT" scheme="http://asanzjx.ren/tags/PT/"/>
+    
       <category term="一句话木马" scheme="http://asanzjx.ren/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/"/>
     
       <category term="chopper" scheme="http://asanzjx.ren/tags/chopper/"/>
-    
-      <category term="PT" scheme="http://asanzjx.ren/tags/PT/"/>
     
   </entry>
   
@@ -767,47 +792,6 @@ toc:
     
       <category term="Maual" scheme="http://asanzjx.ren/categories/Maual/"/>
     
-    
-      <category term="Centos" scheme="http://asanzjx.ren/tags/Centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Centos6.5 下 Python2.6.6升级为2.7.9</title>
-    <link href="http://asanzjx.ren/2015/04/17/2015-04-17-Centos6.5%20%E4%B8%8B%20Python2.6.6%E5%8D%87%E7%BA%A7%E4%B8%BA2.7.9/"/>
-    <id>http://asanzjx.ren/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/</id>
-    <published>2015-04-17T08:00:02.000Z</published>
-    <updated>2016-08-18T07:28:52.565Z</updated>
-    
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&amp;#x4E0B;&amp;#x8F7D;Python-2.7.9&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&amp;#x5B89;&amp;#x88C5;Python2.7.9&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mv /usr/bin/python&amp;#xA0;/usr/bin/python2.6.6&amp;#xA0;&amp;#xA0;&lt;span class=&quot;comment&quot;&gt;#&amp;#x5907;&amp;#x4EFD;&amp;#x7248;&amp;#x672C;&amp;#x4E3A;2.6.6&amp;#x7684;Python yum&amp;#x7A0B;&amp;#x5E8F;&amp;#x4F1A;&amp;#x9700;&amp;#x8981;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar -xvzf Python-2.7.9rc1.tgz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; Python-2.7.9rc1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&amp;#x6D4B;&amp;#x8BD5;&amp;#x662F;&amp;#x5426;&amp;#x5B89;&amp;#x88C5;&amp;#x6210;&amp;#x529F;&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;python -V&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Python 2.7.9rc1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;python2.7&amp;#x7248;&amp;#x672C;&amp;#x540E;,yum&amp;#x4E0D;&amp;#x80FD;&amp;#x6B63;&amp;#x5E38;&amp;#x5DE5;&amp;#x4F5C;&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vi /usr/bin/yum&amp;#xA0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#!/usr/bin/python&amp;#xA0;&amp;#x5C06;&amp;#x6B64;&amp;#x884C;&amp;#x6539;&amp;#x4E3A;&amp;#xA0;#!/usr/bin/python2.6.6&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&amp;#x5347;&amp;#x7EA7;&amp;#x5B8C;&amp;#x6BD5;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&amp;#x4E0B;&amp;#x8F7D;Python-2.7.9&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Maual" scheme="http://asanzjx.ren/categories/Maual/"/>
-    
-    
-      <category term="python" scheme="http://asanzjx.ren/tags/python/"/>
     
       <category term="Centos" scheme="http://asanzjx.ren/tags/Centos/"/>
     

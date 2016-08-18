@@ -255,6 +255,140 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/" itemprop="url">
+                  Centos6.5 下 Python2.6.6升级为2.7.9
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-17T16:00:02+08:00" content="2015-04-17">
+              2015-04-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Maual/" itemprop="url" rel="index">
+                    <span itemprop="name">Maual</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>&#x4E0B;&#x8F7D;Python-2.7.9</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5B89;&#x88C5;Python2.7.9</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python&#xA0;/usr/bin/python2.6.6&#xA0;&#xA0;<span class="comment">#&#x5907;&#x4EFD;&#x7248;&#x672C;&#x4E3A;2.6.6&#x7684;Python yum&#x7A0B;&#x5E8F;&#x4F1A;&#x9700;&#x8981;</span></span><br><span class="line">tar -xvzf Python-2.7.9rc1.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.9rc1</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br><span class="line">Python 2.7.9rc1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python2.7&#x7248;&#x672C;&#x540E;,yum&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum&#xA0;</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python&#xA0;&#x5C06;&#x6B64;&#x884C;&#x6539;&#x4E3A;&#xA0;#!/usr/bin/python2.6.6</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>&#x5347;&#x7EA7;&#x5B8C;&#x6BD5;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/16/2015-04-16-PuTTY(远程登录软件)/" itemprop="url">
                   PuTTY(远程登录软件)
                 </a>
@@ -1479,153 +1613,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/19/2015-03-19-查看操作系统字符集/" itemprop="url">
-                  查看操作系统字符集
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-19T23:53:57+08:00" content="2015-03-19">
-              2015-03-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/19/2015-03-19-查看操作系统字符集/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/19/2015-03-19-查看操作系统字符集/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>windows&#xFF1A;chcp</p>
-<p>Linux&#xFF1A;echo $LANG  #&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5B57;&#x7B26;&#x96C6;</p>
-<pre><code>locale -a #&#x67E5;&#x770B;&#x672C;&#x5730;&#x5B57;&#x7B26;&#x96C6;
-
-locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B26;&#x96C6; 
-</code></pre><p>MS-DOS&#x4E3A;&#x4EE5;&#x4E0B;&#x56FD;&#x5BB6;&#x548C;&#x8BED;&#x8A00;&#x63D0;&#x4F9B;&#x5B57;&#x7B26;&#x96C6;&#xFF1A; </p>
-<p><a href="http://baike.baidu.com/view/684997.htm" target="_blank" rel="external">&#x4EE3;&#x7801;&#x9875;</a> &#x63CF;&#x8FF0; </p>
-<p>1258 &#x8D8A;&#x5357;&#x8BED; </p>
-<p>1257 &#x6CE2;&#x7F57;&#x7684;&#x8BED; </p>
-<p>1256 &#x963F;&#x62C9;&#x4F2F;&#x8BED; </p>
-<p>1255 &#x5E0C;&#x4F2F;&#x6765;&#x8BED; </p>
-<p>1254 &#x571F;&#x8033;&#x5176;&#x8BED; </p>
-<p>1253 &#x5E0C;&#x814A;&#x8BED; </p>
-<p>1252 &#x62C9;&#x4E01; 1 <a href="http://baike.baidu.com/view/263416.htm" target="_blank" rel="external">&#x5B57;&#x7B26;</a> (ANSI) </p>
-<p>1251 &#x897F;&#x91CC;&#x5C14;&#x8BED; </p>
-<p>1250 &#x4E2D;&#x6B27;&#x8BED;&#x8A00; </p>
-<p>950 &#x7E41;&#x4F53;&#x4E2D;&#x6587; </p>
-<p>949 &#x671D;&#x9C9C;&#x8BED; </p>
-<p>936 &#x7B80;&#x4F53;&#x4E2D;&#x6587; </p>
-<p>932 &#x65E5;&#x8BED; </p>
-<p>874 &#x6CF0;&#x56FD;&#x8BED; </p>
-<p>850 &#x591A;&#x8BED;&#x79CD; (MS-DOS Latin1) </p>
-<p>437 MS-DOS &#x7F8E;&#x56FD;&#x82F1;&#x8BED;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1666,7 +1658,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1674,7 +1666,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1683,7 +1675,7 @@ locale -m #&#x67E5;&#x770B;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
