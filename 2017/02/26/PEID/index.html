@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PEid,逆向," />
 
 
 
@@ -89,7 +89,7 @@
 <meta name="description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
 &amp;#x9996;&amp;#x5148;&amp;#x719F;&amp;#x6089;PEID&amp;#x7684;&amp;#x754C;&amp;#x9762;&amp;#x53CA;&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Asan'world">
+<meta property="og:title" content="PEiD原理分析">
 <meta property="og:url" content="http://asanzjx.ren/2017/02/26/PEID/index.html">
 <meta property="og:site_name" content="Asan'world">
 <meta property="og:description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
@@ -105,9 +105,9 @@
 <meta property="og:image" content="http://asanzjx.ren/images/PEID9.PNG">
 <meta property="og:image" content="http://asanzjx.ren/images/PEID10.PNG">
 <meta property="og:image" content="http://asanzjx.ren/images/PEID11.PNG">
-<meta property="og:updated_time" content="2017-02-26T09:57:54.476Z">
+<meta property="og:updated_time" content="2017-02-26T10:36:02.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asan'world">
+<meta name="twitter:title" content="PEiD原理分析">
 <meta name="twitter:description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
 &amp;#x9996;&amp;#x5148;&amp;#x719F;&amp;#x6089;PEID&amp;#x7684;&amp;#x754C;&amp;#x9762;&amp;#x53CA;&amp;#x">
 <meta name="twitter:image" content="http://asanzjx.ren/images/PEID1.PNG">
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>  | Asan'world </title>
+  <title> PEiD原理分析 | Asan'world </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
             
             
               
-                
+                PEiD原理分析
               
             
           </h1>
@@ -280,11 +280,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T17:46:40+08:00" content="2017-02-26">
+            <time itemprop="dateCreated" datetime="2017-02-26T00:00:00+08:00" content="2017-02-26">
               2017-02-26
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逆向/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -392,18 +411,30 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PEid/" rel="tag">#PEid</a>
+          
+            <a href="/tags/逆向/" rel="tag">#逆向</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/26/Panda/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/08/18/Pandoc/" rel="next" title="Pandoc">
+                <i class="fa fa-chevron-left"></i> Pandoc
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/26/Panda/" rel="prev" title="查看IE版本号">
+                查看IE版本号 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -486,7 +517,7 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -495,7 +526,7 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -652,7 +683,7 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%
     <script type="text/javascript">
       var disqus_shortname = 'asanzjx';
       var disqus_identifier = '2017/02/26/PEID/';
-      var disqus_title = "";
+      var disqus_title = "PEiD原理分析";
       var disqus_url = 'http://asanzjx.ren/2017/02/26/PEID/';
 
       function run_disqus_script(disqus_script){
