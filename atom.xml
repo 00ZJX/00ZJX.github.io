@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://asanzjx.ren/"/>
+  <link href="http://asanzjx.github.io"/>
   <updated>2017-03-21T14:33:22.665Z</updated>
-  <id>http://asanzjx.ren/</id>
+  <id>http://asanzjx.github.io"</id>
   
   <author>
     <name>Asan</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>记录一次逆向360极速浏览器修改主页设置</title>
-    <link href="http://asanzjx.ren/2017/03/21/360Chrome/"/>
-    <id>http://asanzjx.ren/2017/03/21/360Chrome/</id>
+    <link href="http://asanzjx.github.io/2017/03/21/360Chrome/"/>
+    <id>http://asanzjx.github.io/2017/03/21/360Chrome/</id>
     <published>2017-03-21T14:29:00.000Z</published>
     <updated>2017-03-21T14:33:22.665Z</updated>
     
@@ -98,19 +98,19 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
     
     </summary>
     
-      <category term="逆向" scheme="http://asanzjx.ren/categories/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/categories/%E9%80%86%E5%90%91/"/>
     
     
-      <category term="逆向" scheme="http://asanzjx.ren/tags/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/tags/%E9%80%86%E5%90%91/"/>
     
-      <category term="360" scheme="http://asanzjx.ren/tags/360/"/>
+      <category term="360" scheme="http://asanzjx.github.io/tags/360/"/>
     
   </entry>
   
   <entry>
     <title>熊猫烧香病毒分析</title>
-    <link href="http://asanzjx.ren/2017/02/26/Panda/"/>
-    <id>http://asanzjx.ren/2017/02/26/Panda/</id>
+    <link href="http://asanzjx.github.io/2017/02/26/Panda/"/>
+    <id>http://asanzjx.github.io/2017/02/26/Panda/</id>
     <published>2017-02-26T10:53:00.000Z</published>
     <updated>2017-02-26T10:54:23.578Z</updated>
     
@@ -166,21 +166,21 @@ data-label=&amp;quot;fig:Panda13_PNG&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&quot
     
     </summary>
     
-      <category term="逆向" scheme="http://asanzjx.ren/categories/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/categories/%E9%80%86%E5%90%91/"/>
     
     
-      <category term="病毒" scheme="http://asanzjx.ren/tags/%E7%97%85%E6%AF%92/"/>
+      <category term="病毒" scheme="http://asanzjx.github.io/tags/%E7%97%85%E6%AF%92/"/>
     
-      <category term="逆向" scheme="http://asanzjx.ren/tags/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/tags/%E9%80%86%E5%90%91/"/>
     
-      <category term="熊猫烧香" scheme="http://asanzjx.ren/tags/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99/"/>
+      <category term="熊猫烧香" scheme="http://asanzjx.github.io/tags/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99/"/>
     
   </entry>
   
   <entry>
     <title>PEiD原理分析</title>
-    <link href="http://asanzjx.ren/2017/02/26/PEID/"/>
-    <id>http://asanzjx.ren/2017/02/26/PEID/</id>
+    <link href="http://asanzjx.github.io/2017/02/26/PEID/"/>
+    <id>http://asanzjx.github.io/2017/02/26/PEID/</id>
     <published>2017-02-26T10:53:00.000Z</published>
     <updated>2017-02-26T10:53:25.768Z</updated>
     
@@ -251,19 +251,19 @@ data-label=&amp;quot;fig:PEID11_PNG&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&quot;
     
     </summary>
     
-      <category term="逆向" scheme="http://asanzjx.ren/categories/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/categories/%E9%80%86%E5%90%91/"/>
     
     
-      <category term="逆向" scheme="http://asanzjx.ren/tags/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://asanzjx.github.io/tags/%E9%80%86%E5%90%91/"/>
     
-      <category term="PEid" scheme="http://asanzjx.ren/tags/PEid/"/>
+      <category term="PEid" scheme="http://asanzjx.github.io/tags/PEid/"/>
     
   </entry>
   
   <entry>
     <title>Pandoc</title>
-    <link href="http://asanzjx.ren/2016/08/18/Pandoc/"/>
-    <id>http://asanzjx.ren/2016/08/18/Pandoc/</id>
+    <link href="http://asanzjx.github.io/2016/08/18/Pandoc/"/>
+    <id>http://asanzjx.github.io/2016/08/18/Pandoc/</id>
     <published>2016-08-18T07:54:11.000Z</published>
     <updated>2016-08-18T08:25:05.989Z</updated>
     
@@ -278,17 +278,17 @@ data-label=&amp;quot;fig:PEID11_PNG&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&quot;
     
     </summary>
     
-      <category term="ToolView" scheme="http://asanzjx.ren/categories/ToolView/"/>
+      <category term="ToolView" scheme="http://asanzjx.github.io/categories/ToolView/"/>
     
     
-      <category term="Pandoc" scheme="http://asanzjx.ren/tags/Pandoc/"/>
+      <category term="Pandoc" scheme="http://asanzjx.github.io/tags/Pandoc/"/>
     
   </entry>
   
   <entry>
     <title>导出PPT中的图片</title>
-    <link href="http://asanzjx.ren/2016/06/15/%E5%AF%BC%E5%87%BAPPT%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/"/>
-    <id>http://asanzjx.ren/2016/06/15/导出PPT中的图片/</id>
+    <link href="http://asanzjx.github.io/2016/06/15/%E5%AF%BC%E5%87%BAPPT%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/"/>
+    <id>http://asanzjx.github.io/2016/06/15/导出PPT中的图片/</id>
     <published>2016-06-14T16:01:14.000Z</published>
     <updated>2016-08-17T14:08:23.102Z</updated>
     
@@ -308,17 +308,17 @@ data-label=&amp;quot;fig:PEID11_PNG&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&quot;
     
     </summary>
     
-      <category term="效率" scheme="http://asanzjx.ren/categories/%E6%95%88%E7%8E%87/"/>
+      <category term="效率" scheme="http://asanzjx.github.io/categories/%E6%95%88%E7%8E%87/"/>
     
     
-      <category term="PPT" scheme="http://asanzjx.ren/tags/PPT/"/>
+      <category term="PPT" scheme="http://asanzjx.github.io/tags/PPT/"/>
     
   </entry>
   
   <entry>
     <title>NewBlog</title>
-    <link href="http://asanzjx.ren/2016/05/30/NewBlog/"/>
-    <id>http://asanzjx.ren/2016/05/30/NewBlog/</id>
+    <link href="http://asanzjx.github.io/2016/05/30/NewBlog/"/>
+    <id>http://asanzjx.github.io/2016/05/30/NewBlog/</id>
     <published>2016-05-30T13:09:41.000Z</published>
     <updated>2016-08-18T07:50:34.716Z</updated>
     
@@ -331,17 +331,17 @@ data-label=&amp;quot;fig:PEID11_PNG&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&quot;
     
     </summary>
     
-      <category term="随笔" scheme="http://asanzjx.ren/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://asanzjx.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="blog" scheme="http://asanzjx.ren/tags/blog/"/>
+      <category term="blog" scheme="http://asanzjx.github.io/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>在Github上搭建个人博客</title>
-    <link href="http://asanzjx.ren/2016/05/29/%E5%9C%A8Github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://asanzjx.ren/2016/05/29/在Github上搭建个人博客/</id>
+    <link href="http://asanzjx.github.io/2016/05/29/%E5%9C%A8Github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://asanzjx.github.io/2016/05/29/在Github上搭建个人博客/</id>
     <published>2016-05-28T16:00:00.000Z</published>
     <updated>2016-08-18T06:02:05.223Z</updated>
     
@@ -434,19 +434,19 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="配置" scheme="http://asanzjx.ren/tags/%E9%85%8D%E7%BD%AE/"/>
+      <category term="配置" scheme="http://asanzjx.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
     
-      <category term="Hexo" scheme="http://asanzjx.ren/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://asanzjx.github.io/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>wordpress 更改固定链接出现404解决方案</title>
-    <link href="http://asanzjx.ren/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://asanzjx.ren/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/</id>
+    <link href="http://asanzjx.github.io/2016/03/01/2016-03-01-wordpress%20%E6%9B%B4%E6%94%B9%E5%9B%BA%E5%AE%9A%E9%93%BE%E6%8E%A5%E5%87%BA%E7%8E%B0404%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://asanzjx.github.io/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/</id>
     <published>2016-03-01T08:14:46.000Z</published>
     <updated>2016-08-18T06:45:30.906Z</updated>
     
@@ -465,17 +465,17 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="wordpress" scheme="http://asanzjx.ren/tags/wordpress/"/>
+      <category term="wordpress" scheme="http://asanzjx.github.io/tags/wordpress/"/>
     
   </entry>
   
   <entry>
     <title>Markdwown 常用语法</title>
-    <link href="http://asanzjx.ren/2016/03/01/2016-03-01-Markdwown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
-    <id>http://asanzjx.ren/2016/03/01/2016-03-01-Markdwown 常用语法/</id>
+    <link href="http://asanzjx.github.io/2016/03/01/2016-03-01-Markdwown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
+    <id>http://asanzjx.github.io/2016/03/01/2016-03-01-Markdwown 常用语法/</id>
     <published>2016-03-01T08:09:56.000Z</published>
     <updated>2016-08-18T06:46:04.735Z</updated>
     
@@ -492,17 +492,17 @@ toc:
     
     </summary>
     
-      <category term="ToolView" scheme="http://asanzjx.ren/categories/ToolView/"/>
+      <category term="ToolView" scheme="http://asanzjx.github.io/categories/ToolView/"/>
     
     
-      <category term="Markdown" scheme="http://asanzjx.ren/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://asanzjx.github.io/tags/Markdown/"/>
     
   </entry>
   
   <entry>
     <title>winserver2003 配置FTP，wampserver环境，wordpress等问题</title>
-    <link href="http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/"/>
-    <id>http://asanzjx.ren/2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/</id>
+    <link href="http://asanzjx.github.io/2016/02/04/2016-02-04-winserver2003%20%E9%85%8D%E7%BD%AEFTP%EF%BC%8Cwampserver%E7%8E%AF%E5%A2%83%EF%BC%8Cwordpress%E7%AD%89%E9%97%AE%E9%A2%98/"/>
+    <id>http://asanzjx.github.io/2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/</id>
     <published>2016-02-04T12:56:52.000Z</published>
     <updated>2016-08-18T06:45:00.684Z</updated>
     
@@ -529,23 +529,23 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="wordpress" scheme="http://asanzjx.ren/tags/wordpress/"/>
+      <category term="wordpress" scheme="http://asanzjx.github.io/tags/wordpress/"/>
     
-      <category term="Windows server 2003" scheme="http://asanzjx.ren/tags/Windows-server-2003/"/>
+      <category term="Windows server 2003" scheme="http://asanzjx.github.io/tags/Windows-server-2003/"/>
     
-      <category term="FTP" scheme="http://asanzjx.ren/tags/FTP/"/>
+      <category term="FTP" scheme="http://asanzjx.github.io/tags/FTP/"/>
     
-      <category term="wamperserver" scheme="http://asanzjx.ren/tags/wamperserver/"/>
+      <category term="wamperserver" scheme="http://asanzjx.github.io/tags/wamperserver/"/>
     
   </entry>
   
   <entry>
     <title>kali 安装VMwareToos</title>
-    <link href="http://asanzjx.ren/2015/09/03/2015-09-03-kali%20%E5%AE%89%E8%A3%85VMwareToos/"/>
-    <id>http://asanzjx.ren/2015/09/03/2015-09-03-kali 安装VMwareToos/</id>
+    <link href="http://asanzjx.github.io/2015/09/03/2015-09-03-kali%20%E5%AE%89%E8%A3%85VMwareToos/"/>
+    <id>http://asanzjx.github.io/2015/09/03/2015-09-03-kali 安装VMwareToos/</id>
     <published>2015-09-03T05:22:49.000Z</published>
     <updated>2016-08-18T07:19:00.990Z</updated>
     
@@ -559,17 +559,17 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="kali" scheme="http://asanzjx.ren/tags/kali/"/>
+      <category term="kali" scheme="http://asanzjx.github.io/tags/kali/"/>
     
   </entry>
   
   <entry>
     <title>phpmyadmin获得shell--初试一句话木马，chopper</title>
-    <link href="http://asanzjx.ren/2015/08/01/2015-08-01-phpmyadmin%E8%8E%B7%E5%BE%97shell--%E5%88%9D%E8%AF%95%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%EF%BC%8Cchopper/"/>
-    <id>http://asanzjx.ren/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/</id>
+    <link href="http://asanzjx.github.io/2015/08/01/2015-08-01-phpmyadmin%E8%8E%B7%E5%BE%97shell--%E5%88%9D%E8%AF%95%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%EF%BC%8Cchopper/"/>
+    <id>http://asanzjx.github.io/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/</id>
     <published>2015-08-01T07:17:49.000Z</published>
     <updated>2016-08-18T07:17:44.514Z</updated>
     
@@ -586,21 +586,21 @@ toc:
     
     </summary>
     
-      <category term="PT" scheme="http://asanzjx.ren/categories/PT/"/>
+      <category term="PT" scheme="http://asanzjx.github.io/categories/PT/"/>
     
     
-      <category term="PT" scheme="http://asanzjx.ren/tags/PT/"/>
+      <category term="PT" scheme="http://asanzjx.github.io/tags/PT/"/>
     
-      <category term="一句话木马" scheme="http://asanzjx.ren/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/"/>
+      <category term="一句话木马" scheme="http://asanzjx.github.io/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/"/>
     
-      <category term="chopper" scheme="http://asanzjx.ren/tags/chopper/"/>
+      <category term="chopper" scheme="http://asanzjx.github.io/tags/chopper/"/>
     
   </entry>
   
   <entry>
     <title>mongodb replSet 本地测试</title>
-    <link href="http://asanzjx.ren/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/"/>
-    <id>http://asanzjx.ren/2015/07/11/2015-07-11-mongodb replSet 本地测试/</id>
+    <link href="http://asanzjx.github.io/2015/07/11/2015-07-11-mongodb%20replSet%20%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95/"/>
+    <id>http://asanzjx.github.io/2015/07/11/2015-07-11-mongodb replSet 本地测试/</id>
     <published>2015-07-11T13:03:49.000Z</published>
     <updated>2016-08-18T07:13:37.487Z</updated>
     
@@ -623,23 +623,23 @@ toc:
     
     </summary>
     
-      <category term="Maual" scheme="http://asanzjx.ren/categories/Maual/"/>
+      <category term="Maual" scheme="http://asanzjx.github.io/categories/Maual/"/>
     
     
-      <category term="mongodb" scheme="http://asanzjx.ren/tags/mongodb/"/>
+      <category term="mongodb" scheme="http://asanzjx.github.io/tags/mongodb/"/>
     
-      <category term="读写分离" scheme="http://asanzjx.ren/tags/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/"/>
+      <category term="读写分离" scheme="http://asanzjx.github.io/tags/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/"/>
     
-      <category term="replSet" scheme="http://asanzjx.ren/tags/replSet/"/>
+      <category term="replSet" scheme="http://asanzjx.github.io/tags/replSet/"/>
     
-      <category term="副本集" scheme="http://asanzjx.ren/tags/%E5%89%AF%E6%9C%AC%E9%9B%86/"/>
+      <category term="副本集" scheme="http://asanzjx.github.io/tags/%E5%89%AF%E6%9C%AC%E9%9B%86/"/>
     
   </entry>
   
   <entry>
     <title>vsftpd.conf配置</title>
-    <link href="http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/"/>
-    <id>http://asanzjx.ren/2015/06/13/2015-06-13-vsftpd.conf配置/</id>
+    <link href="http://asanzjx.github.io/2015/06/13/2015-06-13-vsftpd.conf%E9%85%8D%E7%BD%AE/"/>
+    <id>http://asanzjx.github.io/2015/06/13/2015-06-13-vsftpd.conf配置/</id>
     <published>2015-06-12T16:46:36.000Z</published>
     <updated>2016-08-18T06:43:56.751Z</updated>
     
@@ -760,19 +760,19 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="ftp" scheme="http://asanzjx.ren/tags/ftp/"/>
+      <category term="ftp" scheme="http://asanzjx.github.io/tags/ftp/"/>
     
-      <category term="vsftpd.conf" scheme="http://asanzjx.ren/tags/vsftpd-conf/"/>
+      <category term="vsftpd.conf" scheme="http://asanzjx.github.io/tags/vsftpd-conf/"/>
     
   </entry>
   
   <entry>
     <title>偶然看到的一句话</title>
-    <link href="http://asanzjx.ren/2015/06/10/2015-06-10-/"/>
-    <id>http://asanzjx.ren/2015/06/10/2015-06-10-/</id>
+    <link href="http://asanzjx.github.io/2015/06/10/2015-06-10-/"/>
+    <id>http://asanzjx.github.io/2015/06/10/2015-06-10-/</id>
     <published>2015-06-09T16:11:15.000Z</published>
     <updated>2016-08-18T07:04:24.372Z</updated>
     
@@ -786,19 +786,19 @@ toc:
     
     </summary>
     
-      <category term="随笔" scheme="http://asanzjx.ren/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://asanzjx.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="大学" scheme="http://asanzjx.ren/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="大学" scheme="http://asanzjx.github.io/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="心情" scheme="http://asanzjx.ren/tags/%E5%BF%83%E6%83%85/"/>
+      <category term="心情" scheme="http://asanzjx.github.io/tags/%E5%BF%83%E6%83%85/"/>
     
   </entry>
   
   <entry>
     <title>php查询mongodb时的or操作</title>
-    <link href="http://asanzjx.ren/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/"/>
-    <id>http://asanzjx.ren/2015/05/21/2015-05-21-php查询mongodb时的or操作/</id>
+    <link href="http://asanzjx.github.io/2015/05/21/2015-05-21-php%E6%9F%A5%E8%AF%A2mongodb%E6%97%B6%E7%9A%84or%E6%93%8D%E4%BD%9C/"/>
+    <id>http://asanzjx.github.io/2015/05/21/2015-05-21-php查询mongodb时的or操作/</id>
     <published>2015-05-21T08:10:52.000Z</published>
     <updated>2016-08-18T07:03:29.789Z</updated>
     
@@ -812,19 +812,19 @@ toc:
     
     </summary>
     
-      <category term="Maual" scheme="http://asanzjx.ren/categories/Maual/"/>
+      <category term="Maual" scheme="http://asanzjx.github.io/categories/Maual/"/>
     
     
-      <category term="mongodb" scheme="http://asanzjx.ren/tags/mongodb/"/>
+      <category term="mongodb" scheme="http://asanzjx.github.io/tags/mongodb/"/>
     
-      <category term="php" scheme="http://asanzjx.ren/tags/php/"/>
+      <category term="php" scheme="http://asanzjx.github.io/tags/php/"/>
     
   </entry>
   
   <entry>
     <title>sqlmal-command</title>
-    <link href="http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/"/>
-    <id>http://asanzjx.ren/2015/05/19/2015-05-19-sqlmal-command/</id>
+    <link href="http://asanzjx.github.io/2015/05/19/2015-05-19-sqlmal-command/"/>
+    <id>http://asanzjx.github.io/2015/05/19/2015-05-19-sqlmal-command/</id>
     <published>2015-05-19T13:54:51.000Z</published>
     <updated>2016-08-18T07:00:02.837Z</updated>
     
@@ -840,17 +840,17 @@ toc:
     
     </summary>
     
-      <category term="ToolView" scheme="http://asanzjx.ren/categories/ToolView/"/>
+      <category term="ToolView" scheme="http://asanzjx.github.io/categories/ToolView/"/>
     
     
-      <category term="sqlmal" scheme="http://asanzjx.ren/tags/sqlmal/"/>
+      <category term="sqlmal" scheme="http://asanzjx.github.io/tags/sqlmal/"/>
     
   </entry>
   
   <entry>
     <title>nmap</title>
-    <link href="http://asanzjx.ren/2015/05/19/2015-05-19-nmap/"/>
-    <id>http://asanzjx.ren/2015/05/19/2015-05-19-nmap/</id>
+    <link href="http://asanzjx.github.io/2015/05/19/2015-05-19-nmap/"/>
+    <id>http://asanzjx.github.io/2015/05/19/2015-05-19-nmap/</id>
     <published>2015-05-19T13:53:08.000Z</published>
     <updated>2016-08-18T06:57:12.766Z</updated>
     
@@ -879,17 +879,17 @@ toc:
     
     </summary>
     
-      <category term="ToolView" scheme="http://asanzjx.ren/categories/ToolView/"/>
+      <category term="ToolView" scheme="http://asanzjx.github.io/categories/ToolView/"/>
     
     
-      <category term="nmap" scheme="http://asanzjx.ren/tags/nmap/"/>
+      <category term="nmap" scheme="http://asanzjx.github.io/tags/nmap/"/>
     
   </entry>
   
   <entry>
     <title>使用setup.py卸载python包的方法</title>
-    <link href="http://asanzjx.ren/2015/04/28/2015-04-28-%E4%BD%BF%E7%94%A8setup.py%E5%8D%B8%E8%BD%BDpython%E5%8C%85%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://asanzjx.ren/2015/04/28/2015-04-28-使用setup.py卸载python包的方法/</id>
+    <link href="http://asanzjx.github.io/2015/04/28/2015-04-28-%E4%BD%BF%E7%94%A8setup.py%E5%8D%B8%E8%BD%BDpython%E5%8C%85%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://asanzjx.github.io/2015/04/28/2015-04-28-使用setup.py卸载python包的方法/</id>
     <published>2015-04-28T05:53:07.000Z</published>
     <updated>2016-08-18T06:50:40.511Z</updated>
     
@@ -903,17 +903,17 @@ toc:
     
     </summary>
     
-      <category term="Python" scheme="http://asanzjx.ren/categories/Python/"/>
+      <category term="Python" scheme="http://asanzjx.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://asanzjx.ren/tags/Python/"/>
+      <category term="Python" scheme="http://asanzjx.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>用vim编辑器时出现提示： Taglist not found</title>
-    <link href="http://asanzjx.ren/2015/04/19/2015-04-19-%E7%94%A8vim%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%EF%BC%9A%20Taglist%20...not%20found/"/>
-    <id>http://asanzjx.ren/2015/04/19/2015-04-19-用vim编辑器时出现提示： Taglist ...not found/</id>
+    <link href="http://asanzjx.github.io/2015/04/19/2015-04-19-%E7%94%A8vim%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%EF%BC%9A%20Taglist%20...not%20found/"/>
+    <id>http://asanzjx.github.io/2015/04/19/2015-04-19-用vim编辑器时出现提示： Taglist ...not found/</id>
     <published>2015-04-19T06:23:06.000Z</published>
     <updated>2016-08-18T06:49:05.740Z</updated>
     
@@ -933,10 +933,10 @@ toc:
     
     </summary>
     
-      <category term="配置相关" scheme="http://asanzjx.ren/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <category term="配置相关" scheme="http://asanzjx.github.io/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="vim" scheme="http://asanzjx.ren/tags/vim/"/>
+      <category term="vim" scheme="http://asanzjx.github.io/tags/vim/"/>
     
   </entry>
   
