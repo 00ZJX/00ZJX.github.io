@@ -255,6 +255,139 @@
             
               
                 
+                <a class="post-title-link" href="/2018/05/06/3PagingModeVtoP/" itemprop="url">
+                  三种分页模式(32bit,PAE,IA-32e)下的虚拟地址到物理地址的转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-06T16:30:00+08:00" content="2018-05-06">
+              2018-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kernel/" itemprop="url" rel="index">
+                    <span itemprop="name">kernel</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/05/06/3PagingModeVtoP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/06/3PagingModeVtoP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>具体理论部分可参考Intel手册中关于分页的章节：<a href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html" target="_blank" rel="external">https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html</a></p>
+<h1><span id="涉及到的概念">涉及到的概念</span></h1><p>控制寄存器：</p>
+<ul>
+<li>cr0：分页机制的开关</li>
+<li>cr3：分页数据结构的基地址</li>
+<li>cr4：控制硬件虚拟化设置(Pentium及80486以后才有)</li>
+</ul>
+<h1><span id="分页模式">分页模式</span></h1><p>启用分页模式条件：cr0.PG = 1 且 cr0.PE = 1</p>
+<p>根据不同CPU架构及特性主要分为三种模式，处于哪种模式视寄存器属性不同：</p>
+<ul>
+<li>32-bit paging(32位OS): cr0.PG = 1 ; cr4.PAE = 0</li>
+<li>PAE paging(32位OS开启了PAE): cr0.PG = 1 ; cr4.PAE = 1 ; IA32_EFER.LME = 0</li>
+<li>IA-32e paging(64位OS): cr0.PG = 1 ; cr4.PAE = 1 ; IA32_EFER.LME = 1</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/21/360Chrome/" itemprop="url">
                   记录一次逆向360极速浏览器修改主页设置
                 </a>
@@ -325,67 +458,67 @@
       
         
           
-            <p>&#x770B;&#x5230;FreeBUF&#x4E0A;&#x6709;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x9006;&#x5411;360&#x6781;&#x901F;&#x6D4F;&#x89C8;&#x5668;&#x548C;360&#x9996;&#x9875;&#x8BBE;&#x7F6E;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#xFF0C;<a href="http://www.freebuf.com/articles/terminal/128902.html" target="_blank" rel="external">http://www.freebuf.com/articles/terminal/128902.html</a>&#x3002;&#x5F53;&#x65F6;&#x5BF9;&#x8FD9;&#x4E2A;&#x5F88;&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x60F3;&#x5C1D;&#x8BD5;&#x4E00;&#x4E0B;&#x3002;&#x8FD9;&#x91CC;&#x5728;WindowsXP&#x4E0B;&#x4EE5;360&#x6781;&#x901F;&#x6D4F;&#x89C8;&#x5668;8.5.0.144&#x4E3A;&#x4F8B;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
-<h2 id="&#x4ECE;&#x6587;&#x7AE0;&#x4E2D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x7684;&#x4FE1;&#x606F;"><a href="#&#x4ECE;&#x6587;&#x7AE0;&#x4E2D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x7684;&#x4FE1;&#x606F;" class="headerlink" title="&#x4ECE;&#x6587;&#x7AE0;&#x4E2D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x7684;&#x4FE1;&#x606F;"></a>&#x4ECE;&#x6587;&#x7AE0;&#x4E2D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x7684;&#x4FE1;&#x606F;</h2><p>&#x6309;&#x7167;&#x6587;&#x7AE0;&#x6240;&#x8BF4;&#xFF0C;&#x5176;&#x8BBE;&#x7F6E;&#x6D41;&#x7A0B;&#x4E3A;(&#x8FD9;&#x91CC;&#x628A;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x4E3B;&#x9875;&#x8BB0;&#x4F5C;url)&#xFF1A;</p>
+            <p>看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，<a href="http://www.freebuf.com/articles/terminal/128902.html" target="_blank" rel="external">http://www.freebuf.com/articles/terminal/128902.html</a>。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。</p>
+<h2><span id="从文章中可以获取的信息">从文章中可以获取的信息</span></h2><p>按照文章所说，其设置流程为(这里把要设置的主页记作url)：</p>
 <ol>
-<li><p>&#x8BA1;&#x7B97;&#x786C;&#x4EF6;&#x7684;&#x673A;&#x5668;&#x7801;&#x7684;MD5&#x503C;&#xFF0C;&#x6B64;&#x5904;&#x8BB0;&#x4E3A;MD5-1</p>
+<li><p>计算硬件的机器码的MD5值，此处记为MD5-1</p>
 </li>
-<li><p>&#x5C06;MD5-1&#x4E0E;url&#x8FDB;&#x884C;&#x62FC;&#x63A5;&#xFF0C;&#x540E;&#x8BA1;&#x7B97;MD5&#x503C;&#xFF0C;&#x8BB0;&#x4E3A;MD5-2</p>
+<li><p>将MD5-1与url进行拼接，后计算MD5值，记为MD5-2</p>
 </li>
-<li><p>&#x8BA1;&#x7B97;&#x7F51;&#x5361;&#x7684;&#x673A;&#x5668;&#x7801;&#x7684;MD5&#x503C;&#xFF0C;&#x8BB0;&#x4E3A;MD-3</p>
+<li><p>计算网卡的机器码的MD5值，记为MD-3</p>
 </li>
-<li><p>&#x5C06;MD5-1,MD-2&#x4E0E;url&#x62FC;&#x63A5;&#xFF0C;&#x8BA1;&#x7B97;base64</p>
+<li><p>将MD5-1,MD-2与url拼接，计算base64</p>
 </li>
 </ol>
-<p>&#x7136;&#x540E;&#x6587;&#x7AE0;&#x4E2D;&#x8FD8;&#x53EF;&#x4EE5;&#x4E86;&#x89E3;&#x7684;&#x4FE1;&#x606F;&#x662F;360&#x6781;&#x901F;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;&#x4E3B;&#x9875;&#x7684;&#x6CE8;&#x518C;&#x8868;&#x76EE;&#x5F55;&#x4E3A;&#xFF1A;software\360chrme\homepage&#x3002;&#x7136;&#x540E;&#x5728;&#x51E0;&#x4E2A;&#x4F5C;&#x8005;&#x53D1;&#x7684;OD&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x8C03;&#x7528;&#x4E86;chrome&#x3002;</p>
-<h2 id="&#x627E;&#x5230;&#x5165;&#x53E3;&#x7EBF;&#x7D22;"><a href="#&#x627E;&#x5230;&#x5165;&#x53E3;&#x7EBF;&#x7D22;" class="headerlink" title="&#x627E;&#x5230;&#x5165;&#x53E3;&#x7EBF;&#x7D22;"></a>&#x627E;&#x5230;&#x5165;&#x53E3;&#x7EBF;&#x7D22;</h2><p>&#x9996;&#x5148;&#x770B;&#x770B;chrome&#x662F;&#x4E2A;&#x4EC0;&#x4E48;&#x7A0B;&#x5E8F;&#x3002;&#x5728;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x4E2D;%360Chrome\Chrome\Application\8.7.0.306%&#x4E2D;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x627E;&#x5230;chrome.dll&#x6587;&#x4EF6;&#xFF0C;&#x7531;&#x6B64;&#x53EF;&#x4EE5;&#x63A8;&#x65AD;&#x51FA;&#x4E3B;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x4E86;&#x8FD9;&#x4E2A;DLL&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x5165;&#x53E3;&#x7EBF;&#x7D22;&#xFF0C;&#x4E0A;&#x6587;&#x53EF;&#x77E5;360&#x6781;&#x901F;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;&#x4E3B;&#x9875;&#x7684;&#x6CE8;&#x518C;&#x8868;&#x76EE;&#x5F55;&#xFF0C;&#x7528;string&#x6216;&#x8005;OD&#x8F7D;&#x5165;360chrome&#x4E3B;&#x7A0B;&#x5E8F;&#x90FD;&#x65E0;&#x6CD5;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x6CE8;&#x518C;&#x8868;&#x76EE;&#x5F55;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x800C;&#x5728;chrome.dll&#x662F;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x7684;&#x3002;</p>
-<p>&#x65E2;&#x7136;&#x5DF2;&#x7ECF;&#x67E5;&#x5230;&#x4E86;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5728;chrome.dll&#x6587;&#x4EF6;&#x4E2D;&#x51FA;&#x73B0;&#xFF0C;&#x90A3;&#x5C31;&#x627E;&#x5230;&#x8FD0;&#x884C;&#x8FD9;&#x4E2A;DLL&#x7684;&#x5165;&#x53E3;&#x5427;&#x3002;OD&#x8F7D;&#x5165;360chrome.exe&#x4E3B;&#x7A0B;&#x5E8F;&#xFF0C;&#x9009;&#x9879;-&#x8C03;&#x8BD5;&#x9009;&#x9879;-&#x4E8B;&#x4EF6;&#x4E2D;&#x52FE;&#x9009;&#x4E2D;&#x65AD;&#x5728;&#x65B0;&#x6A21;&#x5757;(DLL)&#x3002;F9&#x8FD0;&#x884C;&#xFF0C;&#x89C2;&#x5BDF;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x770B;&#x662F;&#x5426;&#x4E3A;chrome.dll&#x7A0B;&#x5E8F;&#x3002;OK&#xFF0C;&#x7A0B;&#x5E8F;&#x505C;&#x5728;0x1c51161&#x5904;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;chrome.dll&#x7684;&#x9886;&#x7A7A;&#x5566;&#x3002;</p>
-<p>&#x53D6;&#x6D88;&#x52FE;&#x9009;&#x4E2D;&#x65AD;&#x5728;&#x65B0;&#x6A21;&#x5757;(DLL)&#x3002;F8&#x8DDF;&#x8E2A;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#xFF0C;&#x7136;&#x540E;Alt+F9&#x8FD4;&#x56DE;&#x7528;&#x6237;&#x4EE3;&#x7801;&#x9886;&#x7A7A;&#x3002;&#x7A0B;&#x5E8F;&#x505C;&#x5728;&#x4E86;0x417dea&#x5730;&#x5740;&#x5904;&#x3002;F8&#x7EE7;&#x7EED;&#x8DDF;&#x8E2A;&#x53EF;&#x4EE5;&#x7136;&#x540E;&#x63A5;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x76F4;&#x63A5;&#x5230;&#x4E86;0x4180fa&#x5730;&#x5740;&#x5904;&#x3002;&#x7ECF;&#x8FC7;&#x591A;&#x6B21;&#x5206;&#x6790;&#x548C;&#x8DD1;&#x98DE;&#xFF0C;&#x53D1;&#x73B0;&#x6B63;&#x5E38;&#x7684;&#x6D41;&#x7A0B;&#x5E94;&#x8BE5;&#x662F;&#x8DF3;&#x5230;0x418ad1&#x5904;&#x6302;&#x65AD;&#x70B9;&#x8DD1;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B8C;&#x6210;&#x5BF9;chrome.dll&#x7684;&#x52A0;&#x8F7D;&#xFF0C;</p>
-<h2 id="&#x8FDB;&#x5165;chromedll"><a href="#&#x8FDB;&#x5165;chrome-dll" class="headerlink" title="&#x8FDB;&#x5165;chrome.dll"></a>&#x8FDB;&#x5165;chrome.dll</h2><p>F7&#x8FDB;&#x5165;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x6765;&#x5230;&#x4E86;0x1c597c4&#x5730;&#x5740;&#x5904;&#x3002;&#x641C;&#x7D22;&#x5B57;&#x7B26;&#x4E32;&#x201C;Software\360Chrome\Homepage&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5728;0x1de48df;0x1de48f2;0x1d2e51f&#x5730;&#x5740;&#x5904;&#x6709;push<br>chrome.03821320&#x6307;&#x4EE4;&#xFF0C;&#x800C; chrome.03821320&#x5B58;&#x653E;&#x7684;&#x5C31;&#x662F;&#x8981;&#x641C;&#x7D22;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
-<h3 id="&#x524D;&#x4E24;&#x4E2A;&#x6307;&#x4EE4;"><a href="#&#x524D;&#x4E24;&#x4E2A;&#x6307;&#x4EE4;" class="headerlink" title="&#x524D;&#x4E24;&#x4E2A;&#x6307;&#x4EE4;"></a>&#x524D;&#x4E24;&#x4E2A;&#x6307;&#x4EE4;</h3><p>Ctrl+G&#x8DF3;&#x8F6C;&#x5230;0x1de48df&#x5730;&#x5740;&#x5904;&#xFF0C;0x1de48eb&#x5730;&#x5740;&#x5904;&#x4E0B;&#x65AD;&#x70B9;</p>
-<p>&#x5728;&#x7B2C;&#x56DB;&#x4E2A;call&#x4E0B;&#x65AD;&#x70B9;&#xFF0C;&#x8FD0;&#x884C;&#x7136;&#x540E;&#x8FDB;&#x5165;&#x3002;&#x6765;&#x5230;&#x4E86;&#x5730;&#x5740;0x1de4984&#x5730;&#x5740;&#x5904;&#x3002;</p>
-<p>&#x5728;0x1de498b0&#x5730;&#x5740;&#x5904;call&#x4E86;&#x4E00;&#x4E2A;&#x6253;&#x5F00;&#x6CE8;&#x518C;&#x8868;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x6B63;&#x662F;&#x6253;&#x5F00;Homepage\Default&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x3002;&#x53C2;&#x6570;&#x8BE6;&#x89C1;&#x6808;&#x7A7A;&#x95F4;&#x3002;</p>
-<p>&#x4E0A;&#x9762;&#x7684;&#x5206;&#x6790;&#x6CA1;&#x627E;&#x5230;&#x4EC0;&#x4E48;&#x6709;&#x5173;&#x4E8E;&#x52A0;&#x5BC6;&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;&#x3002;</p>
-<h3 id="0x1d2e51f"><a href="#0x1d2e51f" class="headerlink" title="0x1d2e51f"></a>0x1d2e51f</h3><p>&#x8FD9;&#x6837;&#x5C31;&#x5269;&#x4E0B;&#x6700;&#x540E;&#x7684;0x1d2e51f&#x51FA;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x6302;&#x65AD;&#x70B9;&#x8DD1;&#x7A0B;&#x5E8F;&#x3002;</p>
-<p>&#x9996;&#x5148;&#x8FDB;&#x5165;&#x7B2C;&#x4E00;&#x4E2A;call&#x51FD;&#x6570;&#x5206;&#x6790;&#xFF0C;0x1d2e52a&#x3002;</p>
-<p>0x627ee28&#x5B58;&#x653E;&#x7684;&#x662F;360&#x6781;&#x901F;&#x6D4F;&#x89C8;&#x5668;&#x7528;&#x6237;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x3002;</p>
-<p>&#x627E;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x7B2C;&#x56DB;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x53D1;&#x73B0;&#x5176;&#x8C03;&#x7528;chrome.0x1d2e57d&#x5730;&#x5740;&#xFF0C;Ctrl+G&#x8F6C;&#x5230;chrome.0x1d2e57d&#x5730;&#x5740;&#xFF0C;&#x6302;&#x65AD;&#x70B9;&#x8DD1;&#x7A0B;&#x5E8F;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8981;&#x627E;&#x7684;&#x8BBE;&#x7F6E;&#x4E3B;&#x9875;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
-<h2 id="chrome0x1d2e57d&#x8BE6;&#x7EC6;&#x5206;&#x6790;"><a href="#chrome-0x1d2e57d&#x8BE6;&#x7EC6;&#x5206;&#x6790;" class="headerlink" title="chrome.0x1d2e57d&#x8BE6;&#x7EC6;&#x5206;&#x6790;"></a>chrome.0x1d2e57d&#x8BE6;&#x7EC6;&#x5206;&#x6790;</h2><p>&#x9996;&#x5148;&#x6253;&#x5F00;&#x6CE8;&#x518C;&#x8868;</p>
-<p><img src="/images/360-999.PNG" alt="&#x6253;&#x5F00;&#x6CE8;&#x518C;&#x8868;&lt;span
-data-label=&quot;360-999&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5982;&#x56FE;[360-999]&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x6253;&#x5F00;&#x6CE8;&#x518C;&#x8868;&#x5E76;&#x4E0D;&#x662F;homepage&#x952E;&#x503C;&#xFF0C;&#x800C;&#x662F;urls_to_restore_on_startup&#x952E;&#x503C;&#x3002;</p>
-<p>&#x63A5;&#x7740;&#x5F00;&#x59CB;&#x5F97;&#x5230;MD5-1&#x503C;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x7B2C;&#x4E00;&#x6B21;&#x62FC;&#x63A5;[360-998]</p>
-<p><img src="/images/360-998.PNG" alt="&#x5F97;&#x5230;MD5-1&lt;span
-data-label=&quot;360-998&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/360-997.PNG" alt="&#x5F97;&#x5230;MD5-2&lt;span
-data-label=&quot;360-997&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x63A5;&#x7740;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x62FC;&#x63A5;&#x64CD;&#x4F5C;[360-996],[360-995]</p>
+<p>然后文章中还可以了解的信息是360极速浏览器设置主页的注册表目录为：software\360chrme\homepage。然后在几个作者发的OD图中可以发现调用了chrome。</p>
+<h2><span id="找到入口线索">找到入口线索</span></h2><p>首先看看chrome是个什么程序。在安装目录中%360Chrome\Chrome\Application\8.7.0.306%中可以发现找到chrome.dll文件，由此可以推断出主程序调用了这个DLL文件。</p>
+<p>还有一个入口线索，上文可知360极速浏览器设置主页的注册表目录，用string或者OD载入360chrome主程序都无法找到这个注册表目录的字符串。而在chrome.dll是可以找到的。</p>
+<p>既然已经查到了字符串是在chrome.dll文件中出现，那就找到运行这个DLL的入口吧。OD载入360chrome.exe主程序，选项-调试选项-事件中勾选中断在新模块(DLL)。F9运行，观察上下文，看是否为chrome.dll程序。OK，程序停在0x1c51161处，这里就是chrome.dll的领空啦。</p>
+<p>取消勾选中断在新模块(DLL)。F8跟踪到第一个返回，然后Alt+F9返回用户代码领空。程序停在了0x417dea地址处。F8继续跟踪可以然后接一个返回直接到了0x4180fa地址处。经过多次分析和跑飞，发现正常的流程应该是跳到0x418ad1处挂断点跑程序，完成对chrome.dll的加载，</p>
+<h2><span id="进入chromedll">进入chrome.dll</span></h2><p>F7进入。这样就来到了0x1c597c4地址处。搜索字符串“Software\360Chrome\Homepage，可以发现在0x1de48df;0x1de48f2;0x1d2e51f地址处有push<br>chrome.03821320指令，而 chrome.03821320存放的就是要搜索的字符串。</p>
+<h3><span id="前两个指令">前两个指令</span></h3><p>Ctrl+G跳转到0x1de48df地址处，0x1de48eb地址处下断点</p>
+<p>在第四个call下断点，运行然后进入。来到了地址0x1de4984地址处。</p>
+<p>在0x1de498b0地址处call了一个打开注册表的函数，这个函数正是打开Homepage\Default这个目录。参数详见栈空间。</p>
+<p>上面的分析没找到什么有关于加密的算法实现。</p>
+<h3><span id="0x1d2e51f">0x1d2e51f</span></h3><p>这样就剩下最后的0x1d2e51f出的地址，挂断点跑程序。</p>
+<p>首先进入第一个call函数分析，0x1d2e52a。</p>
+<p>0x627ee28存放的是360极速浏览器用户数据目录。</p>
+<p>找到下面的第四个函数，发现其调用chrome.0x1d2e57d地址，Ctrl+G转到chrome.0x1d2e57d地址，挂断点跑程序。这个函数要找的设置主页的函数。</p>
+<h2><span id="chrome0x1d2e57d详细分析">chrome.0x1d2e57d详细分析</span></h2><p>首先打开注册表</p>
+<p><img src="/images/360-999.PNG" alt="打开注册表&lt;span
+data-label=&quot;360-999&quot;&gt;&lt;/span&gt;">[width=”80.00000%”]</p>
+<p>如图[360-999]可以发现打开注册表并不是homepage键值，而是urls_to_restore_on_startup键值。</p>
+<p>接着开始得到MD5-1值，进行了第一次拼接[360-998]</p>
+<p><img src="/images/360-998.PNG" alt="得到MD5-1&lt;span
+data-label=&quot;360-998&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/360-997.PNG" alt="得到MD5-2&lt;span
+data-label=&quot;360-997&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>接着进行第二次拼接操作[360-996],[360-995]</p>
 <p><img src="/images/360-996.PNG" alt="url+MD5-2&lt;span
-data-label=&quot;360-996&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+data-label=&quot;360-996&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
 <p><img src="/images/360-995.PNG" alt="url+MD5-2&lt;span
-data-label=&quot;360-995&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x8FDB;&#x884C;base64&#x7F16;&#x7801;[360-994]</p>
-<p><img src="/images/360-994.PNG" alt="&lt;span data-label=&quot;360-994&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x6700;&#x540E;&#x8BBE;&#x7F6E;&#x6CE8;&#x518C;&#x8868;&#x7684;&#x64CD;&#x4F5C;[360-993]</p>
-<p><img src="/images/360-993.PNG" alt="&#x6700;&#x540E;&#x8FDB;&#x884C;&#x6CE8;&#x518C;&#x8868;&#x7684;&#x64CD;&#x4F5C;&lt;span
-data-label=&quot;360-993&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5206;&#x6790;&#x4E86;&#x4E00;&#x5708;&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5728;&#x6211;&#x7684;&#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x8BBE;&#x7F6E;urls_to_restore_on_startup&#x3002;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x5176;&#x5B9E;&#x662F;&#x6211;IE&#x7684;&#x4E3B;&#x9875;url<a href="http://www.msn.com/zh-cn" target="_blank" rel="external">http://www.msn.com/zh-cn</a>&#x3002;</p>
-<h2 id="&#x4E00;&#x4E9B;&#x53D1;&#x73B0;"><a href="#&#x4E00;&#x4E9B;&#x53D1;&#x73B0;" class="headerlink" title="&#x4E00;&#x4E9B;&#x53D1;&#x73B0;"></a>&#x4E00;&#x4E9B;&#x53D1;&#x73B0;</h2><p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x671F;&#x95F4;&#x7684;&#x5206;&#x6790;&#x8FC7;&#x7A0B;&#x4E2D;&#x662F;&#x78B0;&#x5230;&#x8BF8;&#x591A;&#x7684;&#x9EBB;&#x70E6;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x610F;&#x5916;&#x7684;&#x6536;&#x83B7;&#x3002;</p>
-<h3 id="&#x89E3;&#x6790;&#x5404;&#x79CD;&#x6587;&#x4EF6;"><a href="#&#x89E3;&#x6790;&#x5404;&#x79CD;&#x6587;&#x4EF6;" class="headerlink" title="&#x89E3;&#x6790;&#x5404;&#x79CD;&#x6587;&#x4EF6;"></a>&#x89E3;&#x6790;&#x5404;&#x79CD;&#x6587;&#x4EF6;</h3><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E3B;&#x8981;&#x5728;chrome.0x1e516dc chrome.0x1e51b06&#x3002;</p>
-<h3 id="&#x52A0;&#x8F7D;chromedll&#x6587;&#x4EF6;"><a href="#&#x52A0;&#x8F7D;chrome-dll&#x6587;&#x4EF6;" class="headerlink" title="&#x52A0;&#x8F7D;chrome.dll&#x6587;&#x4EF6;"></a>&#x52A0;&#x8F7D;chrome.dll&#x6587;&#x4EF6;</h3><p>&#x7EE7;&#x7EED;&#x8DDF;&#x8E2A;&#xFF0C;&#x53D1;&#x73B0;&#x6CE8;&#x91CA;&#x591A;&#x6B21;&#x63D0;&#x5230;&#x4E86;chrome.01c50000&#xFF0C;&#x6570;&#x636E;&#x7A97;&#x53E3;&#x8DDF;&#x968F;&#x4E0B;&#xFF0C;&#x53D1;&#x73B0;&#x662F;&#x4E2A;PE&#x6587;&#x4EF6;&#xFF0C;&#x6839;&#x636E;&#x5176;PE&#x6587;&#x4EF6;&#x5934;&#x4E2D;&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x77E5;&#x503C;&#x662F;0x2122[]&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x662F;&#x4E2A;32&#x4F4D;&#x7684;DLL&#x6587;&#x4EF6;&#x3002;</p>
-<p><img src="/images/360-PE1.PNG" alt="chrome.01c50000 PE&#x5934;&#x6587;&#x4EF6;&#x5C5E;&#x6027;&lt;span
-data-label=&quot;360-PE1&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5355;&#x6B65;&#x8FDB;&#x5165;0x464390&#x3002;&#x9996;&#x5148;&#x4F1A;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x662F;PE&#x6587;&#x4EF6;&#xFF0C;&#x68C0;&#x67E5;0x5a4d[360-PE2]&#x3002;</p>
-<p><img src="/images/360-PE2.PNG" alt="chrome.01c50000&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x4E3A;PE&#x6587;&#x4EF6;&lt;span
-data-label=&quot;360-PE2&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x800C;&#x5728;0x001bb530&#x5904;&#x5219;&#x5B58;&#x50A8;&#x4E86;DLL&#x8DEF;&#x5F84;&#x6570;&#x636E;[360-PE3]&#x3002;</p>
-<p><img src="/images/360-PE3.PNG" alt="chrome.01c50000&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&lt;span
-data-label=&quot;360-PE3&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5F53;&#x7136;&#x4E5F;&#x4F1A;&#x83B7;&#x53D6;&#x5173;&#x4E8E;PE&#x6587;&#x4EF6;&#x5185;&#x5B58;&#x6620;&#x50CF;&#x5927;&#x5C0F;[360-PE4]&#x3002;</p>
-<p><img src="/images/360-PE4.PNG" alt="chrome.01c50000PE&#x6587;&#x4EF6;&#x5185;&#x5B58;&#x6620;&#x50CF;&#x5927;&#x5C0F;&#x83B7;&#x53D6;&lt;span
-data-label=&quot;360-PE4&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<h3 id="&#x6CE8;&#x518C;&#x8868;&#x7684;homepage&#x503C;"><a href="#&#x6CE8;&#x518C;&#x8868;&#x7684;homepage&#x503C;" class="headerlink" title="&#x6CE8;&#x518C;&#x8868;&#x7684;homepage&#x503C;"></a>&#x6CE8;&#x518C;&#x8868;&#x7684;homepage&#x503C;</h3><p>OK&#xFF0C;&#x65E2;&#x7136;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6CE8;&#x518C;&#x8868;&#x4F4D;&#x7F6E;&#xFF0C;&#x66F4;&#x6539;&#x4E3B;&#x9875;&#x8BBE;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x8FD9;&#x51E0;&#x4E2A;homepage&#x503C;</p>
+data-label=&quot;360-995&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>进行base64编码[360-994]</p>
+<p><img src="/images/360-994.PNG" alt="&lt;span data-label=&quot;360-994&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>最后设置注册表的操作[360-993]</p>
+<p><img src="/images/360-993.PNG" alt="最后进行注册表的操作&lt;span
+data-label=&quot;360-993&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>分析了一圈，可以发现在我的机器上，主要是设置urls_to_restore_on_startup。这个地址其实是我IE的主页url<a href="http://www.msn.com/zh-cn" target="_blank" rel="external">http://www.msn.com/zh-cn</a>。</p>
+<h2><span id="一些发现">一些发现</span></h2><p>当然，这期间的分析过程中是碰到诸多的麻烦，当然也会有一些意外的收获。</p>
+<h3><span id="解析各种文件">解析各种文件</span></h3><p>这段代码主要在chrome.0x1e516dc chrome.0x1e51b06。</p>
+<h3><span id="加载chromedll文件">加载chrome.dll文件</span></h3><p>继续跟踪，发现注释多次提到了chrome.01c50000，数据窗口跟随下，发现是个PE文件，根据其PE文件头中文件属性，可知值是0x2122[]，这样就可以知道是个32位的DLL文件。</p>
+<p><img src="/images/360-PE1.PNG" alt="chrome.01c50000 PE头文件属性&lt;span
+data-label=&quot;360-PE1&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>单步进入0x464390。首先会验证是否是PE文件，检查0x5a4d[360-PE2]。</p>
+<p><img src="/images/360-PE2.PNG" alt="chrome.01c50000验证是否为PE文件&lt;span
+data-label=&quot;360-PE2&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>而在0x001bb530处则存储了DLL路径数据[360-PE3]。</p>
+<p><img src="/images/360-PE3.PNG" alt="chrome.01c50000路径信息存储位置&lt;span
+data-label=&quot;360-PE3&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>当然也会获取关于PE文件内存映像大小[360-PE4]。</p>
+<p><img src="/images/360-PE4.PNG" alt="chrome.01c50000PE文件内存映像大小获取&lt;span
+data-label=&quot;360-PE4&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<h3><span id="注册表的homepage值">注册表的homepage值</span></h3><p>OK，既然可以设置注册表位置，更改主页设置，可以找到这几个homepage值</p>
 <pre><code>http://www.msn.com/zh-cn:
 aHR0cDovL3d3dy5taWNyb3NvZnQuY29tL2lzYXBpL3JlZGlyLmRsbD9wcmQ9aWUmcHZlcj02JmFyPW1zbmhvbWV7MGY4YWFjZmExMzg3ZTNmYzFmMGI1MDUyNmE2NDk0MDh9ezViZWM0NmQ1YzA0Y2ZlYjVkZjkyYjBiMWU1NGJiMjk0fQ==
 
@@ -394,6 +527,168 @@ e2ZjMzYwMTE1NTJjNjA2ZjBhNDFkOTg0Nzk5YzkyNjVhfXswMTI5Zjg5NjE3N2Q1ZDVjZWI1MmJjMjU3
 https://www.baidu.com/:
 aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgxZmViY2RiMWNhMzdkNGFiODRiZTViNGUxMmFmYX0=
 </code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
+                  熊猫烧香病毒分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逆向/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x73AF;&#x5883;&#xFF1A;VMware WindowsXP&#xFF1B;OD&#xFF1B;IDA 6.8(32bit)&#xFF1B;&#x718A;&#x732B;&#x70E7;&#x9999;&#x6837;&#x672C;</p>
+<p>&#x5148;&#x6765;&#x770B;&#x770B;&#x5927;&#x540D;&#x9F0E;&#x9F0E;&#x7684;&#x718A;&#x732B;&#x70E7;&#x9999;&#x957F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;[fig:Panda1_PNG]</p>
+<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
+data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x5148;&#x4FDD;&#x5B58;&#x4E0B;&#x865A;&#x62DF;&#x673A;&#x73AF;&#x5883;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5FEB;&#x7167;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x62D6;&#x5165;IDA&#x4E2D;&#x770B;&#x770B;&#x3002;</p>
+<p><img src="/images/Panda2.PNG" alt="IDA&#x8B66;&#x544A;&lt;span
+data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x89C9;&#x5F97;&#x5E94;&#x8BE5;&#x662F;&#x6709;&#x58F3;&#x3002;&#x653E;&#x5165;PEiD&#x4E2D;&#x626B;&#x626B;&#xFF0C;&#x679C;&#x7136;&#x3002;</p>
+<p><img src="/images/Panda3.PNG" alt="Panda&#x7684;&#x58F3;&lt;span
+data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x662F;&#x4E00;&#x4E2A;&#x538B;&#x7F29;&#x53D8;&#x5F62;&#x58F3;FSG 2.0 -&gt;<br>bart/xt&#x3002;&#x67E5;&#x4E86;&#x4E0B;&#xFF0C;&#x4E0D;&#x662F;&#x5F88;&#x5F3A;&#x7684;&#x58F3;&#xFF0C;&#x8BD5;&#x8BD5;&#x624B;&#x52A8;&#x8131;&#x58F3;&#x3002;</p>
+<h3 id="&#x8131;fsg-20-bartxt"><a href="#&#x8131;FSG-2-0-gt-bart-xt" class="headerlink" title="&#x8131;FSG 2.0 -&gt; bart/xt"></a>&#x8131;FSG 2.0 -&gt; bart/xt</h3><p>&#x62D6;&#x5165;OD&#xFF0C;&#x663E;&#x793A;&#x5165;&#x53E3;&#x70B9;&#x8B66;&#x544A;</p>
+<p><img src="/images/Panda4.PNG" alt="Panda&#x7684;&#x58F3;2&lt;span
+data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x67E5;&#x4E86;&#x4E0B;&#xFF0C;&#x53EF;&#x7528;ESP&#x5B9A;&#x5F8B;&#x6CD5;&#x8131;&#x58F3;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x5148;&#x7528;&#x8131;&#x58F3;&#x8F6F;&#x4EF6;UnFSG 2.0&#x8131;&#x58F3;&#x3002;</p>
+<h3 id="&#x521D;&#x6B65;&#x5206;&#x6790;"><a href="#&#x521D;&#x6B65;&#x5206;&#x6790;" class="headerlink" title="&#x521D;&#x6B65;&#x5206;&#x6790;"></a>&#x521D;&#x6B65;&#x5206;&#x6790;</h3><p>&#x628A;&#x8131;&#x597D;&#x58F3;&#x7684;&#x7A0B;&#x5E8F;&#x62D6;&#x5165;IDA&#xFF0C;&#x4E5F;&#x540C;&#x65F6;&#x7528;OD&#x8F7D;&#x5165;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x8FBE;&#x5230;&#x4E8B;&#x534A;&#x529F;&#x500D;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<p><img src="/images/Panda5.PNG" alt="Panda OEP&#x5904;&#x4EE3;&#x7801;&lt;span
+data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p><img src="/images/Panda6.PNG" alt="Panda &#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x5206;&#x6790;&#x4E4B;&#x6821;&#x9A8C;&#x90E8;&#x5206;&lt;span
+data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x662F;&#x7A0B;&#x5E8F;&#x7684;&#x6821;&#x9A8C;&#x5206;&#x6790;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4F5C;&#x8005;&#x4EE5;&#x53CA;&#x4E3A;&#x4F5C;&#x8005;&#x63D0;&#x4F9B;&#x5E2E;&#x52A9;&#x7684;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x9A8C;&#x8BC1;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F1A;&#x8FDB;&#x5165;&#x75C5;&#x6BD2;&#x542F;&#x52A8;&#x90E8;&#x5206;&#xFF0C;&#x6839;&#x636E;&#x4E0A;&#x56FE;&#x53EF;&#x77E5;&#x5728;&#x6807;&#x53F7;loc_40D5FD&#x3002;</p>
+<p><img src="/images/Panda7.PNG" alt="Panda &#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x5206;&#x6790;&#x4E4B;&#x75C5;&#x6BD2;&#x9A8C;&#x8BC1;&#x548C;&#x542F;&#x52A8;&lt;span
+data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x518D;&#x6B21;&#x9A8C;&#x8BC1;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x4E3A;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#xFF0C;&#x82E5;&#x901A;&#x8FC7;&#x9A8C;&#x8BC1;&#xFF0C;&#x5219;&#x542F;&#x52A8;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#xFF0C;&#x901A;&#x8FC7;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#xFF08;&#x8FD9;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x540D;&#x662F;&#x624B;&#x52A8;&#x91CD;&#x547D;&#x540D;&#x7684;&#xFF09;&#xFF1A;CreateAndRunPanda&#xFF1B;InfectOtherFile&#x3001;VirusProtect&#x8FD9;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x75C5;&#x6BD2;&#x7684;&#x8FD0;&#x884C;&#x3001;&#x611F;&#x67D3;&#x4EE5;&#x53CA;&#x75C5;&#x6BD2;&#x81EA;&#x8EAB;&#x7684;&#x4FDD;&#x62A4;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x8BE5;&#x75C5;&#x6BD2;&#x7684;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x3002;</p>
+<h3 id="&#x5206;&#x6790;createandrunpanda"><a href="#&#x5206;&#x6790;CreateAndRunPanda" class="headerlink" title="&#x5206;&#x6790;CreateAndRunPanda"></a>&#x5206;&#x6790;CreateAndRunPanda</h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;1&lt;span
+data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;2&lt;span
+data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E3B;&#x8981;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#xFF0C;&#x5E76;&#x5C06;&#x201C;Desktop_.ini&#x201D;&#x62FC;&#x63A5;&#x5230;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#x4E2D;&#xFF0C;&#x540C;&#x65F6;&#x68C0;&#x67E5;&#x6B64;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x5982;&#x679C;&#x6587;&#x4EF6;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x5C06;&#x5176;&#x5220;&#x9664;&#x3002;&#x4E4B;&#x540E;&#x5C06;&#x75C5;&#x6BD2;&#x6587;&#x4EF6;&#x4FE1;&#x606F;&#x8BFB;&#x53D6;&#x5230;&#x5185;&#x5B58;&#xFF0C;&#x63A5;&#x7740;&#x8FDB;&#x884C;&#x4E86;&#x6807;&#x8BB0;&#x68C0;&#x67E5;&#x5DE5;&#x4F5C;&#xFF0C;&#x4EE5;&#x5224;&#x65AD;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x88AB;&#x591A;&#x6B21;&#x8FD0;&#x884C;&#xFF0C;&#x540C;&#x65F6;&#x8BBE;&#x7F6E;&#x76F8;&#x5173;&#x7684;&#x6807;&#x8BB0;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;3&lt;span
+data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;4&lt;span
+data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x7684;&#x76EE;&#x7684;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#xFF1A;&#x627E;&#x5230;&#x8FDB;&#x7A0B;&#x4E2D;&#x8FD0;&#x884C;&#x7684;&#x201C;spcolsv.exe&#x201D;&#x5E76;&#x5C06;&#x5176;&#x7EC8;&#x6B62;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;&#x4E2D;&#x5220;&#x9664;&#x201C;spcolsv.exe&#x201D;&#xFF0C;&#x5C06;&#x75C5;&#x6BD2;&#x81EA;&#x8EAB;&#x4F2A;&#x9020;&#x6210;&#x201C;spcolsv.exe&#x201D;&#x5E76;&#x542F;&#x52A8;&#xFF0C;&#x8FD9;&#x662F;&#x75C5;&#x6BD2;&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x3002;</p>
+<h3 id="&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;"><a href="#&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;"></a>&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;</h3><p><img src="/images/Panda12.PNG" alt="Panda &#x8FD0;&#x884C;&#x540E;&#x7684;&#x60C5;&#x51B5;&lt;span
+data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x8FD0;&#x884C;&#x540E;&#x56E0;&#x4E3A;&#x5404;&#x79CD;&#x539F;&#x56E0;&#xFF0C;&#x53CD;&#x6B63;&#x6CA1;&#x6709;&#x611F;&#x67D3;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x91CC;&#x6682;&#x4E14;&#x653E;&#x4E0B;&#xFF0C;&#x6BD5;&#x7ADF;&#x5E74;&#x4EE3;&#x4E45;&#x8FDC;&#xFF0C;&#x53D8;&#x6570;&#x592A;&#x591A;&#x3002;</p>
+<h3 id="ininfectotherfile"><a href="#InInfectOtherFile" class="headerlink" title="InInfectOtherFile"></a>InInfectOtherFile</h3><p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7EE7;&#x7EED;&#x5206;&#x6790;InfectOtherFile&#x51FD;&#x6570;&#x3002;</p>
+<p><img src="/images/Panda13.PNG" alt="Panda &#x7684;&#x4E09;&#x79CD;&#x611F;&#x67D3;&#x65B9;&#x5F0F;&lt;span
+data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
+<p>&#x5982;&#x56FE;[fig:Panda13_PNG]&#xFF0C;&#x6B64;&#x75C5;&#x6BD2;&#x901A;&#x8FC7;3&#x79CD;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x611F;&#x67D3;&#xFF0C;&#x524D;&#x4E24;&#x79CD;&#x662F;&#x5728;&#x672C;&#x5730;&#x8FDB;&#x884C;&#x75C5;&#x6BD2;&#x7684;&#x611F;&#x67D3;&#xFF0C;&#x7B2C;&#x4E09;&#x79CD;&#x5219;&#x9700;&#x8981;&#x7F51;&#x7EDC;&#x7684;&#x652F;&#x6301;&#x3002;</p>
+
           
         
       
@@ -570,168 +865,6 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%
 <li><p>&#x663E;&#x793A;&#x7F16;&#x8BD1;&#x5668;&#x7248;&#x672C;</p>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
-                  熊猫烧香病毒分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
-              2017-02-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/逆向/" itemprop="url" rel="index">
-                    <span itemprop="name">逆向</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&#x73AF;&#x5883;&#xFF1A;VMware WindowsXP&#xFF1B;OD&#xFF1B;IDA 6.8(32bit)&#xFF1B;&#x718A;&#x732B;&#x70E7;&#x9999;&#x6837;&#x672C;</p>
-<p>&#x5148;&#x6765;&#x770B;&#x770B;&#x5927;&#x540D;&#x9F0E;&#x9F0E;&#x7684;&#x718A;&#x732B;&#x70E7;&#x9999;&#x957F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;[fig:Panda1_PNG]</p>
-<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
-data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5148;&#x4FDD;&#x5B58;&#x4E0B;&#x865A;&#x62DF;&#x673A;&#x73AF;&#x5883;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5FEB;&#x7167;&#x3002;</p>
-<p>&#x7136;&#x540E;&#x62D6;&#x5165;IDA&#x4E2D;&#x770B;&#x770B;&#x3002;</p>
-<p><img src="/images/Panda2.PNG" alt="IDA&#x8B66;&#x544A;&lt;span
-data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x89C9;&#x5F97;&#x5E94;&#x8BE5;&#x662F;&#x6709;&#x58F3;&#x3002;&#x653E;&#x5165;PEiD&#x4E2D;&#x626B;&#x626B;&#xFF0C;&#x679C;&#x7136;&#x3002;</p>
-<p><img src="/images/Panda3.PNG" alt="Panda&#x7684;&#x58F3;&lt;span
-data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x662F;&#x4E00;&#x4E2A;&#x538B;&#x7F29;&#x53D8;&#x5F62;&#x58F3;FSG 2.0 -&gt;<br>bart/xt&#x3002;&#x67E5;&#x4E86;&#x4E0B;&#xFF0C;&#x4E0D;&#x662F;&#x5F88;&#x5F3A;&#x7684;&#x58F3;&#xFF0C;&#x8BD5;&#x8BD5;&#x624B;&#x52A8;&#x8131;&#x58F3;&#x3002;</p>
-<h3 id="&#x8131;fsg-20-bartxt"><a href="#&#x8131;FSG-2-0-gt-bart-xt" class="headerlink" title="&#x8131;FSG 2.0 -&gt; bart/xt"></a>&#x8131;FSG 2.0 -&gt; bart/xt</h3><p>&#x62D6;&#x5165;OD&#xFF0C;&#x663E;&#x793A;&#x5165;&#x53E3;&#x70B9;&#x8B66;&#x544A;</p>
-<p><img src="/images/Panda4.PNG" alt="Panda&#x7684;&#x58F3;2&lt;span
-data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x67E5;&#x4E86;&#x4E0B;&#xFF0C;&#x53EF;&#x7528;ESP&#x5B9A;&#x5F8B;&#x6CD5;&#x8131;&#x58F3;&#x3002;</p>
-<p>&#x8FD9;&#x91CC;&#x5148;&#x7528;&#x8131;&#x58F3;&#x8F6F;&#x4EF6;UnFSG 2.0&#x8131;&#x58F3;&#x3002;</p>
-<h3 id="&#x521D;&#x6B65;&#x5206;&#x6790;"><a href="#&#x521D;&#x6B65;&#x5206;&#x6790;" class="headerlink" title="&#x521D;&#x6B65;&#x5206;&#x6790;"></a>&#x521D;&#x6B65;&#x5206;&#x6790;</h3><p>&#x628A;&#x8131;&#x597D;&#x58F3;&#x7684;&#x7A0B;&#x5E8F;&#x62D6;&#x5165;IDA&#xFF0C;&#x4E5F;&#x540C;&#x65F6;&#x7528;OD&#x8F7D;&#x5165;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x8FBE;&#x5230;&#x4E8B;&#x534A;&#x529F;&#x500D;&#x7684;&#x6548;&#x679C;&#x3002;</p>
-<p><img src="/images/Panda5.PNG" alt="Panda OEP&#x5904;&#x4EE3;&#x7801;&lt;span
-data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/Panda6.PNG" alt="Panda &#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x5206;&#x6790;&#x4E4B;&#x6821;&#x9A8C;&#x90E8;&#x5206;&lt;span
-data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x662F;&#x7A0B;&#x5E8F;&#x7684;&#x6821;&#x9A8C;&#x5206;&#x6790;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4F5C;&#x8005;&#x4EE5;&#x53CA;&#x4E3A;&#x4F5C;&#x8005;&#x63D0;&#x4F9B;&#x5E2E;&#x52A9;&#x7684;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x9A8C;&#x8BC1;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F1A;&#x8FDB;&#x5165;&#x75C5;&#x6BD2;&#x542F;&#x52A8;&#x90E8;&#x5206;&#xFF0C;&#x6839;&#x636E;&#x4E0A;&#x56FE;&#x53EF;&#x77E5;&#x5728;&#x6807;&#x53F7;loc_40D5FD&#x3002;</p>
-<p><img src="/images/Panda7.PNG" alt="Panda &#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x5206;&#x6790;&#x4E4B;&#x75C5;&#x6BD2;&#x9A8C;&#x8BC1;&#x548C;&#x542F;&#x52A8;&lt;span
-data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x518D;&#x6B21;&#x9A8C;&#x8BC1;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x4E3A;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#xFF0C;&#x82E5;&#x901A;&#x8FC7;&#x9A8C;&#x8BC1;&#xFF0C;&#x5219;&#x542F;&#x52A8;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#xFF0C;&#x901A;&#x8FC7;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#xFF08;&#x8FD9;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x540D;&#x662F;&#x624B;&#x52A8;&#x91CD;&#x547D;&#x540D;&#x7684;&#xFF09;&#xFF1A;CreateAndRunPanda&#xFF1B;InfectOtherFile&#x3001;VirusProtect&#x8FD9;&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x75C5;&#x6BD2;&#x7684;&#x8FD0;&#x884C;&#x3001;&#x611F;&#x67D3;&#x4EE5;&#x53CA;&#x75C5;&#x6BD2;&#x81EA;&#x8EAB;&#x7684;&#x4FDD;&#x62A4;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x8BE5;&#x75C5;&#x6BD2;&#x7684;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x3002;</p>
-<h3 id="&#x5206;&#x6790;createandrunpanda"><a href="#&#x5206;&#x6790;CreateAndRunPanda" class="headerlink" title="&#x5206;&#x6790;CreateAndRunPanda"></a>&#x5206;&#x6790;CreateAndRunPanda</h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;1&lt;span
-data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;2&lt;span
-data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E3B;&#x8981;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#xFF0C;&#x5E76;&#x5C06;&#x201C;Desktop_.ini&#x201D;&#x62FC;&#x63A5;&#x5230;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#x4E2D;&#xFF0C;&#x540C;&#x65F6;&#x68C0;&#x67E5;&#x6B64;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x5982;&#x679C;&#x6587;&#x4EF6;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x5C06;&#x5176;&#x5220;&#x9664;&#x3002;&#x4E4B;&#x540E;&#x5C06;&#x75C5;&#x6BD2;&#x6587;&#x4EF6;&#x4FE1;&#x606F;&#x8BFB;&#x53D6;&#x5230;&#x5185;&#x5B58;&#xFF0C;&#x63A5;&#x7740;&#x8FDB;&#x884C;&#x4E86;&#x6807;&#x8BB0;&#x68C0;&#x67E5;&#x5DE5;&#x4F5C;&#xFF0C;&#x4EE5;&#x5224;&#x65AD;&#x75C5;&#x6BD2;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x88AB;&#x591A;&#x6B21;&#x8FD0;&#x884C;&#xFF0C;&#x540C;&#x65F6;&#x8BBE;&#x7F6E;&#x76F8;&#x5173;&#x7684;&#x6807;&#x8BB0;&#x4FE1;&#x606F;&#x3002;</p>
-<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;3&lt;span
-data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda&#x7247;&#x6BB5;4&lt;span
-data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x7684;&#x76EE;&#x7684;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#xFF1A;&#x627E;&#x5230;&#x8FDB;&#x7A0B;&#x4E2D;&#x8FD0;&#x884C;&#x7684;&#x201C;spcolsv.exe&#x201D;&#x5E76;&#x5C06;&#x5176;&#x7EC8;&#x6B62;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;&#x4E2D;&#x5220;&#x9664;&#x201C;spcolsv.exe&#x201D;&#xFF0C;&#x5C06;&#x75C5;&#x6BD2;&#x81EA;&#x8EAB;&#x4F2A;&#x9020;&#x6210;&#x201C;spcolsv.exe&#x201D;&#x5E76;&#x542F;&#x52A8;&#xFF0C;&#x8FD9;&#x662F;&#x75C5;&#x6BD2;&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x3002;</p>
-<h3 id="&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;"><a href="#&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;"></a>&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;</h3><p><img src="/images/Panda12.PNG" alt="Panda &#x8FD0;&#x884C;&#x540E;&#x7684;&#x60C5;&#x51B5;&lt;span
-data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x8FD0;&#x884C;&#x540E;&#x56E0;&#x4E3A;&#x5404;&#x79CD;&#x539F;&#x56E0;&#xFF0C;&#x53CD;&#x6B63;&#x6CA1;&#x6709;&#x611F;&#x67D3;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x91CC;&#x6682;&#x4E14;&#x653E;&#x4E0B;&#xFF0C;&#x6BD5;&#x7ADF;&#x5E74;&#x4EE3;&#x4E45;&#x8FDC;&#xFF0C;&#x53D8;&#x6570;&#x592A;&#x591A;&#x3002;</p>
-<h3 id="ininfectotherfile"><a href="#InInfectOtherFile" class="headerlink" title="InInfectOtherFile"></a>InInfectOtherFile</h3><p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7EE7;&#x7EED;&#x5206;&#x6790;InfectOtherFile&#x51FD;&#x6570;&#x3002;</p>
-<p><img src="/images/Panda13.PNG" alt="Panda &#x7684;&#x4E09;&#x79CD;&#x611F;&#x67D3;&#x65B9;&#x5F0F;&lt;span
-data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5982;&#x56FE;[fig:Panda13_PNG]&#xFF0C;&#x6B64;&#x75C5;&#x6BD2;&#x901A;&#x8FC7;3&#x79CD;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x611F;&#x67D3;&#xFF0C;&#x524D;&#x4E24;&#x79CD;&#x662F;&#x5728;&#x672C;&#x5730;&#x8FDB;&#x884C;&#x75C5;&#x6BD2;&#x7684;&#x611F;&#x67D3;&#xFF0C;&#x7B2C;&#x4E09;&#x79CD;&#x5219;&#x9700;&#x8981;&#x7F51;&#x7EDC;&#x7684;&#x652F;&#x6301;&#x3002;</p>
 
           
         
@@ -1578,140 +1711,6 @@ toc:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/" itemprop="url">
-                  winserver2003 配置FTP，wampserver环境，wordpress等问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-04T20:56:52+08:00" content="2016-02-04">
-              2016-02-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/配置相关/" itemprop="url" rel="index">
-                    <span itemprop="name">配置相关</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&#x5728;winserver 2003&#x4E0B;&#x914D;&#x7F6E;FTP&#xFF08;&#x7528;IIS6.0&#x642D;&#x5EFA;&#xFF09;&#xFF0C;&#x63D0;&#x793A;&#x201C;&#x6253;&#x5F00;FTP&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x65F6;&#x53D1;&#x751F;&#x9519;&#x8BEF;,&#x8BF7;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6709;&#x6743;&#x9650;&#x8BBF;&#x95EE;&#x201D;&#xFF0C;&#x8FD9;&#x91CC;&#x63D0;&#x4F9B;&#x51E0;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</p>
-<ul>
-<li><p>&#x68C0;&#x67E5;&#x6587;&#x4EF6;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#xFF0C;&#x662F;&#x5426;&#x7ED9;&#x4E86;FTP&#x7528;&#x6237;&#x6743;&#x9650;&#x8BBF;&#x95EE;</p>
-</li>
-<li><p>&#x5173;&#x95ED;ie&#x589E;&#x5F3A;&#x5B89;&#x5168;&#x914D;&#x7F6E;</p>
-</li>
-<li><p>&#x5728;&#x914D;&#x7F6E;&#x65F6;&#x9009;&#x62E9;&#x201C;&#x4E0D;&#x542F;&#x7528;&#x7528;&#x6237;&#x9694;&#x79BB;&#x6A21;&#x5F0F;&#x201D;</p>
-</li>
-<li><p>&#x5173;&#x95ED;&#x201C;&#x4F7F;&#x7528;&#x88AB;&#x52A8;FTP&#xFF08;&#x4E3A;&#x9632;&#x706B;&#x5899;&#x548C;DSL&#x8C03;&#x5236;&#x89E3;&#x8C03;&#x5668;&#x517C;&#x5BB9;&#x6027;&#xFF09;&#x201D;&#xFF08;&#x5728;Internet &#x9009;&#x9879;-&gt;&#x9AD8;&#x7EA7;-&gt;&#x6D4F;&#x89C8;&#xFF09;</p>
-</li>
-<li><p>&#x5E72;&#x5B8C;&#x8FD9;&#x4E9B;&#xFF0C;&#x91CD;&#x542F;&#x670D;&#x52A1;&#xFF0C;&#x4E0D;&#x884C;&#x7684;&#x8BDD;&#xFF0C;&#x76F4;&#x63A5;&#x91CD;&#x542F;&#x670D;&#x52A1;&#x5668;&#xFF01;&#xFF01;&#xFF01;</p>
-</li>
-</ul>
-<p>&#x7531;&#x4E8E;&#x662F;winserver2003&#x73AF;&#x5883;&#xFF0C;&#x5B89;&#x88C5;wampserver 2.5 32&#x4F4D;&#x63D0;&#x793A;httpd.exe&#x4E0D;&#x662F;&#x6709;&#x6548;&#x7684;win32&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;2.4&#x53CA;&#x5176;&#x4EE5;&#x4E0B;&#x7684;&#x7248;&#x672C;&#x5B89;&#x88C5;&#x5373;&#x53EF;&#x3002;</p>
-<p>wordpress&#x5728;&#x4E0B;&#x8F7D;&#x66F4;&#x65B0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x63D0;&#x793A;&#x201D;&#x4E0B;&#x8F7D;&#x5931;&#x8D25;&#x3002;: &#x6CA1;&#x6709;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x8BF7;&#x6C42;&#x7684;HTTP&#x4F20;&#x8F93;&#x5668;&#x3002;&#x201D;&#xFF0C;&#x76F4;&#x63A5;&#x4FEE;&#x6539;php&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;php.ini&#xFF0C;&#x627E;&#x5230;;extension=php_curl.dll&#xFF0C;&#x53BB;&#x6389;&#x6CE8;&#x91CA;&#x5373;&#x53EF;&#x3002;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1757,7 +1756,7 @@ toc:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1765,7 +1764,7 @@ toc:
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1774,7 +1773,7 @@ toc:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
