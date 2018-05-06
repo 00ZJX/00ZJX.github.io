@@ -106,17 +106,17 @@ windbg Preview
 VirtBox+win xp(切换PAE状态)
 
 实验">
-<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K-32NonPAE.PNG">
+<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K32NonPAE.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra1.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra3.PNG">
-<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/PDPT-base.PNG">
+<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/PDPTbase.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra4.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra5.PNG">
-<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/PML4T-BASE.PNG">
+<meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/PML4TBASE.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/1G2M4Kpage.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra7.PNG">
-<meta property="og:updated_time" content="2018-05-06T12:11:42.023Z">
+<meta property="og:updated_time" content="2018-05-06T12:19:29.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
 <meta name="twitter:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。
@@ -127,7 +127,7 @@ windbg Preview
 VirtBox+win xp(切换PAE状态)
 
 实验">
-<meta name="twitter:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K-32NonPAE.PNG">
+<meta name="twitter:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K32NonPAE.PNG">
 
 
 
@@ -408,7 +408,7 @@ VirtBox+win xp(切换PAE状态)
 <li>获取分配到的物理页地址：PTE index * + PT base addr，就可以找到存储物理页地址的页表项</li>
 <li>物理页地址+物理页offset=物理地址</li>
 </ol>
-<p><img src="/images/3PagingModeVtoP/4K-32NonPAE.PNG" alt="32bit No PAE"></p>
+<p><img src="/images/3PagingModeVtoP/4K32NonPAE.PNG" alt="32bit No PAE"></p>
 <p>以未开启PAE的win xp下calc.exe为例，其入口地址为0x1012475，这个地址怎么来的呢，OD载入即可找到。因为没有ASLR，所以每次运行的地址是固定的。将0x1012475分成三部分:</p>
 <ul>
 <li>0x10</li>
@@ -418,7 +418,7 @@ VirtBox+win xp(切换PAE状态)
 <p><img src="/images/3PagingModeVtoP/va2ra2.PNG" alt="0x1012475入口特征"></p>
 <p><img src="/images/3PagingModeVtoP/va2ra1.PNG" alt="32bit地址转换过程"><br>根据上面两张图，可以看出物理地址0x145e8375处数据和0x1012475处数据一致</p>
 <p>为了进一步验证是否数据是否一致，在Windbg下修改物理地址处数据，然后通过OD查看虚拟地址处的数据，发现也是一致变化的。<br><img src="/images/3PagingModeVtoP/va2ra3.PNG" alt="Windbg修改数据"></p>
-<h1><span id="开启pae">开启PAE</span></h1><p>此时线性地址要拆分成四部分，高2位（PD index），中高9位（PT index）,中的（PTE index）,低12位（物理页偏移）。此时cr3[5:31]存储的是PDPT base addr。<br><img src="/images/3PagingModeVtoP/PDPT-base.PNG" alt="cr3 PDPT base"></p>
+<h1><span id="开启pae">开启PAE</span></h1><p>此时线性地址要拆分成四部分，高2位（PD index），中高9位（PT index）,中的（PTE index）,低12位（物理页偏移）。此时cr3[5:31]存储的是PDPT base addr。<br><img src="/images/3PagingModeVtoP/PDPTbase.PNG" alt="cr3 PDPT base"></p>
 <p>开启硬件的PAE选项，可以发现XP下多了”物理地址扩展”<br><img src="/images/3PagingModeVtoP/va2ra4.PNG" alt="开启PAE"></p>
 <p>将0x1012475拆分成四部分：</p>
 <ul>
@@ -436,7 +436,7 @@ VirtBox+win xp(切换PAE状态)
 <li>[21:13]（PTE index）</li>
 <li>[12:0]（physical offset）</li>
 </ul>
-<p>此时cr3[5:31]存储的是PML4T base addr。<br><img src="/images/3PagingModeVtoP/PML4T-BASE.PNG" alt="cr3 PML4T base"></p>
+<p>此时cr3[5:31]存储的是PML4T base addr。<br><img src="/images/3PagingModeVtoP/PML4TBASE.PNG" alt="cr3 PML4T base"></p>
 <p>用以下这张图可以清晰明了表示：<br><img src="/images/3PagingModeVtoP/1G2M4Kpage.PNG" alt="1G2M4Kpage"></p>
 <p>这里测试写了一段代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char szName[20] = &quot;HelloWorld&quot;;</span><br><span class="line">	printf(&quot;szName:0x%x\n&quot;, szName);</span><br><span class="line">	cout &lt;&lt; &quot;szName:&quot; &lt;&lt; &amp;szName &lt;&lt; endl;</span><br><span class="line">	getchar();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>为什么这里要写个printf输出呢。因为在看雪论坛上看到一个帖子啊，讲x64位虚拟地址转换，用printf直接输出值，这样是不严谨的，因为printf直接输出的话，只能输出32bit地址，如果是64bit的话，高32bit会被截取掉的。看雪上那篇帖子测试的时候正好输出了32bit的地址，所以可以寻到物理地址。</p>
