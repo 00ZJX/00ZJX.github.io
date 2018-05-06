@@ -116,7 +116,7 @@ VirtBox+win xp(切换PAE状态)
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/PML4TBASE.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/1G2M4Kpage.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra7.PNG">
-<meta property="og:updated_time" content="2018-05-06T12:24:47.263Z">
+<meta property="og:updated_time" content="2018-05-06T14:33:47.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
 <meta name="twitter:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。
@@ -404,10 +404,11 @@ VirtBox+win xp(切换PAE状态)
 <p>具体步骤：</p>
 <ol>
 <li>将32bit地址拆分为三部分：高10位（PDE index），中间10位（PTE index），低12位（物理页offset）</li>
-<li>获取页表的物理基地址：PDE index <em> 4 + cr3中页目录表基地址= </em>PT base addr，通过这个指针即可找到页表的物理基地址</li>
-<li>获取分配到的物理页地址：PTE index * + PT base addr，就可以找到存储物理页地址的页表项</li>
+<li>获取页表的物理基地址：PDE index <em>  4 + cr3中页目录表基地址= </em>PT base addr，通过这个指针即可找到页表的物理基地址</li>
+<li>获取分配到的物理页地址：PTE index * 4 + PT base addr，就可以找到存储物理页地址的页表项</li>
 <li>物理页地址+物理页offset=物理地址</li>
 </ol>
+<p>这里为什么乘以4呢，因为每个entry 4字节大小</p>
 <p><img src="/images/3PagingModeVtoP/4K32NonPAE.PNG" alt="32bit No PAE"></p>
 <p>以未开启PAE的win xp下calc.exe为例，其入口地址为0x1012475，这个地址怎么来的呢，OD载入即可找到。因为没有ASLR，所以每次运行的地址是固定的。将0x1012475分成三部分:</p>
 <ul>
@@ -427,7 +428,7 @@ VirtBox+win xp(切换PAE状态)
 <li>0x12</li>
 <li>0x475</li>
 </ul>
-<p><img src="/images/3PagingModeVtoP/va2ra5.PNG" alt="PAE下地址转换过程"></p>
+<p>具体转换步骤如下图：<br><img src="/images/3PagingModeVtoP/va2ra5.PNG" alt="PAE下地址转换过程"><br>这里为什么乘以8呢，因为PAE下每个entry 8字节大小</p>
 <h1><span id="ia-32e地址转换">IA-32e地址转换</span></h1><p>此时64bit线性地址要拆分成五部分：</p>
 <ul>
 <li>[51:42] (PML4E index)</li>
@@ -448,7 +449,7 @@ VirtBox+win xp(切换PAE状态)
 <li>0xff</li>
 <li>0x628</li>
 </ul>
-<p><img src="/images/3PagingModeVtoP/va2ra7.PNG" alt="IA-32e地址转换"></p>
+<p>具体转换步骤如下图：<br><img src="/images/3PagingModeVtoP/va2ra7.PNG" alt="IA-32e地址转换"><br>同样这里乘以8也是因为每个entry 8字节大小 </p>
 <p>Windbg有一个扩展指令，!vtop可将虚拟地址转换成物理地址，在上图中也有验证。</p>
 <h1><span id="参考链接">参考链接</span></h1><p>启用PAE后虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-180989.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-180989.htm</a></p>
 <p>X64下的虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-203391.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-203391.htm</a></p>
