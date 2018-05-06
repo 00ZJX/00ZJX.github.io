@@ -86,16 +86,19 @@
 
 
 
-<meta name="description" content="&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x4E5F;&amp;#x8BB8;&amp;#x4E5F;&amp;#x4F1A;&amp;#x7528;&amp;#x5230;or&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;&amp;#x8BED;&amp;#x6CD5;&amp;#x683C;&amp;#x5F0F;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;1$db-&amp;gt;find(">
+<meta name="description" content="在查询时，我们也许也会用到or操作。语法格式如下：1$db-&amp;gt;find(array(&apos;$or&apos; =&amp;gt; array(array(&apos;id&apos; =&amp;gt; 1), array(&apos;name&apos; =&amp;gt; &apos;java&apos;))));
+例如上面的例子，我们查询id是1，或者name是java的数据。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php查询mongodb时的or操作">
 <meta property="og:url" content="https://asanzjx.github.io/2015/05/21/2015-05-21-php查询mongodb时的or操作/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x4E5F;&amp;#x8BB8;&amp;#x4E5F;&amp;#x4F1A;&amp;#x7528;&amp;#x5230;or&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;&amp;#x8BED;&amp;#x6CD5;&amp;#x683C;&amp;#x5F0F;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;1$db-&amp;gt;find(">
+<meta property="og:description" content="在查询时，我们也许也会用到or操作。语法格式如下：1$db-&amp;gt;find(array(&apos;$or&apos; =&amp;gt; array(array(&apos;id&apos; =&amp;gt; 1), array(&apos;name&apos; =&amp;gt; &apos;java&apos;))));
+例如上面的例子，我们查询id是1，或者name是java的数据。">
 <meta property="og:updated_time" content="2016-08-18T07:03:29.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php查询mongodb时的or操作">
-<meta name="twitter:description" content="&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x4E5F;&amp;#x8BB8;&amp;#x4E5F;&amp;#x4F1A;&amp;#x7528;&amp;#x5230;or&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;&amp;#x8BED;&amp;#x6CD5;&amp;#x683C;&amp;#x5F0F;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;1$db-&amp;gt;find(">
+<meta name="twitter:description" content="在查询时，我们也许也会用到or操作。语法格式如下：1$db-&amp;gt;find(array(&apos;$or&apos; =&amp;gt; array(array(&apos;id&apos; =&amp;gt; 1), array(&apos;name&apos; =&amp;gt; &apos;java&apos;))));
+例如上面的例子，我们查询id是1，或者name是java的数据。">
 
 
 
@@ -319,8 +322,8 @@
       
 
       
-        <p>&#x5728;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x8BB8;&#x4E5F;&#x4F1A;&#x7528;&#x5230;or&#x64CD;&#x4F5C;&#x3002;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;find(<span class="keyword">array</span>(<span class="string">&apos;$or&apos;</span>&#xA0;=&gt; <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">&apos;id&apos;</span>&#xA0;=&gt; <span class="number">1</span>), <span class="keyword">array</span>(<span class="string">&apos;name&apos;</span>&#xA0;=&gt;&#xA0;<span class="string">&apos;java&apos;</span>))));</span><br></pre></td></tr></table></figure></p>
-<p>&#x4F8B;&#x5982;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x67E5;&#x8BE2;id&#x662F;1&#xFF0C;&#x6216;&#x8005;name&#x662F;java&#x7684;&#x6570;&#x636E;&#x3002;</p>
+        <p>在查询时，我们也许也会用到or操作。语法格式如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;find(<span class="keyword">array</span>(<span class="string">'$or'</span> =&gt; <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">1</span>), <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'java'</span>))));</span><br></pre></td></tr></table></figure></p>
+<p>例如上面的例子，我们查询id是1，或者name是java的数据。</p>
 
       
     </div>

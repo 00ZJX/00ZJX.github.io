@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE3.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE4.PNG">
-<meta property="og:updated_time" content="2018-05-06T08:34:54.077Z">
+<meta property="og:updated_time" content="2018-05-06T09:52:25.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次逆向360极速浏览器修改主页设置">
 <meta name="twitter:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。
@@ -368,20 +368,20 @@
 <p>找到下面的第四个函数，发现其调用chrome.0x1d2e57d地址，Ctrl+G转到chrome.0x1d2e57d地址，挂断点跑程序。这个函数要找的设置主页的函数。</p>
 <h2><span id="chrome0x1d2e57d详细分析">chrome.0x1d2e57d详细分析</span></h2><p>首先打开注册表</p>
 <p><img src="/images/360-999.PNG" alt="打开注册表&lt;span
-data-label=&quot;360-999&quot;&gt;&lt;/span&gt;">[width=”80.00000%”]</p>
+data-label=&quot;360-999&quot;&gt;&lt;/span&gt;"></p>
 <p>如图[360-999]可以发现打开注册表并不是homepage键值，而是urls_to_restore_on_startup键值。</p>
 <p>接着开始得到MD5-1值，进行了第一次拼接[360-998]</p>
 <p><img src="/images/360-998.PNG" alt="得到MD5-1&lt;span
-data-label=&quot;360-998&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+data-label=&quot;360-998&quot;&gt;&lt;/span&gt;"></p>
 <p><img src="/images/360-997.PNG" alt="得到MD5-2&lt;span
-data-label=&quot;360-997&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+data-label=&quot;360-997&quot;&gt;&lt;/span&gt;"></p>
 <p>接着进行第二次拼接操作[360-996],[360-995]</p>
 <p><img src="/images/360-996.PNG" alt="url+MD5-2&lt;span
-data-label=&quot;360-996&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+data-label=&quot;360-996&quot;&gt;&lt;/span&gt;"></p>
 <p><img src="/images/360-995.PNG" alt="url+MD5-2&lt;span
-data-label=&quot;360-995&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+data-label=&quot;360-995&quot;&gt;&lt;/span&gt;"></p>
 <p>进行base64编码[360-994]</p>
-<p><img src="/images/360-994.PNG" alt="&lt;span data-label=&quot;360-994&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/360-994.PNG" alt="&lt;span data-label=&quot;360-994&quot;&gt;&lt;/span&gt;"></p>
 <p>最后设置注册表的操作[360-993]</p>
 <p><img src="/images/360-993.PNG" alt="最后进行注册表的操作&lt;span
 data-label=&quot;360-993&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
@@ -448,8 +448,8 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/06/3PagingModeVtoP/" rel="prev" title="三种分页模式(32bit,PAE,IA-32e)下的虚拟地址到物理地址的转换">
-                三种分页模式(32bit,PAE,IA-32e)下的虚拟地址到物理地址的转换 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/06/3PagingModeVtoP/" rel="prev" title="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
+                三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

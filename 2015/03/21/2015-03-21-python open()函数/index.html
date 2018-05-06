@@ -86,16 +86,40 @@
 
 
 
-<meta name="description" content="python&amp;#x7684;open&amp;#x65B9;&amp;#x6CD5;&amp;#x7528;&amp;#x6765;&amp;#x6253;&amp;#x5F00;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#xFF0C;&amp;#x7B2C;&amp;#x4E00;&amp;#x4E2A;&amp;#x53C2;&amp;#x6570;&amp;#x662F;&amp;#x6587;&amp;#x4EF6;&amp;#x7684;&amp;#x4F4D;&amp;#x7F6E;&amp;#x4E0">
+<meta name="description" content="python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）
+
+w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除
+
+a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾
+
+r模式，即为读取模式
+
+使用python的pickle模块，可以将python对象直接存储在文件中，并且可以再">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python open()函数">
 <meta property="og:url" content="https://asanzjx.github.io/2015/03/21/2015-03-21-python open()函数/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="python&amp;#x7684;open&amp;#x65B9;&amp;#x6CD5;&amp;#x7528;&amp;#x6765;&amp;#x6253;&amp;#x5F00;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#xFF0C;&amp;#x7B2C;&amp;#x4E00;&amp;#x4E2A;&amp;#x53C2;&amp;#x6570;&amp;#x662F;&amp;#x6587;&amp;#x4EF6;&amp;#x7684;&amp;#x4F4D;&amp;#x7F6E;&amp;#x4E0">
+<meta property="og:description" content="python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）
+
+w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除
+
+a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾
+
+r模式，即为读取模式
+
+使用python的pickle模块，可以将python对象直接存储在文件中，并且可以再">
 <meta property="og:updated_time" content="2016-08-18T06:40:37.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python open()函数">
-<meta name="twitter:description" content="python&amp;#x7684;open&amp;#x65B9;&amp;#x6CD5;&amp;#x7528;&amp;#x6765;&amp;#x6253;&amp;#x5F00;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#xFF0C;&amp;#x7B2C;&amp;#x4E00;&amp;#x4E2A;&amp;#x53C2;&amp;#x6570;&amp;#x662F;&amp;#x6587;&amp;#x4EF6;&amp;#x7684;&amp;#x4F4D;&amp;#x7F6E;&amp;#x4E0">
+<meta name="twitter:description" content="python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）
+
+w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除
+
+a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾
+
+r模式，即为读取模式
+
+使用python的pickle模块，可以将python对象直接存储在文件中，并且可以再">
 
 
 
@@ -319,20 +343,20 @@
       
 
       
-        <p>python&#x7684;open&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#x4E0E;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x8BFB;&#x5199;&#x6A21;&#x5F0F;&#xFF08;&#x5982;&#x679C;&#x7F3A;&#x7701;&#x5C31;&#x662F;r&#xFF09;</p>
+        <p>python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）</p>
 <ul>
-<li><p>w&#x6A21;&#x5F0F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5199;&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6587;&#x4EF6;&#x539F;&#x6709;&#x7684;&#x5185;&#x5BB9;&#x5C06;&#x4F1A;&#x88AB;&#x5220;&#x9664;</p>
+<li><p>w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除</p>
 </li>
-<li><p>a&#x6A21;&#x5F0F;&#xFF0C;&#x5373;&#x4E3A;append&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6587;&#x4EF6;&#x7684;&#x539F;&#x6709;&#x5185;&#x5BB9;&#x4E0D;&#x4F1A;&#x6D88;&#x5931;&#xFF0C;&#x65B0;&#x5199;&#x5165;&#x7684;&#x5185;&#x5BB9;&#x4F1A;&#x81EA;&#x52A8;&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x6587;&#x4EF6;&#x7684;&#x672B;&#x5C3E;</p>
+<li><p>a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾</p>
 </li>
-<li><p>r&#x6A21;&#x5F0F;&#xFF0C;&#x5373;&#x4E3A;&#x8BFB;&#x53D6;&#x6A21;&#x5F0F;</p>
+<li><p>r模式，即为读取模式</p>
 </li>
-<li><p>&#x4F7F;&#x7528;python&#x7684;pickle&#x6A21;&#x5757;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;python&#x5BF9;&#x8C61;&#x76F4;&#x63A5;&#x5B58;&#x50A8;&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x518D;&#x4EE5;&#x540E;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x91CD;&#x65B0;&#x6062;&#x590D;&#x5230;&#x5185;&#x5BB9;&#x4E2D;</p>
+<li><p>使用python的pickle模块，可以将python对象直接存储在文件中，并且可以再以后需要的时候重新恢复到内容中</p>
 </li>
-<li><p>&#x5728;&#x8C03;&#x7528;open&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5728;&#x6A21;&#x5F0F;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;b&#x5373;&#x4E3A;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;</p>
+<li><p>在调用open函数的时候，在模式的字符串中使用添加一个b即为二进制模式</p>
 </li>
-<li><p>&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x5230;&#x7684;&#x6280;&#x5DE7;&#x65B9;&#x6CD5;&#xFF0C;&#x50CF;&#x4E0B;&#x8FB9;&#x8FD9;&#x4E24;&#x79CD;&#xFF1A;</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read(&#xA0;)  <span class="comment"># &#x8868;&#x793A;&#x8BFB;&#x53D6;&#x5168;&#x90E8;&#x5185;&#x5BB9;</span></span><br><span class="line">readline(&#xA0;) <span class="comment"># &#x8868;&#x793A;&#x9010;&#x884C;&#x8BFB;&#x53D6;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>文件读取还有一些常用到的技巧方法，像下边这两种：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read( )  <span class="comment"># 表示读取全部内容</span></span><br><span class="line">readline( ) <span class="comment"># 表示逐行读取</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       

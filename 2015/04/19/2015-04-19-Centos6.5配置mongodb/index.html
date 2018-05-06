@@ -86,28 +86,58 @@
 
 
 
-<meta name="description" content="&amp;#x539F;&amp;#x6587;&amp;#x8F6C;&amp;#x8F7D;&amp;#x81EA;http://www.wubiaoblog.com/archives/513
+<meta name="description" content="原文转载自http://www.wubiaoblog.com/archives/513
 
-&amp;#x76EE;&amp;#x5F55;[-]
-&amp;#x4E00;&amp;#x3001;yum&amp;#x914D;&amp;#x7F6E;
-1.1&amp;#x3001;&amp;#x68C0;&amp;#x67E5;&amp;#x76F8;&amp;#x5173;&amp;#x5305;&amp;#x4FE1;&amp;#x6">
+目录[-]
+一、yum配置
+1.1、检查相关包信息：
+1.2、配置10gen.repo文件：
+1.3、执行yum update：
+1.4、再次查看相关的包信息：
+1.5、可能遇到的错误信息：
+1.5.1）、网络问题：
+1.5.2）、校验和不匹配：
+1.5.3）、解决方法：
+二、安装
+2.1、安装相关包：
+2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos6.5配置mongodb">
 <meta property="og:url" content="https://asanzjx.github.io/2015/04/19/2015-04-19-Centos6.5配置mongodb/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x539F;&amp;#x6587;&amp;#x8F6C;&amp;#x8F7D;&amp;#x81EA;http://www.wubiaoblog.com/archives/513
+<meta property="og:description" content="原文转载自http://www.wubiaoblog.com/archives/513
 
-&amp;#x76EE;&amp;#x5F55;[-]
-&amp;#x4E00;&amp;#x3001;yum&amp;#x914D;&amp;#x7F6E;
-1.1&amp;#x3001;&amp;#x68C0;&amp;#x67E5;&amp;#x76F8;&amp;#x5173;&amp;#x5305;&amp;#x4FE1;&amp;#x6">
+目录[-]
+一、yum配置
+1.1、检查相关包信息：
+1.2、配置10gen.repo文件：
+1.3、执行yum update：
+1.4、再次查看相关的包信息：
+1.5、可能遇到的错误信息：
+1.5.1）、网络问题：
+1.5.2）、校验和不匹配：
+1.5.3）、解决方法：
+二、安装
+2.1、安装相关包：
+2">
 <meta property="og:updated_time" content="2016-08-18T06:43:39.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos6.5配置mongodb">
-<meta name="twitter:description" content="&amp;#x539F;&amp;#x6587;&amp;#x8F6C;&amp;#x8F7D;&amp;#x81EA;http://www.wubiaoblog.com/archives/513
+<meta name="twitter:description" content="原文转载自http://www.wubiaoblog.com/archives/513
 
-&amp;#x76EE;&amp;#x5F55;[-]
-&amp;#x4E00;&amp;#x3001;yum&amp;#x914D;&amp;#x7F6E;
-1.1&amp;#x3001;&amp;#x68C0;&amp;#x67E5;&amp;#x76F8;&amp;#x5173;&amp;#x5305;&amp;#x4FE1;&amp;#x6">
+目录[-]
+一、yum配置
+1.1、检查相关包信息：
+1.2、配置10gen.repo文件：
+1.3、执行yum update：
+1.4、再次查看相关的包信息：
+1.5、可能遇到的错误信息：
+1.5.1）、网络问题：
+1.5.2）、校验和不匹配：
+1.5.3）、解决方法：
+二、安装
+2.1、安装相关包：
+2">
 
 
 
@@ -332,29 +362,29 @@
 
       
         <ol>
-<li>&#x539F;&#x6587;&#x8F6C;&#x8F7D;&#x81EA;<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="external">http://www.wubiaoblog.com/archives/513</a></li>
+<li>原文转载自<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="external">http://www.wubiaoblog.com/archives/513</a></li>
 </ol>
-<p>&#x76EE;&#x5F55;[-]</p>
-<p>&#x4E00;&#x3001;yum&#x914D;&#x7F6E;</p>
-<p>1.1&#x3001;&#x68C0;&#x67E5;&#x76F8;&#x5173;&#x5305;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.2&#x3001;&#x914D;&#x7F6E;10gen.repo&#x6587;&#x4EF6;&#xFF1A;</p>
-<p>1.3&#x3001;&#x6267;&#x884C;yum update&#xFF1A;</p>
-<p>1.4&#x3001;&#x518D;&#x6B21;&#x67E5;&#x770B;&#x76F8;&#x5173;&#x7684;&#x5305;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.5&#x3001;&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.5.1&#xFF09;&#x3001;&#x7F51;&#x7EDC;&#x95EE;&#x9898;&#xFF1A;</p>
-<p>1.5.2&#xFF09;&#x3001;&#x6821;&#x9A8C;&#x548C;&#x4E0D;&#x5339;&#x914D;&#xFF1A;</p>
-<p>1.5.3&#xFF09;&#x3001;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<p>&#x4E8C;&#x3001;&#x5B89;&#x88C5;</p>
-<p>2.1&#x3001;&#x5B89;&#x88C5;&#x76F8;&#x5173;&#x5305;&#xFF1A;</p>
-<p>2.2&#x3001;&#x68C0;&#x67E5;&#x5B89;&#x88C5;&#x7684;&#x6587;&#x4EF6;&#xFF1A;</p>
-<p>&#x4E09;&#x3001;mongodb&#x76F8;&#x5173;&#x914D;&#x7F6E;</p>
-<p>3.1&#x3001;&#x5EFA;&#x7ACB;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x53CA;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x76EE;&#x5F55;&#xFF1A;</p>
-<p>3.2&#x3001;&#x914D;&#x7F6E;/etc/mongod.conf&#xFF1A;</p>
-<p>&#x56DB;&#x3001;&#x542F;&#x52A8;&#x4E0E;&#x7B80;&#x5355;&#x6D4B;&#x8BD5;</p>
-<p>4.1&#x3001;service mongod start&#xFF1A;</p>
-<p>4.2&#x3001;mongod -f /etc/mongod.conf&#xFF1A;</p>
-<p>4.3&#x3001;&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x60C5;&#x51B5;&#xFF1A;</p>
-<p>4.4&#x3001;&#x5BA2;&#x6237;&#x7AEF;&#x6D4B;&#x8BD5;&#xFF1A;</p>
+<p>目录[-]</p>
+<p>一、yum配置</p>
+<p>1.1、检查相关包信息：</p>
+<p>1.2、配置10gen.repo文件：</p>
+<p>1.3、执行yum update：</p>
+<p>1.4、再次查看相关的包信息：</p>
+<p>1.5、可能遇到的错误信息：</p>
+<p>1.5.1）、网络问题：</p>
+<p>1.5.2）、校验和不匹配：</p>
+<p>1.5.3）、解决方法：</p>
+<p>二、安装</p>
+<p>2.1、安装相关包：</p>
+<p>2.2、检查安装的文件：</p>
+<p>三、mongodb相关配置</p>
+<p>3.1、建立数据文件及日志文件的目录：</p>
+<p>3.2、配置/etc/mongod.conf：</p>
+<p>四、启动与简单测试</p>
+<p>4.1、service mongod start：</p>
+<p>4.2、mongod -f /etc/mongod.conf：</p>
+<p>4.3、检查启动情况：</p>
+<p>4.4、客户端测试：</p>
 
       
     </div>

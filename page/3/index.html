@@ -325,14 +325,14 @@
       
         
           
-            <h3 id="problem"><a href="#Problem&#xFF1A;" class="headerlink" title="Problem&#xFF1A;"></a>Problem&#xFF1A;</h3><p>&#x7528;vim&#x7F16;&#x8F91;&#x5668;&#x65F6;&#x51FA;&#x73B0;&#x63D0;&#x793A;&#xFF1A;</p>
+            <h3><span id="problem">Problem：</span></h3><p>用vim编辑器时出现提示：</p>
 <p>Taglist: Exuberant ctags (<a href="http://ctags.sf.net" target="_blank" rel="external">http://ctags.sf.net</a>) not found in PATH. Plugin is not loaded. </p>
-<h3 id="reason"><a href="#Reason&#xFF1A;" class="headerlink" title="Reason&#xFF1A;"></a>Reason&#xFF1A;</h3><p>taglist plugin&#x4E0D;&#x80FD;&#x627E;&#x5230;ctags &#x7A0B;&#x5E8F;</p>
-<h3 id="try"><a href="#Try&#xFF1A;" class="headerlink" title="Try&#xFF1A;"></a>Try&#xFF1A;</h3><p>1.&#x5220;&#x9664;.vim&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x76F8;&#x5173;&#x6587;&#x4EF6;&#xFF1A;plugin/taglist.vim&#x548C;doc/taglist.txt</p>
-<p>2.&#x5B89;&#x88C5;ctags</p>
+<h3><span id="reason">Reason：</span></h3><p>taglist plugin不能找到ctags 程序</p>
+<h3><span id="try">Try：</span></h3><p>1.删除.vim文件夹下的相关文件：plugin/taglist.vim和doc/taglist.txt</p>
+<p>2.安装ctags</p>
 <pre><code class="sh">yum install ctags
 </code></pre>
-<p>&#xFF08;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x7B2C;&#x4E8C;&#x4E2A;&#x65B9;&#x6CD5;&#xFF09;</p>
+<p>（推荐使用第二个方法）</p>
 
           
         
@@ -452,13 +452,13 @@
       
         
           
-            <h3 id="&#x5177;&#x4F53;&#x6B65;&#x9AA4;"><a href="#&#x5177;&#x4F53;&#x6B65;&#x9AA4;" class="headerlink" title="&#x5177;&#x4F53;&#x6B65;&#x9AA4;"></a>&#x5177;&#x4F53;&#x6B65;&#x9AA4;</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://pypi.python.org/packages/<span class="built_in">source</span>/p/pymongo/pymongo-3.0.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 20150419&#x65F6;&#x5B98;&#x65B9;&#x7684;&#x7248;&#x672C;&#x4E3A;3.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&#xA0;&#x6CE8;&#x610F;&#xFF1A;wget&#x83B7;&#x53D6;https&#x65F6;&#x8981;&#x52A0;--no-check-certificate</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&#x89E3;&#x538B;</span></span><br><span class="line"></span><br><span class="line">tar zvxf&#xA0; pymongo-3.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pymongo-3.0</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-<h3 id="&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6210;&#x529F;"><a href="#&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6210;&#x529F;" class="headerlink" title="&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6210;&#x529F;"></a>&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6210;&#x529F;</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br></pre></td></tr></table></figure>
-<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x62A5;&#x9519;&#x5C31;OK&#x5566;&#x3002;</p>
-<h3 id="problem"><a href="#Problem&#xFF1A;" class="headerlink" title="Problem&#xFF1A;"></a>Problem&#xFF1A;</h3><p>&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;</p>
-<h4 id="&#x63D0;&#x793A;&#x9519;&#x8BEF;&#x627E;&#x4E0D;&#x5230;pip&#x6A21;&#x5757;"><a href="#&#x63D0;&#x793A;&#x9519;&#x8BEF;&#x627E;&#x4E0D;&#x5230;pip&#x6A21;&#x5757;" class="headerlink" title="&#x63D0;&#x793A;&#x9519;&#x8BEF;&#x627E;&#x4E0D;&#x5230;pip&#x6A21;&#x5757;"></a>&#x63D0;&#x793A;&#x9519;&#x8BEF;&#x627E;&#x4E0D;&#x5230;pip&#x6A21;&#x5757;</h4><p>&#x4E0B;&#x8F7D;pip<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/pypa/pip/archive/6.1.1.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment">#2015-04-19 pip&#x5B98;&#x65B9;&#x6700;&#x65B0;&#x7248;&#x672C;&#x4E3A;6.1.1</span></span><br><span class="line"></span><br><span class="line">tar zvxf 6.1.1.tar.gz &#xA0;&#xA0;&#xA0;<span class="comment">#&#x89E3;&#x538B;&#x6587;&#x4EF6;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pip-6.1.1</span><br><span class="line"></span><br><span class="line">python setup.py build</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
-<h4 id="&#x63D0;&#x793A;&#x9519;&#x8BEF;&#x627E;&#x4E0D;&#x5230;setup&#x6A21;&#x5757;"><a href="#&#x63D0;&#x793A;&#x9519;&#x8BEF;&#xFF0C;&#x627E;&#x4E0D;&#x5230;setup&#x6A21;&#x5757;" class="headerlink" title="&#x63D0;&#x793A;&#x9519;&#x8BEF;&#xFF0C;&#x627E;&#x4E0D;&#x5230;setup&#x6A21;&#x5757;"></a>&#x63D0;&#x793A;&#x9519;&#x8BEF;&#xFF0C;&#x627E;&#x4E0D;&#x5230;setup&#x6A21;&#x5757;</h4><p>&#x5B89;&#x88C5;setuptool<br>&#x53BB;&#x5B98;&#x7F51;&#x4E0A;&#x4E0B;&#x8F7D;&#x6216;&#x8005;wget,20150419&#x6700;&#x65B0;&#x7684;&#x7248;&#x672C;&#x4E3A;15.1</p>
-<h4 id="&#x63D0;&#x793A;&#x9519;&#x8BEF;-runtimeerror-compression-requires-the-missing-zlib-module"><a href="#&#x63D0;&#x793A;&#x9519;&#x8BEF;-RuntimeError-Compression-requires-the-missing-zlib-module" class="headerlink" title="&#x63D0;&#x793A;&#x9519;&#x8BEF; RuntimeError: Compression requires the (missing) zlib module"></a>&#x63D0;&#x793A;&#x9519;&#x8BEF; RuntimeError: Compression requires the (missing) zlib module</h4><p>&#x53BB;yum&#x6E90;&#x5B89;&#x88C5;zlib<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&#x5B89;&#x88C5;&#x4E00;&#x4E2A;&#x4F9D;&#x8D56;&#x5305;</span></span><br><span class="line"></span><br><span class="line">yum install zlib-devel</span><br><span class="line"><span class="comment">#&#x91CD;&#x65B0;&#x7F16;&#x8BD1;Python</span></span><br></pre></td></tr></table></figure></p>
+            <h3><span id="具体步骤">具体步骤</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://pypi.python.org/packages/<span class="built_in">source</span>/p/pymongo/pymongo-3.0.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 20150419时官方的版本为3.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：wget获取https时要加--no-check-certificate</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解压</span></span><br><span class="line"></span><br><span class="line">tar zvxf  pymongo-3.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pymongo-3.0</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<h3><span id="测试是否成功">测试是否成功</span></h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br></pre></td></tr></table></figure>
+<p>如果没有报错就OK啦。</p>
+<h3><span id="problem">Problem：</span></h3><p>可能遇到的问题</p>
+<h4><span id="提示错误找不到pip模块">提示错误找不到pip模块</span></h4><p>下载pip<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/pypa/pip/archive/6.1.1.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment">#2015-04-19 pip官方最新版本为6.1.1</span></span><br><span class="line"></span><br><span class="line">tar zvxf 6.1.1.tar.gz    <span class="comment">#解压文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pip-6.1.1</span><br><span class="line"></span><br><span class="line">python setup.py build</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
+<h4><span id="提示错误找不到setup模块">提示错误，找不到setup模块</span></h4><p>安装setuptool<br>去官网上下载或者wget,20150419最新的版本为15.1</p>
+<h4><span id="提示错误-runtimeerror-compression-requires-the-missing-zlib-module">提示错误 RuntimeError: Compression requires the (missing) zlib module</span></h4><p>去yum源安装zlib<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装一个依赖包</span></span><br><span class="line"></span><br><span class="line">yum install zlib-devel</span><br><span class="line"><span class="comment">#重新编译Python</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -579,29 +579,29 @@
         
           
             <ol>
-<li>&#x539F;&#x6587;&#x8F6C;&#x8F7D;&#x81EA;<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="external">http://www.wubiaoblog.com/archives/513</a></li>
+<li>原文转载自<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="external">http://www.wubiaoblog.com/archives/513</a></li>
 </ol>
-<p>&#x76EE;&#x5F55;[-]</p>
-<p>&#x4E00;&#x3001;yum&#x914D;&#x7F6E;</p>
-<p>1.1&#x3001;&#x68C0;&#x67E5;&#x76F8;&#x5173;&#x5305;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.2&#x3001;&#x914D;&#x7F6E;10gen.repo&#x6587;&#x4EF6;&#xFF1A;</p>
-<p>1.3&#x3001;&#x6267;&#x884C;yum update&#xFF1A;</p>
-<p>1.4&#x3001;&#x518D;&#x6B21;&#x67E5;&#x770B;&#x76F8;&#x5173;&#x7684;&#x5305;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.5&#x3001;&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#xFF1A;</p>
-<p>1.5.1&#xFF09;&#x3001;&#x7F51;&#x7EDC;&#x95EE;&#x9898;&#xFF1A;</p>
-<p>1.5.2&#xFF09;&#x3001;&#x6821;&#x9A8C;&#x548C;&#x4E0D;&#x5339;&#x914D;&#xFF1A;</p>
-<p>1.5.3&#xFF09;&#x3001;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<p>&#x4E8C;&#x3001;&#x5B89;&#x88C5;</p>
-<p>2.1&#x3001;&#x5B89;&#x88C5;&#x76F8;&#x5173;&#x5305;&#xFF1A;</p>
-<p>2.2&#x3001;&#x68C0;&#x67E5;&#x5B89;&#x88C5;&#x7684;&#x6587;&#x4EF6;&#xFF1A;</p>
-<p>&#x4E09;&#x3001;mongodb&#x76F8;&#x5173;&#x914D;&#x7F6E;</p>
-<p>3.1&#x3001;&#x5EFA;&#x7ACB;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x53CA;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x76EE;&#x5F55;&#xFF1A;</p>
-<p>3.2&#x3001;&#x914D;&#x7F6E;/etc/mongod.conf&#xFF1A;</p>
-<p>&#x56DB;&#x3001;&#x542F;&#x52A8;&#x4E0E;&#x7B80;&#x5355;&#x6D4B;&#x8BD5;</p>
-<p>4.1&#x3001;service mongod start&#xFF1A;</p>
-<p>4.2&#x3001;mongod -f /etc/mongod.conf&#xFF1A;</p>
-<p>4.3&#x3001;&#x68C0;&#x67E5;&#x542F;&#x52A8;&#x60C5;&#x51B5;&#xFF1A;</p>
-<p>4.4&#x3001;&#x5BA2;&#x6237;&#x7AEF;&#x6D4B;&#x8BD5;&#xFF1A;</p>
+<p>目录[-]</p>
+<p>一、yum配置</p>
+<p>1.1、检查相关包信息：</p>
+<p>1.2、配置10gen.repo文件：</p>
+<p>1.3、执行yum update：</p>
+<p>1.4、再次查看相关的包信息：</p>
+<p>1.5、可能遇到的错误信息：</p>
+<p>1.5.1）、网络问题：</p>
+<p>1.5.2）、校验和不匹配：</p>
+<p>1.5.3）、解决方法：</p>
+<p>二、安装</p>
+<p>2.1、安装相关包：</p>
+<p>2.2、检查安装的文件：</p>
+<p>三、mongodb相关配置</p>
+<p>3.1、建立数据文件及日志文件的目录：</p>
+<p>3.2、配置/etc/mongod.conf：</p>
+<p>四、启动与简单测试</p>
+<p>4.1、service mongod start：</p>
+<p>4.2、mongod -f /etc/mongod.conf：</p>
+<p>4.3、检查启动情况：</p>
+<p>4.4、客户端测试：</p>
 
           
         
@@ -722,7 +722,7 @@
         
           
             <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uname <span class="_">-a</span></span><br><span class="line"></span><br><span class="line">getconf WORD_BIT</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$HOSTTYPE</span></span><br></pre></td></tr></table></figure>
-<p>&#x5982;&#x679C;&#x662F;64&#x4F4D;&#x7684;&#x8BDD;&#xFF0C;&#x7B2C;&#x4E00;&#x6761;&#x548C;&#x7B2C;&#x4E09;&#x6761;&#x547D;&#x4EE4;&#x4F1A;&#x663E;&#x793A;&#xFF1A;x86_64</p>
+<p>如果是64位的话，第一条和第三条命令会显示：x86_64</p>
 
           
         
@@ -843,20 +843,20 @@
         
           
             <ol>
-<li><p>&#x4E0B;&#x8F7D;Python-2.7.9</p>
+<li><p>下载Python-2.7.9</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>&#x5B89;&#x88C5;Python2.7.9</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python&#xA0;/usr/bin/python2.6.6&#xA0;&#xA0;<span class="comment">#&#x5907;&#x4EFD;&#x7248;&#x672C;&#x4E3A;2.6.6&#x7684;Python yum&#x7A0B;&#x5E8F;&#x4F1A;&#x9700;&#x8981;</span></span><br><span class="line">tar -xvzf Python-2.7.9rc1.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.9rc1</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<li><p>安装Python2.7.9</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python /usr/bin/python2.6.6  <span class="comment">#备份版本为2.6.6的Python yum程序会需要</span></span><br><span class="line">tar -xvzf Python-2.7.9rc1.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.9rc1</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+<li><p>测试是否安装成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br><span class="line">Python 2.7.9rc1</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>python2.7&#x7248;&#x672C;&#x540E;,yum&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum&#xA0;</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python&#xA0;&#x5C06;&#x6B64;&#x884C;&#x6539;&#x4E3A;&#xA0;#!/usr/bin/python2.6.6</span></span><br></pre></td></tr></table></figure>
+<li><p>python2.7版本后,yum不能正常工作</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum </span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python 将此行改为 #!/usr/bin/python2.6.6</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>&#x5347;&#x7EA7;&#x5B8C;&#x6BD5;</p>
+<p>升级完毕</p>
 
           
         
@@ -976,27 +976,27 @@
       
         
           
-            <p>PuTTY &#x662F;&#x4E00;&#x5957;&#x514D;&#x8D39;&#x7684;SSH / Telnet &#x7A0B;&#x5E8F;&#xFF0C;&#x662F;&#x5728;Windows 32&#x5E73;&#x53F0;&#x4E0B;&#x7684;telnet&#x3001;rlogin&#x548C;ssh&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x8DE8;&#x5E73;&#x53F0;&#x7684;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x5DE5;&#x5177;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x7EC4;&#x7A0B;&#x5E8F;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;</p>
+            <p>PuTTY 是一套免费的SSH / Telnet 程序，是在Windows 32平台下的telnet、rlogin和ssh客户端，它是一个跨平台的远程登录工具，包含了一组程序，包括：</p>
 <ul>
-<li><p>PuTTY (Telnet &#x548C; SSH &#x5BA2;&#x6237;&#x7AEF;)</p>
+<li><p>PuTTY (Telnet 和 SSH 客户端)</p>
 </li>
-<li><p>PSCP (SCP &#x5BA2;&#x6237;&#x7AEF;, &#x547D;&#x4EE4;&#x884C;&#x4E0B;&#x901A;&#x8FC7; SSH &#x62F7;&#x8D1D;&#x6587;&#x4EF6;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; Unix/Linux &#x4E0B;&#x7684; scp &#x547D;&#x4EE4;)</p>
+<li><p>PSCP (SCP 客户端, 命令行下通过 SSH 拷贝文件，类似于 Unix/Linux 下的 scp 命令)</p>
 </li>
-<li><p>PSFTP (SFTP &#x7684;&#x547D;&#x4EE4;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; FTP &#x7684;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x4F7F;&#x7528;&#x7684;&#x662F; SSH &#x7684; 22 &#x7AEF;&#x53E3;&#xFF0C;</p>
+<li><p>PSFTP (SFTP 的命令行客户端，类似于 FTP 的文件传输，只不过使用的是 SSH 的 22 端口，</p>
 </li>
 </ul>
-<p>&#x800C;&#x975E; FTP &#x7684; 21 &#x7AEF;&#x53E3;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; Unix/Linux &#x4E0B;&#x7684; sftp &#x547D;&#x4EE4;)</p>
+<p>而非 FTP 的 21 端口，类似于 Unix/Linux 下的 sftp 命令)</p>
 <ul>
-<li><p>PuTTYtel (&#x4EC5;&#x4EC5;&#x662F;&#x4E00;&#x4E2A; Telnet &#x5BA2;&#x6237;&#x7AEF;)</p>
+<li><p>PuTTYtel (仅仅是一个 Telnet 客户端)</p>
 </li>
-<li><p>Plink (&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x6267;&#x884C;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x547D;&#x4EE4;)</p>
+<li><p>Plink (命令行工具，执行远程服务器上的命令)</p>
 </li>
-<li><p>Pageant (PuTTY&#x3001;PSCP&#x3001;Plink &#x7684; SSH &#x8BA4;&#x8BC1;&#x4EE3;&#x7406;&#xFF0C;&#x7528;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x6BCF;&#x6B21;&#x90FD;&#x8F93;&#x5165;&#x53E3;&#x4EE4;&#x4E86;)</p>
+<li><p>Pageant (PuTTY、PSCP、Plink 的 SSH 认证代理，用这个可以不用每次都输入口令了)</p>
 </li>
-<li><p>PuTTYgen (&#x7528;&#x6765;&#x751F;&#x6210; RSA &#x548C; DSA &#x5BC6;&#x94A5;&#x7684;&#x5DE5;&#x5177;). </p>
+<li><p>PuTTYgen (用来生成 RSA 和 DSA 密钥的工具). </p>
 </li>
 </ul>
-<p>PuTTY&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E5F;&#x5B58;&#x5728;&#x4E8E;&#x4F17;&#x591A;&#x8F6F;&#x4EF6;&#x4E2D;&#xFF0C;&#x6BD4;&#x5982; FileZilla&#x3001;WinSCP&#xFF0C;&#x9ED8;&#x8BA4;&#x767B;&#x5F55;&#x534F;&#x8BAE;&#x662F;SSH(&#x5B89;&#x5168;&#x547D;&#x4EE4;&#x89E3;&#x91CA;&#x7A0B;&#x5E8F;)&#xFF0C;&#x901A;&#x8FC7;ssh&#x53EF;&#x4EE5;&#x4F7F;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x901A;&#x8BAF;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;,&#x8FD9;&#x4E5F;&#x662F;Putty&#x5F3A;&#x5927;&#x529F;&#x80FD;&#x6240;&#x5728;.</p>
+<p>PuTTY作为一个组件也存在于众多软件中，比如 FileZilla、WinSCP，默认登录协议是SSH(安全命令解释程序)，通过ssh可以使客户端和服务器之间的数据通讯进行加密,这也是Putty强大功能所在.</p>
 
           
         
@@ -1116,7 +1116,7 @@
       
         
           
-            <p>&#x5728;Notpad++&#x4E0B;&#x9009;&#x62E9;&#x8BBE;&#x7F6E;&#x2014;&gt;&#x8BED;&#x8A00;&#x683C;&#x5F0F;&#x8BBE;&#x7F6E;&#x2014;&gt;&#x9009;&#x62E9;&#x4E3B;&#x9898;&#xFF0C;&#xFF0C;&#xFF0C;&#x7528;Choco&#x4E3B;&#x9898;&#x7528;&#x5F97;&#x6BD4;&#x8F83;&#x987A;&#x624B;&#xFF01;&#xFF01;</p>
+            <p>在Notpad++下选择设置—&gt;语言格式设置—&gt;选择主题，，，用Choco主题用得比较顺手！！</p>
 
           
         
@@ -1236,7 +1236,7 @@
       
         
           
-            <p>Try&#xFF1A;<br>&#x628A; # -<em>- encoding:&#x201D;utf-8&#x201D;-</em>-&#x5199;&#x5728;&#x7B2C;&#x4E00;&#x884C;</p>
+            <p>Try：<br>把 # -<em>- encoding:”utf-8”-</em>-写在第一行</p>
 
           
         
@@ -1356,7 +1356,7 @@
       
         
           
-            <p><img src="images/658932920497598863.png" alt=""><br>&#x6253;&#x5F00;IE&#x6D4F;&#x89C8;&#x5668;-&gt;&#x627E;&#x5230;&#x8BBE;&#x7F6E;<img src="/images/2967309204584148892.png" alt="">&#x2014;&#x2014;&gt;&#x70B9;&#x51FB;&#x9009;&#x62E9;&#x4E0B;&#x62C9;&#x83DC;&#x5355;&#x2014;&#x2013;&gt;&#x627E;&#x5230;&#x201C;&#x5173;&#x4E8E;Internet Exploer&#x201D;&#x5373;&#x53EF;</p>
+            <p><img src="images/658932920497598863.png" alt=""><br>打开IE浏览器-&gt;找到设置<img src="/images/2967309204584148892.png" alt="">——&gt;点击选择下拉菜单—–&gt;找到“关于Internet Exploer”即可</p>
 
           
         
@@ -1477,16 +1477,16 @@
         
           
             <ol>
-<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;</p>
+<li><p>客户端向服务器发送登录请求</p>
 </li>
-<li><p>&#x670D;&#x52A1;&#x5668;&#x63A5;&#x6536;&#x5230;&#x767B;&#x5F55;&#x8BF7;&#x6C42;&#x540E;&#x4F1A;&#x751F;&#x6210;&#x76F8;&#x5E94;&#x7684;&#x5BC6;&#x5319;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;</p>
+<li><p>服务器接收到登录请求后会生成相应的密匙返回给客户端</p>
 </li>
-<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x5C06;&#x7528;&#x6237;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x5BC6;&#x7801;&#x4EE5;&#x53CA;2&#x4E2D;&#x670D;&#x52A1;&#x5668;&#x7ED3;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x518D;&#x5411;&#x670D;&#x52A1;&#x5668;&#x63D0;&#x4EA4;&#x767B;&#x5F55;&#x4FE1;&#x606F;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x9A8C;&#x8BC1;&#x6210;&#x529F;&#x540E;&#x5C06;&#x8FD4;&#x56DE;&#x6B63;&#x786E;&#x7684;&#x767B;&#x5F55;&#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;</p>
+<li><p>客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息</p>
 </li>
-<li><p>&#x6210;&#x529F;&#x767B;&#x5F55;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x53EA;&#x9700;&#x8981;&#x4FDD;&#x6301;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x7684;session&#x4F1A;&#x8BDD;&#x5C06;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x8BBF;&#x95EE;&#x5FAE;&#x535A;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x8D44;&#x6E90;</p>
+<li><p>成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源</p>
 </li>
-<li><p>&#x4F2A;&#x4EE3;&#x7801;&#xFF1A;</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Begin</span><br><span class="line"></span><br><span class="line">&#xA0; Step1:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Send Login Request</span><br><span class="line"></span><br><span class="line">&#xA0; Step2:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Request From Server</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Encrypt Information From Response</span><br><span class="line"></span><br><span class="line">&#xA0; Step3:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Encrypt User Information</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Send Encrypt Information</span><br><span class="line"></span><br><span class="line">&#xA0; Step4:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Login Status</span><br><span class="line"></span><br><span class="line">End</span><br></pre></td></tr></table></figure></li>
+<li><p>伪代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Begin</span><br><span class="line"></span><br><span class="line">  Step1:</span><br><span class="line"></span><br><span class="line">     Send Login Request</span><br><span class="line"></span><br><span class="line">  Step2:</span><br><span class="line"></span><br><span class="line">     Get Request From Server</span><br><span class="line"></span><br><span class="line">     Get Encrypt Information From Response</span><br><span class="line"></span><br><span class="line">  Step3:</span><br><span class="line"></span><br><span class="line">     Encrypt User Information</span><br><span class="line"></span><br><span class="line">     Send Encrypt Information</span><br><span class="line"></span><br><span class="line">  Step4:</span><br><span class="line"></span><br><span class="line">     Get Login Status</span><br><span class="line"></span><br><span class="line">End</span><br></pre></td></tr></table></figure></li>
 </ol>
 
           

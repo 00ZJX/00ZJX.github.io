@@ -86,14 +86,18 @@
 
 
 
-<meta name="description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
-&amp;#x9996;&amp;#x5148;&amp;#x719F;&amp;#x6089;PEID&amp;#x7684;&amp;#x754C;&amp;#x9762;&amp;#x53CA;&amp;#x">
+<meta name="description" content="环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA6.8.150423(32-bit)
+首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序
+{width=”80.00000%”}
+这里我们从字符串“Microsoft Visual C++6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsof">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PEiD原理分析">
 <meta property="og:url" content="https://asanzjx.github.io/2017/02/26/PEID/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
-&amp;#x9996;&amp;#x5148;&amp;#x719F;&amp;#x6089;PEID&amp;#x7684;&amp;#x754C;&amp;#x9762;&amp;#x53CA;&amp;#x">
+<meta property="og:description" content="环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA6.8.150423(32-bit)
+首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序
+{width=”80.00000%”}
+这里我们从字符串“Microsoft Visual C++6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsof">
 <meta property="og:image" content="https://asanzjx.github.io/images/PEID1.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/PEID2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/PEID3.PNG">
@@ -108,8 +112,10 @@
 <meta property="og:updated_time" content="2017-02-26T10:53:25.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PEiD原理分析">
-<meta name="twitter:description" content="&amp;#x73AF;&amp;#x5883;&amp;#xFF1A;Win10&amp;#xFF1B;Ollydbg v1.10 dyk158&amp;#x4FEE;&amp;#x6539;&amp;#x7248;&amp;#xFF1B;PEID v0.94&amp;#xFF1B;IDA6.8.150423(32-bit)
-&amp;#x9996;&amp;#x5148;&amp;#x719F;&amp;#x6089;PEID&amp;#x7684;&amp;#x754C;&amp;#x9762;&amp;#x53CA;&amp;#x">
+<meta name="twitter:description" content="环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA6.8.150423(32-bit)
+首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序
+{width=”80.00000%”}
+这里我们从字符串“Microsoft Visual C++6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsof">
 <meta name="twitter:image" content="https://asanzjx.github.io/images/PEID1.PNG">
 
 
@@ -334,62 +340,62 @@
       
 
       
-        <p>&#x73AF;&#x5883;&#xFF1A;Win10&#xFF1B;Ollydbg v1.10 dyk158&#x4FEE;&#x6539;&#x7248;&#xFF1B;PEID v0.94&#xFF1B;IDA<br>6.8.150423(32-bit)</p>
-<p>&#x9996;&#x5148;&#x719F;&#x6089;PEID&#x7684;&#x754C;&#x9762;&#x53CA;&#x5176;&#x529F;&#x80FD;&#xFF0C;PEID&#x8F7D;&#x5165;&#x4E4B;&#x524D;&#x7528;VC++6.0&#x7F16;&#x5199;&#x7684;&#x7A0B;&#x5E8F;</p>
-<p><img src="/images/PEID1.PNG" alt="PEID&#x754C;&#x9762;&lt;span
-data-label=&quot;fig:PEID1_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x201C;Microsoft Visual C++<br>6.0&#x201D;&#x5165;&#x624B;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4ECE;&#x8FD9;&#x5165;&#x624B;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;PEID&#x662F;&#x4E00;&#x4E2A;&#x67E5;&#x58F3;&#x8F6F;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x7684;&#x8FD9;&#x4E2A;&#x201C;Microsoft<br>Visual C++<br>6.0&#x201D;&#x5B57;&#x7B26;&#x4E32;&#x4FE1;&#x606F;&#x662F;PEID&#x6839;&#x636E;&#x8F6F;&#x4EF6;&#x7684;&#x7279;&#x5F81;&#x4FA6;&#x5BDF;&#x51FA;&#x6765;&#x7684;&#x3002;&#x56E0;&#x6B64;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5730;&#x5740;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x6B64;&#x6765;&#x4E3A;&#x5165;&#x53E3;&#x5206;&#x6790;PEID&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x5207;&#x5165;&#x70B9;&#x3002;<a href="&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x5165;&#x624B;&#x4E5F;&#x662F;&#x9006;&#x5411;&#x548C;&#x8C03;&#x8BD5;&#x8F6F;&#x4EF6;&#x7684;&#x5E38;&#x89C1;&#x65B9;&#x6CD5;&#x3002;">^1</a></p>
-<p>OD&#x8F7D;&#x5165;&#x7A0B;&#x5E8F;&#xFF0C;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x8003;&#x63D2;&#x4EF6;&#xFF0C;&#x8FD9;&#x91CC;&#x67E5;&#x627E;ASCII&#x6A21;&#x5F0F;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;Ctrl+F&#x67E5;&#x627E;&#x201C;Microsoft<br>Visual C++ 6.0&#x201D;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x627E;&#x5230;&#x591A;&#x6761;&#x4FE1;&#x606F;&#xFF0C;z&#x6216;p&#x67E5;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#xFF0C;b&#x6216;n&#x67E5;&#x627E;&#x4E0A;&#x4E00;&#x4E2A;&#x3002;</p>
-<p><img src="/images/PEID2.PNG" alt="&#x627E;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x5730;&#x5740;&lt;span
-data-label=&quot;fig:PEID2_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x627E;&#x5230;&#x540E;&#xFF0C;Enter&#x8FDB;&#x5165;&#xFF0C;F2&#x4E0B;&#x65AD;&#x70B9;&#x3002;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x662F;0x00438fff,&#x4E0A;&#x4E00;&#x884C;&#x7684;&#x5730;&#x5740;&#x662F;0x00438ffd&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x627E;&#x5230;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x6B64;&#x5904;&#x7684;&#x4EE3;&#x7801;&#x5728;&#x54EA;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x627E;&#x5230;&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x6761;&#x4EF6;&#x624D;&#x80FD;&#x4F7F;PEID&#x5224;&#x65AD;&#x7A0B;&#x5E8F;&#x4E3A;Microsoft<br>Visual C++<br>6.0&#xFF09;&#xFF0C;&#x987A;&#x85E4;&#x6478;&#x74DC;&#xFF0C;&#x5176;&#x5B9E;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x5F88;&#x591A;&#x5904;&#x8DF3;&#x8F6C;&#x5230;0x00438ffd&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x4EE5;&#x6700;&#x524D;&#x9762;&#x7684;&#x5730;&#x5740;0x00438d13&#x6765;&#x5411;&#x4E0A;&#x5206;&#x6790;&#xFF0C;</p>
-<p><img src="/images/PEID3.PNG" alt="&#x8C03;&#x7528;0x00428ffd&#x7684;&#x4EE3;&#x7801;IDA&#x548C;OD&#x5206;&#x6790;&lt;span
-data-label=&quot;fig:PEID3_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5176;&#x6709;&#x6548;&#x4EE3;&#x7801;&#x5982;&#x56FE;[fig:PEID3_PNG]&#x6240;&#x793A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x00438c20&#x524D;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E3A;int3&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x800C;&#x4E14;IDA&#x548C;OD&#x6B64;&#x5904;&#x7684;&#x4EE3;&#x7801;&#x5E76;&#x65E0;&#x5F02;&#x540C;&#x3002;</p>
-<p><img src="/images/PEID4.PNG" alt="PE&#x8282;&#x6570;&#x76EE;&#x4F4D;&#x7F6E;&lt;span
-data-label=&quot;fig:PEID4_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/PEID5.PNG" alt="&#x8282;&#x8868;&#x9879;&lt;span
-data-label=&quot;fig:PEID5_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p><img src="/images/PEID6.PNG" alt="0x00438C2C 0x00438D60&#x5206;&#x6790;&lt;span
-data-label=&quot;fig:PEID6_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x5982;&#x56FE;[fig:PEID6_PNG]&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5F00;&#x59CB;&#x5C31;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x5E76;&#x5BF9;&#x6570;&#x7EC4;&#x8FDB;&#x884C;&#x4E86;&#x521D;&#x59CB;&#x5316;&#x3002;&#x53EF;&#x4EE5;&#x63A8;&#x65AD;&#x51FA;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x4E2D;&#x5B58;&#x653E;&#x7684;&#x6570;&#x636E;&#x5E94;&#x8BE5;&#x4E3A;&#x76F8;&#x5173;&#x7279;&#x5F81;&#x7801;&#x3002;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E3B;&#x8981;&#x7684;&#x505A;&#x7684;&#x5C31;&#x662F;&#x68C0;&#x67E5;OEP&#x662F;&#x5426;&#x5728;&#x201C;.text&#x201D;&#x4E2D;&#xFF0C;&#x82E5;&#x6761;&#x4EF6;&#x6210;&#x7ACB;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;&#x5230;&#x663E;&#x793A;&#x7F16;&#x8BD1;&#x5668;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;&#x5904;&#x3002;&#x5982;&#x679C;&#x6761;&#x4EF6;&#x4E0D;&#x6210;&#x7ACB;&#xFF0C;&#x7A0B;&#x5E8F;&#x4F1A;&#x5148;&#x6839;&#x636E;&#x5165;&#x53E3;&#x7279;&#x5F81;&#x7801;&#x6BD4;&#x8F83;OEP&#x5165;&#x53E3;&#x5904;&#x7684;8&#x5B57;&#x8282;&#x673A;&#x5668;&#x7801;&#xFF0C;&#x5206;&#x6790;&#x76EE;&#x6807;&#x662F;&#x5426;&#x4E3A;&#x5176;&#x4ED6;&#x7F16;&#x8BD1;&#x5668;&#x6240;&#x751F;&#x6210;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x7B26;&#x5408;&#x7279;&#x5F81;&#xFF0C;&#x5C06;&#x4F1A;&#x8C03;&#x6574;OEP&#xFF0C;&#x52A0;&#x5165;&#x6587;&#x4EF6;&#x504F;&#x79FB;&#x4E0E;&#x865A;&#x62DF;&#x5730;&#x5740;&#x504F;&#x79FB;&#x7684;&#x8F6C;&#x6362;&#x8FC7;&#x7A0B;&#xFF0C;&#x518D;&#x6B21;&#x7528;&#x7279;&#x5F81;&#x7801;&#x5BF9;&#x6BD4;OEP&#x5904;&#x7684;&#x673A;&#x5668;&#x7801;&#x3002;&#x5982;&#x7B26;&#x5408;&#x7279;&#x5F81;&#xFF0C;&#x5219;&#x7A0B;&#x5E8F;&#x6D41;&#x7A0B;&#x8FDB;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x672C;&#x8F93;&#x51FA;&#x90E8;&#x5206;&#x3002;</p>
-<p>OK&#xFF0C;&#x5176;&#x5B9E;&#x8FD9;&#x53EA;&#x662F;&#x5224;&#x5B9A;&#x8FC7;&#x7A0B;&#x7684;&#x7ED3;&#x5C3E;&#xFF0C;&#x6211;&#x4EEC;&#x7EE7;&#x7EED;&#x5411;&#x4E0A;&#x67E5;&#x627E;&#x8C03;&#x7528;0x438d13(&#x56E0;&#x4E3A;&#x5728;&#x6B64;&#x5730;&#x5740;&#x5904;&#x662F;&#x7ECF;&#x8FC7;&#x5206;&#x7C7B;&#x5904;&#x7406;&#x540E;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;)&#x7684;&#x7A0B;&#x5E8F;&#x3002;</p>
-<p>&#x600E;&#x4E48;&#x627E;&#x8C03;&#x7528;&#x5B83;&#x7684;&#x51FD;&#x6570;&#x5462;&#xFF1F;&#x6839;&#x636E;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x673A;&#x5236;&#xFF0C;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x540E;&#x4F1A;&#x5728;&#x6808;&#x7684;&#x6700;&#x9876;&#x7AEF;&#x538B;&#x5165;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#xFF0C;&#x6267;&#x884C;&#x5230;0x438d13&#x67E5;&#x770B;&#x5806;&#x6808;&#x7A97;&#x53E3;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;0x00452f46&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x3002;</p>
-<p><img src="/images/PEID7.PNG" alt="&#x8FD4;&#x56DE;&#x5730;&#x5740;&#x5206;&#x6790;&lt;span
-data-label=&quot;fig:PEID7_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x63A8;&#x65AD;&#x51FA;0x452f3f&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x5C31;&#x662F;&#x8C03;&#x7528;0x438d13&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8DDF;&#x8E2A;&#x8FDB;&#x53BB;&#xFF0C;&#x8DF3;&#x5230;0x401E8C&#x5904;&#x3002;</p>
-<p><img src="/images/PEID8.PNG" alt="0x401e8c&#x5904;&#x7684;&#x90E8;&#x5206;&#x6570;&#x7EC4;&#x6570;&#x636E;&lt;span
-data-label=&quot;fig:PEID8_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>0x401e8c&#x8FD9;&#x4E2A;&#x5904;&#x4FDD;&#x5B58;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x6570;&#x636E;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x63A5;&#x7740;&#x5411;&#x4E0A;&#x5206;&#x6790;[fig:PEID9_PNG]</p>
-<p><img src="/images/PEID9.PNG" alt="0x00452e90 0x00452f58&#x7F16;&#x8BD1;&#x5668;&#x68C0;&#x67E5;&#x5206;&#x7C7B;&#x51FD;&#x6570;&lt;span
-data-label=&quot;fig:PEID9_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x56FE;[fig:PEID9_PNG]&#x5B8C;&#x6210;&#x4E86;&#x5BF9;OEP&#x5904;&#x7279;&#x5F81;&#x7801;&#x7684;&#x6BD4;&#x8F83;&#x5E76;&#x6839;&#x636E;&#x6BD4;&#x8F83;&#x7ED3;&#x679C;&#xFF0C;&#x4ECE;&#x51FD;&#x6570;&#x6307;&#x9488;&#x6570;&#x7EC4;&#x4E2D;&#x627E;&#x5230;&#x7B26;&#x5408;&#x6B64;&#x7279;&#x5F81;&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF0C;&#x8BB0;&#x5F55;&#x4E0B;&#x6807;&#x503C;&#xFF0C;&#x8BB0;&#x5F55;&#x4E0B;&#x6807;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5B83;&#x4EEC;&#x4FDD;&#x5B58;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x5B58;&#x653E;&#x4E0B;&#x6807;&#x503C;&#x7684;&#x6570;&#x7EC4;&#x4E2D;&#x3002;&#x8FD9;&#x65F6;&#x7B2C;&#x4E00;&#x6B21;&#x8FC7;&#x6EE4;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF0C;&#x8FDB;&#x5165;&#x7B2C;&#x4E8C;&#x6B21;&#x8FC7;&#x6EE4;&#x68C0;&#x67E5;&#x5206;&#x6790;&#x7A0B;&#x5E8F;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;&#x8282;&#x3002;</p>
-<p>OK&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5206;&#x6790;0x0045A3E0&#x67E5;&#x770B;PEID&#x4F1A;&#x5C06;OEP&#x5904;&#x7684;&#x54EA;&#x4E9B;&#x673A;&#x5668;&#x7801;&#x4F5C;&#x4E3A;&#x7279;&#x5F81;&#x7801;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;&#x3002;</p>
-<p><img src="/images/PEID10.PNG" alt="&#x7279;&#x5F81;&#x7801;&#x6821;&#x9A8C;&#x5206;&#x6790;&lt;span
-data-label=&quot;fig:PEID10_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x627E;&#x5230;&#x91CD;&#x8981;&#x7684;&#x6BD4;&#x8F83;&#x51FD;&#x6570;0x0045A1D0&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x5206;&#x6790;&#x7A0B;&#x5E8F;&#x7684;&#x673A;&#x5668;&#x7801;&#x4E0E;&#x4E8B;&#x5148;&#x51C6;&#x5907;&#x597D;&#x7684;&#x7279;&#x5F81;&#x7801;&#x7684;&#x6BD4;&#x8F83;&#xFF0C;&#x6700;&#x7EC8;&#x63D0;&#x53D6;&#x51FA;&#x4E86;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7279;&#x6027;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x7248;&#x672C;&#x3002;</p>
-<p><img src="/images/PEID11.PNG" alt="VC++6.0&#x7279;&#x5F81;&#x7801;&lt;span
-data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=&#x201D;80.00000%&#x201D;}</p>
-<p>&#x81F3;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x63A8;&#x65AD;&#x51FA;PEID&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#xFF1A;</p>
+        <p>环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA<br>6.8.150423(32-bit)</p>
+<p>首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序</p>
+<p><img src="/images/PEID1.PNG" alt="PEID界面&lt;span
+data-label=&quot;fig:PEID1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这里我们从字符串“Microsoft Visual C++<br>6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsoft<br>Visual C++<br>6.0”字符串信息是PEID根据软件的特征侦察出来的。因此找到这个字符串的地址信息，以此来为入口分析PEID的工作原理是一个很好的切入点。<a href="从字符串入手也是逆向和调试软件的常见方法。">^1</a></p>
+<p>OD载入程序，使用字符串参考插件，这里查找ASCII模式的字符串。Ctrl+F查找“Microsoft<br>Visual C++ 6.0”，可能会找到多条信息，z或p查找下一个，b或n查找上一个。</p>
+<p><img src="/images/PEID2.PNG" alt="找到字符串地址&lt;span
+data-label=&quot;fig:PEID2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>找到后，Enter进入，F2下断点。这个地址是0x00438fff,上一行的地址是0x00438ffd，现在我们需要找到调用这个此处的代码在哪（也就是找到需要什么条件才能使PEID判断程序为Microsoft<br>Visual C++<br>6.0），顺藤摸瓜，其实我们可以找到很多处跳转到0x00438ffd的代码，我们以最前面的地址0x00438d13来向上分析，</p>
+<p><img src="/images/PEID3.PNG" alt="调用0x00428ffd的代码IDA和OD分析&lt;span
+data-label=&quot;fig:PEID3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>其有效代码如图[fig:PEID3_PNG]所示，可以看到0x00438c20前面的代码为int3的指令，而且IDA和OD此处的代码并无异同。</p>
+<p><img src="/images/PEID4.PNG" alt="PE节数目位置&lt;span
+data-label=&quot;fig:PEID4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/PEID5.PNG" alt="节表项&lt;span
+data-label=&quot;fig:PEID5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/PEID6.PNG" alt="0x00438C2C 0x00438D60分析&lt;span
+data-label=&quot;fig:PEID6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>如图[fig:PEID6_PNG]可以看出，开始就定义了一个很大的数组，并对数组进行了初始化。可以推断出这个数组中存放的数据应该为相关特征码。这段代码主要的做的就是检查OEP是否在“.text”中，若条件成立，则跳转到显示编译器版本的代码处。如果条件不成立，程序会先根据入口特征码比较OEP入口处的8字节机器码，分析目标是否为其他编译器所生成。如果不符合特征，将会调整OEP，加入文件偏移与虚拟地址偏移的转换过程，再次用特征码对比OEP处的机器码。如符合特征，则程序流程进入字符串文本输出部分。</p>
+<p>OK，其实这只是判定过程的结尾，我们继续向上查找调用0x438d13(因为在此地址处是经过分类处理后执行的代码)的程序。</p>
+<p>怎么找调用它的函数呢？根据函数调用机制，函数被调用后会在栈的最顶端压入函数的返回地址，执行到0x438d13查看堆栈窗口，我们可以得到0x00452f46这个地址。</p>
+<p><img src="/images/PEID7.PNG" alt="返回地址分析&lt;span
+data-label=&quot;fig:PEID7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>那么我们就可以推断出0x452f3f这个地址就是调用0x438d13的函数，跟踪进去，跳到0x401E8C处。</p>
+<p><img src="/images/PEID8.PNG" alt="0x401e8c处的部分数组数据&lt;span
+data-label=&quot;fig:PEID8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>0x401e8c这个处保存了大量的数据。</p>
+<p>我们接着向上分析[fig:PEID9_PNG]</p>
+<p><img src="/images/PEID9.PNG" alt="0x00452e90 0x00452f58编译器检查分类函数&lt;span
+data-label=&quot;fig:PEID9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>图[fig:PEID9_PNG]完成了对OEP处特征码的比较并根据比较结果，从函数指针数组中找到符合此特征的处理流程，记录下标值，记录下标值，然后将它们保存在另一个存放下标值的数组中。这时第一次过滤已经完成，进入第二次过滤检查分析程序中是否存在第二个节。</p>
+<p>OK，我们可以继续分析0x0045A3E0查看PEID会将OEP处的哪些机器码作为特征码进行对比。</p>
+<p><img src="/images/PEID10.PNG" alt="特征码校验分析&lt;span
+data-label=&quot;fig:PEID10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>找到重要的比较函数0x0045A1D0，这个函数完成分析程序的机器码与事先准备好的特征码的比较，最终提取出了具有相同特性的编译器的版本。</p>
+<p><img src="/images/PEID11.PNG" alt="VC++6.0特征码&lt;span
+data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>至此我们可以推断出PEID的工作流程：</p>
 <ol>
-<li><p>&#x8BFB;&#x53D6;&#x5206;&#x6790;&#x6587;&#x4EF6;&#x5230;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5E76;&#x5206;&#x6790;&#x51FA;&#x76F8;&#x5173;&#x7684;PE&#x6587;&#x4EF6;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x4FDD;&#x5B58;</p>
+<li><p>读取分析文件到内存中，并分析出相关的PE文件的信息，然后保存</p>
 </li>
-<li><p>&#x3000;&#x68C0;&#x67E5;OEP&#xFF0C;&#x8BA1;&#x7B97;&#x5730;&#x5740;&#x504F;&#x79FB;&#xFF0C;&#x5E76;&#x4FEE;&#x6B63;OEP</p>
+<li><p>　检查OEP，计算地址偏移，并修正OEP</p>
 </li>
-<li><p>&#x3000;&#x518D;&#x6B21;&#x68C0;&#x67E5;OEP&#x5730;&#x5740;&#x7684;&#x5408;&#x6CD5;&#x6027;</p>
+<li><p>　再次检查OEP地址的合法性</p>
 </li>
-<li><p>&#x3000;&#x5C06;OEP&#x5904;&#x7684;&#x673A;&#x5668;&#x7801;&#x4E0E;&#x7279;&#x5F81;&#x7801;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;</p>
+<li><p>　将OEP处的机器码与特征码进行比较</p>
 </li>
-<li><p>&#x3000;&#x68C0;&#x67E5;&#x5206;&#x6790;&#x6587;&#x4EF6;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x201C;.rdata&#x201D;&#x8282;</p>
+<li><p>　检查分析文件中是否存在“.rdata”节</p>
 </li>
-<li><p>&#x6839;&#x636E;&#x5206;&#x6790;&#x7ED3;&#x6784;&#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x5904;&#x7406;&#x51FD;&#x6570;&#x6240;&#x5728;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x4E0B;&#x6807;&#x5E76;&#x4FDD;&#x5B58;</p>
+<li><p>根据分析结构获取对应处理函数所在数组中的下标并保存</p>
 </li>
-<li><p>&#x5FAA;&#x73AF;&#x8C03;&#x7528;&#x5904;&#x7406;&#x51FD;&#x6570;</p>
+<li><p>循环调用处理函数</p>
 </li>
-<li><p>&#x5728;&#x5904;&#x7406;&#x51FD;&#x6570;&#x4E2D;&#x518D;&#x6B21;&#x68C0;&#x67E5;</p>
+<li><p>在处理函数中再次检查</p>
 </li>
-<li><p>&#x663E;&#x793A;&#x7F16;&#x8BD1;&#x5668;&#x7248;&#x672C;</p>
+<li><p>显示编译器版本</p>
 </li>
 </ol>
 

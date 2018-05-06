@@ -86,22 +86,43 @@
 
 
 
-<meta name="description" content="&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x5411;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x53D1;&amp;#x9001;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;
+<meta name="description" content="客户端向服务器发送登录请求
 
-&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x63A5;&amp;#x6536;&amp;#x5230;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;&amp;#x540E;&amp;#x4F">
+服务器接收到登录请求后会生成相应的密匙返回给客户端
+
+客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息
+
+成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源
+
+伪代码：
+1234567891011121314151617181920212223">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫之模拟登录逻辑">
 <meta property="og:url" content="https://asanzjx.github.io/2015/04/10/2015-04-10-python爬虫之模拟登录逻辑/index.html">
 <meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x5411;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x53D1;&amp;#x9001;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;
+<meta property="og:description" content="客户端向服务器发送登录请求
 
-&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x63A5;&amp;#x6536;&amp;#x5230;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;&amp;#x540E;&amp;#x4F">
+服务器接收到登录请求后会生成相应的密匙返回给客户端
+
+客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息
+
+成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源
+
+伪代码：
+1234567891011121314151617181920212223">
 <meta property="og:updated_time" content="2016-08-18T07:29:44.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫之模拟登录逻辑">
-<meta name="twitter:description" content="&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x5411;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x53D1;&amp;#x9001;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;
+<meta name="twitter:description" content="客户端向服务器发送登录请求
 
-&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x63A5;&amp;#x6536;&amp;#x5230;&amp;#x767B;&amp;#x5F55;&amp;#x8BF7;&amp;#x6C42;&amp;#x540E;&amp;#x4F">
+服务器接收到登录请求后会生成相应的密匙返回给客户端
+
+客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息
+
+成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源
+
+伪代码：
+1234567891011121314151617181920212223">
 
 
 
@@ -326,16 +347,16 @@
 
       
         <ol>
-<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;</p>
+<li><p>客户端向服务器发送登录请求</p>
 </li>
-<li><p>&#x670D;&#x52A1;&#x5668;&#x63A5;&#x6536;&#x5230;&#x767B;&#x5F55;&#x8BF7;&#x6C42;&#x540E;&#x4F1A;&#x751F;&#x6210;&#x76F8;&#x5E94;&#x7684;&#x5BC6;&#x5319;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;</p>
+<li><p>服务器接收到登录请求后会生成相应的密匙返回给客户端</p>
 </li>
-<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x5C06;&#x7528;&#x6237;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x5BC6;&#x7801;&#x4EE5;&#x53CA;2&#x4E2D;&#x670D;&#x52A1;&#x5668;&#x7ED3;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x518D;&#x5411;&#x670D;&#x52A1;&#x5668;&#x63D0;&#x4EA4;&#x767B;&#x5F55;&#x4FE1;&#x606F;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x9A8C;&#x8BC1;&#x6210;&#x529F;&#x540E;&#x5C06;&#x8FD4;&#x56DE;&#x6B63;&#x786E;&#x7684;&#x767B;&#x5F55;&#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;</p>
+<li><p>客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息</p>
 </li>
-<li><p>&#x6210;&#x529F;&#x767B;&#x5F55;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x53EA;&#x9700;&#x8981;&#x4FDD;&#x6301;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x7684;session&#x4F1A;&#x8BDD;&#x5C06;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x8BBF;&#x95EE;&#x5FAE;&#x535A;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x8D44;&#x6E90;</p>
+<li><p>成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源</p>
 </li>
-<li><p>&#x4F2A;&#x4EE3;&#x7801;&#xFF1A;</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Begin</span><br><span class="line"></span><br><span class="line">&#xA0; Step1:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Send Login Request</span><br><span class="line"></span><br><span class="line">&#xA0; Step2:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Request From Server</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Encrypt Information From Response</span><br><span class="line"></span><br><span class="line">&#xA0; Step3:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Encrypt User Information</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Send Encrypt Information</span><br><span class="line"></span><br><span class="line">&#xA0; Step4:</span><br><span class="line"></span><br><span class="line">&#xA0;&#xA0;&#xA0;&#xA0; Get Login Status</span><br><span class="line"></span><br><span class="line">End</span><br></pre></td></tr></table></figure></li>
+<li><p>伪代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Begin</span><br><span class="line"></span><br><span class="line">  Step1:</span><br><span class="line"></span><br><span class="line">     Send Login Request</span><br><span class="line"></span><br><span class="line">  Step2:</span><br><span class="line"></span><br><span class="line">     Get Request From Server</span><br><span class="line"></span><br><span class="line">     Get Encrypt Information From Response</span><br><span class="line"></span><br><span class="line">  Step3:</span><br><span class="line"></span><br><span class="line">     Encrypt User Information</span><br><span class="line"></span><br><span class="line">     Send Encrypt Information</span><br><span class="line"></span><br><span class="line">  Step4:</span><br><span class="line"></span><br><span class="line">     Get Login Status</span><br><span class="line"></span><br><span class="line">End</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
