@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CTF,Linux,LD_PRELOAD," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本来是想了解下 LD_PRELOAD 注入 so 的。断断续续磕了几天，静下心来总算把程序给摸清了，有一种豁然释怀的感觉，满足。
+1.前期侦测hitb_bin100.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解2014hitb_bin100.elf，LD_PRELOAD注入so">
+<meta property="og:url" content="https://asanzjx.github.io/2018/07/21/ldpreload-2014hitb_bin100/index.html">
+<meta property="og:site_name" content="Asan'world">
+<meta property="og:description" content="本来是想了解下 LD_PRELOAD 注入 so 的。断断续续磕了几天，静下心来总算把程序给摸清了，有一种豁然释怀的感觉，满足。
+1.前期侦测hitb_bin100.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2">
+<meta property="og:updated_time" content="2018-07-21T10:46:43.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解2014hitb_bin100.elf，LD_PRELOAD注入so">
+<meta name="twitter:description" content="本来是想了解下 LD_PRELOAD 注入 so 的。断断续续磕了几天，静下心来总算把程序给摸清了，有一种豁然释怀的感觉，满足。
+1.前期侦测hitb_bin100.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 详解2014hitb_bin100.elf，LD_PRELOAD注入so | Asan'world </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Asan'world</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                详解2014hitb_bin100.elf，LD_PRELOAD注入so
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-07-21T18:30:00+08:00" content="2018-07-21">
+              2018-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CTF-Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF,Linux,</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/07/21/ldpreload-2014hitb_bin100/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/21/ldpreload-2014hitb_bin100/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本来是想了解下 LD_PRELOAD 注入 so 的。断断续续磕了几天，静下心来总算把程序给摸清了，有一种豁然释怀的感觉，满足。</p>
+<h1><span id="1前期侦测">1.前期侦测</span></h1><p>hitb_bin100.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=99a4be07e428a159472b8e4b3508476feab70e8b, not stripped</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Canary                        : Yes</span><br><span class="line">NX                            : Yes</span><br><span class="line">PIE                           : No</span><br><span class="line">Fortify                       : Yes</span><br><span class="line">RelRO                         : Partial</span><br></pre></td></tr></table></figure>
+<p>运行发现，程序一直在输出一些逆序的字符串，查了下发现是 YTCrack 的 LulzSec Anthem Song, 当时去云音乐查，还没有，果断 @云村曲库君啊，一个小时后就补上了，还是蛮惊喜的，生活小乐趣吧，哈哈。</p>
+<h1><span id="2ida-分析及探索尝试">2.IDA 分析及探索尝试</span></h1><p>从 main 函数入手，汇编代码大致流程如下：</p>
+<ol>
+<li>store_time_ret:0x4007d8</li>
+<li>rand_call_funny:0x400719</li>
+<li>print_funny_sleep:0x400783</li>
+</ol>
+<p>接下来我直接 patch 了程序，直接 call print_flag<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KEY: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: iYSg.&apos;J%+i,7&quot;rmn~uJ    -</span><br></pre></td></tr></table></figure></p>
+<p>发现是需要 key 的，进一步分析在 print_funny_sleep 中 printf 和 sleep 影响了key的输出结果，patch 了这个函数，改为 nop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">KEY: 1b 1b 24 f0 d9 d9 d9 d9 d9 25 25 25 04 b6 33 33 33 33 c5 fd 89 89 78 78 5a 88 88 ee ee eb 40 40 40 40 f6 0e</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: r6OEBZiѾ</span><br><span class="line"> 4f1㌍#</span><br></pre></td></tr></table></figure></p>
+<p>显然结果是不对的。patch printf 应该是没问题的，应该 sleep 出现了问题</p>
+<h1><span id="3具体分析">3.具体分析</span></h1><p>结合国内的 writeup , patch 了 printf funny，然后 IDA F5，分析 C 流程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">qmemcpy(v22, &amp;unk_400A7E, sizeof(v22));	// read uinit flag</span><br><span class="line">v24 = __readfsqword(0x28u);</span><br><span class="line">v3 = v21;</span><br><span class="line">for ( i = 9LL; i; --i )&#123;</span><br><span class="line">    *(_DWORD *)v3 = 0;</span><br><span class="line">    v3 += 4;</span><br><span class="line">&#125; // init v21，v21 key_buf</span><br><span class="line">v19 = 201527; // 0x31337</span><br><span class="line">v20 = time(0LL);</span><br><span class="line">do&#123;</span><br><span class="line">    v11 = 0LL;</span><br><span class="line">    do&#123;</span><br><span class="line">        v5 = 0LL;</span><br><span class="line">        v6 = time(0LL);</span><br><span class="line">        srand(233811181 - v20 + v6); // init randmon seed</span><br><span class="line">        v7 = v21[v11];</span><br><span class="line">        v21[v11] = rand() ^ v7; // key_buf element xor</span><br><span class="line">        v8 = (&amp;funny)[v11];</span><br><span class="line">        while ( v5 &lt; strlen(v8) )&#123;</span><br><span class="line">            v9 = v8[v5];</span><br><span class="line">            if ( (_BYTE)v9 == 105 )&#123;</span><br><span class="line">                v23[(signed int)v5] = 105;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">            if ( (_DWORD)v5 &amp;&amp; v8[v5 - 1] != 32 )</span><br><span class="line">                v10 = __ctype_toupper_loc();</span><br><span class="line">            else</span><br><span class="line">                v10 = __ctype_tolower_loc();</span><br><span class="line">            v23[(signed int)v5] = (*v10)[v9];</span><br><span class="line">        &#125;</span><br><span class="line">        ++v5;</span><br><span class="line">        &#125;</span><br><span class="line">        v23[(signed int)v5] = 0;</span><br><span class="line">        ++v11;                                    // </span><br><span class="line">        // here is print funny,emm...but i patch it</span><br><span class="line">        sleep(1u);</span><br><span class="line">    &#125;while ( v11 != 36 );</span><br><span class="line">    --v19;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="31-程序流程详解">3.1 程序流程详解</span></h2><p>仔细分析程序流程，大致就是计算 key( 随机值与 0 xor 201527次)，然后 key 与 一段固定的值( uinit_flag ) xor 得到flag,输出flag，重点在计算 key 的三个嵌套循环中</p>
+<ol>
+<li>复制未初始化的 flag</li>
+<li>栈保护 (Canary)</li>
+<li>key_buf 清0</li>
+<li>初始化大循环条件，v19 == 201527</li>
+<li>大循环，循环条件，v19 &gt;= 0，也就是要循环201527次<ol>
+<li>初始化中循环条件变量，v11 = 0</li>
+<li>中循环，循环条件，v11 !=36,36 即 flag 的长度，也是 key 的长度<ol>
+<li>通过时间差获取随机数种子</li>
+<li>随机数 与 key_buf 数组中下标为 v11 的元素异或</li>
+<li>小循环：格式化一行 funny</li>
+</ol>
+</li>
+<li>输出一行 funny</li>
+<li>sleep(1)</li>
+</ol>
+</li>
+<li>输出 key</li>
+<li>key xor uint_flag,输出flag</li>
+</ol>
+<p>算下来，整个大循环需要 201527 次，sleep(1)， 201527/60/60，也就是说至少要 55 个小时才能跑完这三个嵌套循环。</p>
+<h2><span id="32-srandrand-机制">3.2 srand()/rand() 机制</span></h2><p>这里需要理解 srand()/rand() ，其要点就是随机数种子一致，生成的随机数是一致的。可通过以下代码验证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: rand_srand.cpp</span><br><span class="line">* author: asanzjx</span><br><span class="line">* rand srand test file</span><br><span class="line">* compiler: g++ rand_srand.cpp -o rand_srand</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">static int t = 0x31337;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int i = 0;</span><br><span class="line">    for(i;i&lt;10;i++)&#123;</span><br><span class="line">        srand(time(0));</span><br><span class="line">        sleep(1);</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; &quot; random value:&quot; &lt;&lt; rand() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // if the srand ret some value,the random value is some </span><br><span class="line">    for(i;i&gt;0;i--)&#123;</span><br><span class="line">        srand(t);</span><br><span class="line">        sleep(1);</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; &quot; random value:&quot; &lt;&lt; rand() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$./rand_srand</span><br><span class="line">0 random value:1498851891</span><br><span class="line">1 random value:125926385</span><br><span class="line">2 random value:1958051108</span><br><span class="line">3 random value:1663308015</span><br><span class="line">4 random value:1351789803</span><br><span class="line">5 random value:2121833688</span><br><span class="line">6 random value:753716439</span><br><span class="line">7 random value:1513028956</span><br><span class="line">8 random value:136593720</span><br><span class="line">9 random value:907047410</span><br><span class="line">10 random value:1427067673</span><br><span class="line">9 random value:1427067673</span><br><span class="line">8 random value:1427067673</span><br><span class="line">7 random value:1427067673</span><br><span class="line">6 random value:1427067673</span><br><span class="line">5 random value:1427067673</span><br><span class="line">4 random value:1427067673</span><br><span class="line">3 random value:1427067673</span><br><span class="line">2 random value:1427067673</span><br><span class="line">1 random value:1427067673</span><br></pre></td></tr></table></figure></p>
+<p><strong>所以通过连续的时间差来确保程序每次运行时种子值序列是一致的，从而使程序每次运行的随机值序列一致，这样程序每次运行的 key 值是一致的，自然程序每次输出的 flag 值一致。</strong></p>
+<h1><span id="4通过-ld_preload-注入-so-来加速时间">4.通过 LD_PRELOAD 注入 so 来加速时间</span></h1><p>如果按照正常执行这个程序，需要55个小时，这显然是不能忍的，所以要加快速度。方法就是改写 sleep()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: anti_time.c</span><br><span class="line">* compiler: gcc --share anti_time.c -o anti_time.so</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./hitb_bin100.elf</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">static int t = 0x31337;</span><br><span class="line"></span><br><span class="line">void sleep(int sec) &#123;</span><br><span class="line">	t += sec;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int time() &#123;</span><br><span class="line">	return t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>sleep() 不执行 sleep() 操作这个好理解，但为什么要返回 t+sec 以及 time() 函数返回 t 呢？这当然是和 key 的 xor 操作有关，保证时间差值序列一致。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$LD_PRELOAD=./anti_time.so ./hitb_bin100.elf</span><br><span class="line">KEY: 19 8f 67 74 c9 68 e6 0c 6f 54 1a 43 af 7b 5f b3 5c 01 98 58 68 56 1a 5e 31 0c 46 29 b8 a8 93 fc bf f9 70 5e</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: p4ul_1z_d34d_1z_wh4t_th3_r3c0rd_s4ys</span><br></pre></td></tr></table></figure></p>
+<h1><span id="5ld_preload-示例">5.LD_PRELOAD 示例</span></h1><p>LD_PRELOAD 是一种动态注入，在程序运行时加载。通过代码实际感受下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: preload.c</span><br><span class="line">* author: asanzjx</span><br><span class="line">* compiler: gcc preload.c -o preload</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">*/</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	printf(&quot;[+]pid:%d&quot;,getpid());</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		sleep(2);</span><br><span class="line">		printf(&quot;[+]time:0x%x&quot;,time(0));</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">* file: anti_time.c</span><br><span class="line">* author: asanzjx</span><br><span class="line">* compiler: gcc --share anti_time.c -o anti_time.so</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">*/</span><br><span class="line">int time() &#123;</span><br><span class="line">	return t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>查看maps结果如下（部分省略）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">[+]pid:124</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$cat /proc/124/maps</span><br><span class="line">7fa715450000-7fa7155e5000 r-xp 00000000 00:00 689225             /lib/x86_64-linux-gnu/libc-2.x.so</span><br><span class="line">7fa7155e5000-7fa7155ed000 ---p 00195000 00:00 689225             /lib/x86_64-linux-gnu/libc-2.x.so</span><br><span class="line"></span><br><span class="line">7fa7157f0000-7fa7157f1000 r-xp 00000000 00:00 714489             .../anti_time.so</span><br><span class="line">7fa7157f1000-7fa7157f2000 ---p 00001000 00:00 714489             .../anti_time.so</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>ldd 加载库如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ldd ./preload</span><br><span class="line">linux-vdso.so.1 (0x00007fffdf1d3000)</span><br><span class="line">libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f4442830000)</span><br><span class="line">/lib64/ld-linux-x86-64.so.2 (0x00007f4442e00000)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF/" rel="tag">#CTF</a>
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+            <a href="/tags/LD-PRELOAD/" rel="tag">#LD_PRELOAD</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/06/3PagingModeVtoP/" rel="next" title="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
+                <i class="fa fa-chevron-left"></i> 三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Asan" />
+          <p class="site-author-name" itemprop="name">Asan</p>
+          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1.前期侦测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2.IDA 分析及探索尝试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3.具体分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 程序流程详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 srand()/rand() 机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4.通过 LD_PRELOAD 注入 so 来加速时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5.LD_PRELOAD 示例</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Asan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'asanzjx';
+      var disqus_identifier = '2018/07/21/ldpreload-2014hitb_bin100/';
+      var disqus_title = "详解2014hitb_bin100.elf，LD_PRELOAD注入so";
+      var disqus_url = 'https://asanzjx.github.io/2018/07/21/ldpreload-2014hitb_bin100/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

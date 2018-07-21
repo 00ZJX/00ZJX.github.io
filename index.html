@@ -255,6 +255,168 @@
             
               
                 
+                <a class="post-title-link" href="/2018/07/21/ldpreload-2014hitb_bin100/" itemprop="url">
+                  详解2014hitb_bin100.elf，LD_PRELOAD注入so
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-07-21T18:30:00+08:00" content="2018-07-21">
+              2018-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CTF-Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF,Linux,</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/07/21/ldpreload-2014hitb_bin100/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/21/ldpreload-2014hitb_bin100/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本来是想了解下 LD_PRELOAD 注入 so 的。断断续续磕了几天，静下心来总算把程序给摸清了，有一种豁然释怀的感觉，满足。</p>
+<h1><span id="1前期侦测">1.前期侦测</span></h1><p>hitb_bin100.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=99a4be07e428a159472b8e4b3508476feab70e8b, not stripped</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Canary                        : Yes</span><br><span class="line">NX                            : Yes</span><br><span class="line">PIE                           : No</span><br><span class="line">Fortify                       : Yes</span><br><span class="line">RelRO                         : Partial</span><br></pre></td></tr></table></figure>
+<p>运行发现，程序一直在输出一些逆序的字符串，查了下发现是 YTCrack 的 LulzSec Anthem Song, 当时去云音乐查，还没有，果断 @云村曲库君啊，一个小时后就补上了，还是蛮惊喜的，生活小乐趣吧，哈哈。</p>
+<h1><span id="2ida-分析及探索尝试">2.IDA 分析及探索尝试</span></h1><p>从 main 函数入手，汇编代码大致流程如下：</p>
+<ol>
+<li>store_time_ret:0x4007d8</li>
+<li>rand_call_funny:0x400719</li>
+<li>print_funny_sleep:0x400783</li>
+</ol>
+<p>接下来我直接 patch 了程序，直接 call print_flag<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KEY: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: iYSg.&apos;J%+i,7&quot;rmn~uJ    -</span><br></pre></td></tr></table></figure></p>
+<p>发现是需要 key 的，进一步分析在 print_funny_sleep 中 printf 和 sleep 影响了key的输出结果，patch 了这个函数，改为 nop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">KEY: 1b 1b 24 f0 d9 d9 d9 d9 d9 25 25 25 04 b6 33 33 33 33 c5 fd 89 89 78 78 5a 88 88 ee ee eb 40 40 40 40 f6 0e</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: r6OEBZiѾ</span><br><span class="line"> 4f1㌍#</span><br></pre></td></tr></table></figure></p>
+<p>显然结果是不对的。patch printf 应该是没问题的，应该 sleep 出现了问题</p>
+<h1><span id="3具体分析">3.具体分析</span></h1><p>结合国内的 writeup , patch 了 printf funny，然后 IDA F5，分析 C 流程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">qmemcpy(v22, &amp;unk_400A7E, sizeof(v22));	// read uinit flag</span><br><span class="line">v24 = __readfsqword(0x28u);</span><br><span class="line">v3 = v21;</span><br><span class="line">for ( i = 9LL; i; --i )&#123;</span><br><span class="line">    *(_DWORD *)v3 = 0;</span><br><span class="line">    v3 += 4;</span><br><span class="line">&#125; // init v21，v21 key_buf</span><br><span class="line">v19 = 201527; // 0x31337</span><br><span class="line">v20 = time(0LL);</span><br><span class="line">do&#123;</span><br><span class="line">    v11 = 0LL;</span><br><span class="line">    do&#123;</span><br><span class="line">        v5 = 0LL;</span><br><span class="line">        v6 = time(0LL);</span><br><span class="line">        srand(233811181 - v20 + v6); // init randmon seed</span><br><span class="line">        v7 = v21[v11];</span><br><span class="line">        v21[v11] = rand() ^ v7; // key_buf element xor</span><br><span class="line">        v8 = (&amp;funny)[v11];</span><br><span class="line">        while ( v5 &lt; strlen(v8) )&#123;</span><br><span class="line">            v9 = v8[v5];</span><br><span class="line">            if ( (_BYTE)v9 == 105 )&#123;</span><br><span class="line">                v23[(signed int)v5] = 105;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">            if ( (_DWORD)v5 &amp;&amp; v8[v5 - 1] != 32 )</span><br><span class="line">                v10 = __ctype_toupper_loc();</span><br><span class="line">            else</span><br><span class="line">                v10 = __ctype_tolower_loc();</span><br><span class="line">            v23[(signed int)v5] = (*v10)[v9];</span><br><span class="line">        &#125;</span><br><span class="line">        ++v5;</span><br><span class="line">        &#125;</span><br><span class="line">        v23[(signed int)v5] = 0;</span><br><span class="line">        ++v11;                                    // </span><br><span class="line">        // here is print funny,emm...but i patch it</span><br><span class="line">        sleep(1u);</span><br><span class="line">    &#125;while ( v11 != 36 );</span><br><span class="line">    --v19;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="31-程序流程详解">3.1 程序流程详解</span></h2><p>仔细分析程序流程，大致就是计算 key( 随机值与 0 xor 201527次)，然后 key 与 一段固定的值( uinit_flag ) xor 得到flag,输出flag，重点在计算 key 的三个嵌套循环中</p>
+<ol>
+<li>复制未初始化的 flag</li>
+<li>栈保护 (Canary)</li>
+<li>key_buf 清0</li>
+<li>初始化大循环条件，v19 == 201527</li>
+<li>大循环，循环条件，v19 &gt;= 0，也就是要循环201527次<ol>
+<li>初始化中循环条件变量，v11 = 0</li>
+<li>中循环，循环条件，v11 !=36,36 即 flag 的长度，也是 key 的长度<ol>
+<li>通过时间差获取随机数种子</li>
+<li>随机数 与 key_buf 数组中下标为 v11 的元素异或</li>
+<li>小循环：格式化一行 funny</li>
+</ol>
+</li>
+<li>输出一行 funny</li>
+<li>sleep(1)</li>
+</ol>
+</li>
+<li>输出 key</li>
+<li>key xor uint_flag,输出flag</li>
+</ol>
+<p>算下来，整个大循环需要 201527 次，sleep(1)， 201527/60/60，也就是说至少要 55 个小时才能跑完这三个嵌套循环。</p>
+<h2><span id="32-srandrand-机制">3.2 srand()/rand() 机制</span></h2><p>这里需要理解 srand()/rand() ，其要点就是随机数种子一致，生成的随机数是一致的。可通过以下代码验证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: rand_srand.cpp</span><br><span class="line">* author: asanzjx</span><br><span class="line">* rand srand test file</span><br><span class="line">* compiler: g++ rand_srand.cpp -o rand_srand</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">static int t = 0x31337;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int i = 0;</span><br><span class="line">    for(i;i&lt;10;i++)&#123;</span><br><span class="line">        srand(time(0));</span><br><span class="line">        sleep(1);</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; &quot; random value:&quot; &lt;&lt; rand() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // if the srand ret some value,the random value is some </span><br><span class="line">    for(i;i&gt;0;i--)&#123;</span><br><span class="line">        srand(t);</span><br><span class="line">        sleep(1);</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; &quot; random value:&quot; &lt;&lt; rand() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$./rand_srand</span><br><span class="line">0 random value:1498851891</span><br><span class="line">1 random value:125926385</span><br><span class="line">2 random value:1958051108</span><br><span class="line">3 random value:1663308015</span><br><span class="line">4 random value:1351789803</span><br><span class="line">5 random value:2121833688</span><br><span class="line">6 random value:753716439</span><br><span class="line">7 random value:1513028956</span><br><span class="line">8 random value:136593720</span><br><span class="line">9 random value:907047410</span><br><span class="line">10 random value:1427067673</span><br><span class="line">9 random value:1427067673</span><br><span class="line">8 random value:1427067673</span><br><span class="line">7 random value:1427067673</span><br><span class="line">6 random value:1427067673</span><br><span class="line">5 random value:1427067673</span><br><span class="line">4 random value:1427067673</span><br><span class="line">3 random value:1427067673</span><br><span class="line">2 random value:1427067673</span><br><span class="line">1 random value:1427067673</span><br></pre></td></tr></table></figure></p>
+<p><strong>所以通过连续的时间差来确保程序每次运行时种子值序列是一致的，从而使程序每次运行的随机值序列一致，这样程序每次运行的 key 值是一致的，自然程序每次输出的 flag 值一致。</strong></p>
+<h1><span id="4通过-ld_preload-注入-so-来加速时间">4.通过 LD_PRELOAD 注入 so 来加速时间</span></h1><p>如果按照正常执行这个程序，需要55个小时，这显然是不能忍的，所以要加快速度。方法就是改写 sleep()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: anti_time.c</span><br><span class="line">* compiler: gcc --share anti_time.c -o anti_time.so</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./hitb_bin100.elf</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">static int t = 0x31337;</span><br><span class="line"></span><br><span class="line">void sleep(int sec) &#123;</span><br><span class="line">	t += sec;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int time() &#123;</span><br><span class="line">	return t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>sleep() 不执行 sleep() 操作这个好理解，但为什么要返回 t+sec 以及 time() 函数返回 t 呢？这当然是和 key 的 xor 操作有关，保证时间差值序列一致。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$LD_PRELOAD=./anti_time.so ./hitb_bin100.elf</span><br><span class="line">KEY: 19 8f 67 74 c9 68 e6 0c 6f 54 1a 43 af 7b 5f b3 5c 01 98 58 68 56 1a 5e 31 0c 46 29 b8 a8 93 fc bf f9 70 5e</span><br><span class="line">OK YOU WIN. HERE&apos;S YOUR FLAG: p4ul_1z_d34d_1z_wh4t_th3_r3c0rd_s4ys</span><br></pre></td></tr></table></figure></p>
+<h1><span id="5ld_preload-示例">5.LD_PRELOAD 示例</span></h1><p>LD_PRELOAD 是一种动态注入，在程序运行时加载。通过代码实际感受下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* file: preload.c</span><br><span class="line">* author: asanzjx</span><br><span class="line">* compiler: gcc preload.c -o preload</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">*/</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	printf(&quot;[+]pid:%d&quot;,getpid());</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		sleep(2);</span><br><span class="line">		printf(&quot;[+]time:0x%x&quot;,time(0));</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">* file: anti_time.c</span><br><span class="line">* author: asanzjx</span><br><span class="line">* compiler: gcc --share anti_time.c -o anti_time.so</span><br><span class="line">* LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">*/</span><br><span class="line">int time() &#123;</span><br><span class="line">	return t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>查看maps结果如下（部分省略）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$LD_PRELOAD=./anti_time.so ./preload</span><br><span class="line">[+]pid:124</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$cat /proc/124/maps</span><br><span class="line">7fa715450000-7fa7155e5000 r-xp 00000000 00:00 689225             /lib/x86_64-linux-gnu/libc-2.x.so</span><br><span class="line">7fa7155e5000-7fa7155ed000 ---p 00195000 00:00 689225             /lib/x86_64-linux-gnu/libc-2.x.so</span><br><span class="line"></span><br><span class="line">7fa7157f0000-7fa7157f1000 r-xp 00000000 00:00 714489             .../anti_time.so</span><br><span class="line">7fa7157f1000-7fa7157f2000 ---p 00001000 00:00 714489             .../anti_time.so</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>ldd 加载库如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ldd ./preload</span><br><span class="line">linux-vdso.so.1 (0x00007fffdf1d3000)</span><br><span class="line">libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f4442830000)</span><br><span class="line">/lib64/ld-linux-x86-64.so.2 (0x00007f4442e00000)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/05/06/3PagingModeVtoP/" itemprop="url">
                   三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换
                 </a>
@@ -378,7 +540,7 @@
 <p>具体步骤：</p>
 <ol>
 <li>将32bit地址拆分为三部分：高10位（PDE index），中间10位（PTE index），低12位（物理页offset）</li>
-<li>获取页表的物理基地址：PDE index <em>  4 + cr3中页目录表基地址= </em>PT base addr，通过这个指针即可找到页表的物理基地址</li>
+<li>获取页表的物理基地址：PDE index <em> 4 + cr3中页目录表基地址= </em>PT base addr，通过这个指针即可找到页表的物理基地址</li>
 <li>获取分配到的物理页地址：PTE index * 4 + PT base addr，就可以找到存储物理页地址的页表项</li>
 <li>物理页地址+物理页offset=物理地址</li>
 </ol>
@@ -666,168 +828,6 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
             
               
                 
-                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
-                  熊猫烧香病毒分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
-              2017-02-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/逆向/" itemprop="url" rel="index">
-                    <span itemprop="name">逆向</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本</p>
-<p>先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]</p>
-<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
-data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>先保存下虚拟机环境，创建一个快照。</p>
-<p>然后拖入IDA中看看。</p>
-<p><img src="/images/Panda2.PNG" alt="IDA警告&lt;span
-data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>觉得应该是有壳。放入PEiD中扫扫，果然。</p>
-<p><img src="/images/Panda3.PNG" alt="Panda的壳&lt;span
-data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>是一个压缩变形壳FSG 2.0 -&gt;<br>bart/xt。查了下，不是很强的壳，试试手动脱壳。</p>
-<h3><span id="脱fsg-20-gt-bartxt">脱FSG 2.0 -&gt; bart/xt</span></h3><p>拖入OD，显示入口点警告</p>
-<p><img src="/images/Panda4.PNG" alt="Panda的壳2&lt;span
-data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>查了下，可用ESP定律法脱壳。</p>
-<p>这里先用脱壳软件UnFSG 2.0脱壳。</p>
-<h3><span id="初步分析">初步分析</span></h3><p>把脱好壳的程序拖入IDA，也同时用OD载入，这样可达到事半功倍的效果。</p>
-<p><img src="/images/Panda5.PNG" alt="Panda OEP处代码&lt;span
-data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda6.PNG" alt="Panda 代码片段分析之校验部分&lt;span
-data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码是程序的校验分析，其中包含了作者以及为作者提供帮助的相关人员的信息。验证成功后，会进入病毒启动部分，根据上图可知在标号loc_40D5FD。</p>
-<p><img src="/images/Panda7.PNG" alt="Panda 代码片段分析之病毒验证和启动&lt;span
-data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码再次验证程序是否为病毒程序，若通过验证，则启动病毒程序，通过三个函数（这三个函数名是手动重命名的）：CreateAndRunPanda；InfectOtherFile、VirusProtect这三个函数完成病毒的运行、感染以及病毒自身的保护，可以说是该病毒的主要功能模块。</p>
-<h3><span id="分析createandrunpanda">分析CreateAndRunPanda</span></h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda片段1&lt;span
-data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda片段2&lt;span
-data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码主要获取当前路径，并将“Desktop_.ini”拼接到当前路径中，同时检查此文件是否存在，如果文件存在，则将其删除。之后将病毒文件信息读取到内存，接着进行了标记检查工作，以判断病毒程序是否被多次运行，同时设置相关的标记信息。</p>
-<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda片段3&lt;span
-data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda片段4&lt;span
-data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码的目的只有一个：找到进程中运行的“spcolsv.exe”并将其终止，在系统目录中删除“spcolsv.exe”，将病毒自身伪造成“spcolsv.exe”并启动，这是病毒第一次运行时需要执行的。</p>
-<h3><span id="运行测试">运行测试</span></h3><p><img src="/images/Panda12.PNG" alt="Panda 运行后的情况&lt;span
-data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>运行后因为各种原因，反正没有感染其他文件。这里暂且放下，毕竟年代久远，变数太多。</p>
-<h3><span id="ininfectotherfile">InInfectOtherFile</span></h3><p>这里我们继续分析InfectOtherFile函数。</p>
-<p><img src="/images/Panda13.PNG" alt="Panda 的三种感染方式&lt;span
-data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>如图[fig:Panda13_PNG]，此病毒通过3种方式进行感染，前两种是在本地进行病毒的感染，第三种则需要网络的支持。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/02/26/PEID/" itemprop="url">
                   PEiD原理分析
                 </a>
@@ -956,6 +956,168 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
 <li><p>显示编译器版本</p>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
+                  熊猫烧香病毒分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逆向/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本</p>
+<p>先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]</p>
+<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
+data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>先保存下虚拟机环境，创建一个快照。</p>
+<p>然后拖入IDA中看看。</p>
+<p><img src="/images/Panda2.PNG" alt="IDA警告&lt;span
+data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>觉得应该是有壳。放入PEiD中扫扫，果然。</p>
+<p><img src="/images/Panda3.PNG" alt="Panda的壳&lt;span
+data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>是一个压缩变形壳FSG 2.0 -&gt;<br>bart/xt。查了下，不是很强的壳，试试手动脱壳。</p>
+<h3><span id="脱fsg-20-gt-bartxt">脱FSG 2.0 -&gt; bart/xt</span></h3><p>拖入OD，显示入口点警告</p>
+<p><img src="/images/Panda4.PNG" alt="Panda的壳2&lt;span
+data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>查了下，可用ESP定律法脱壳。</p>
+<p>这里先用脱壳软件UnFSG 2.0脱壳。</p>
+<h3><span id="初步分析">初步分析</span></h3><p>把脱好壳的程序拖入IDA，也同时用OD载入，这样可达到事半功倍的效果。</p>
+<p><img src="/images/Panda5.PNG" alt="Panda OEP处代码&lt;span
+data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda6.PNG" alt="Panda 代码片段分析之校验部分&lt;span
+data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这段代码是程序的校验分析，其中包含了作者以及为作者提供帮助的相关人员的信息。验证成功后，会进入病毒启动部分，根据上图可知在标号loc_40D5FD。</p>
+<p><img src="/images/Panda7.PNG" alt="Panda 代码片段分析之病毒验证和启动&lt;span
+data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这段代码再次验证程序是否为病毒程序，若通过验证，则启动病毒程序，通过三个函数（这三个函数名是手动重命名的）：CreateAndRunPanda；InfectOtherFile、VirusProtect这三个函数完成病毒的运行、感染以及病毒自身的保护，可以说是该病毒的主要功能模块。</p>
+<h3><span id="分析createandrunpanda">分析CreateAndRunPanda</span></h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda片段1&lt;span
+data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda片段2&lt;span
+data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>上述代码主要获取当前路径，并将“Desktop_.ini”拼接到当前路径中，同时检查此文件是否存在，如果文件存在，则将其删除。之后将病毒文件信息读取到内存，接着进行了标记检查工作，以判断病毒程序是否被多次运行，同时设置相关的标记信息。</p>
+<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda片段3&lt;span
+data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda片段4&lt;span
+data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>上述代码的目的只有一个：找到进程中运行的“spcolsv.exe”并将其终止，在系统目录中删除“spcolsv.exe”，将病毒自身伪造成“spcolsv.exe”并启动，这是病毒第一次运行时需要执行的。</p>
+<h3><span id="运行测试">运行测试</span></h3><p><img src="/images/Panda12.PNG" alt="Panda 运行后的情况&lt;span
+data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>运行后因为各种原因，反正没有感染其他文件。这里暂且放下，毕竟年代久远，变数太多。</p>
+<h3><span id="ininfectotherfile">InInfectOtherFile</span></h3><p>这里我们继续分析InfectOtherFile函数。</p>
+<p><img src="/images/Panda13.PNG" alt="Panda 的三种感染方式&lt;span
+data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>如图[fig:Panda13_PNG]，此病毒通过3种方式进行感染，前两种是在本地进行病毒的感染，第三种则需要网络的支持。</p>
 
           
         
@@ -1678,130 +1840,6 @@ toc:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/01/2016-03-01-Markdwown 常用语法/" itemprop="url">
-                  Markdwown 常用语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T16:09:56+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ToolView/" itemprop="url" rel="index">
-                    <span itemprop="name">ToolView</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/01/2016-03-01-Markdwown 常用语法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/01/2016-03-01-Markdwown 常用语法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><span id="导言">导言</span></h1><h2><span id="updaterecords">UpdateRecords</span></h2><ul>
-<li>2016-08-18\ Optimize</li>
-</ul>
-<p>本文使用MarkdownPad 2（可在<a href="http://markdownpad.com/" target="_blank" rel="external">官网</a>上下载） 编写。</p>
-<p><strong>注意：win10下载安装后可能会出现无法预览的问题，下载安装<a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="external">awesomiumv1.6.6sdk_win</a>，这是一个 HTML UI ENGINE。</strong></p>
-<h2><span id="常用语法">常用语法</span></h2><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#  一级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">##  二级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">##  三级标题</span></span><br><span class="line"></span><br><span class="line">---  分隔符</span><br><span class="line"></span><br><span class="line">–  无序列表</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.  </span>有序列表</span><br><span class="line"></span><br><span class="line">[<span class="string">文本</span>](<span class="link">链接</span>)  超链接</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt;  引用</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**粗体**</span>  粗体</span><br><span class="line"></span><br><span class="line"><span class="emphasis">*斜体*</span>  斜体</span><br><span class="line"></span><br><span class="line">![<span class="string">图片名</span>](<span class="link">链接</span>)  插入图片</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1847,7 +1885,7 @@ toc:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1855,7 +1893,7 @@ toc:
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1864,7 +1902,7 @@ toc:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
