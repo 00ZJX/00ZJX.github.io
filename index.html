@@ -828,6 +828,168 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
             
               
                 
+                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
+                  熊猫烧香病毒分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逆向/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本</p>
+<p>先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]</p>
+<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
+data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>先保存下虚拟机环境，创建一个快照。</p>
+<p>然后拖入IDA中看看。</p>
+<p><img src="/images/Panda2.PNG" alt="IDA警告&lt;span
+data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>觉得应该是有壳。放入PEiD中扫扫，果然。</p>
+<p><img src="/images/Panda3.PNG" alt="Panda的壳&lt;span
+data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>是一个压缩变形壳FSG 2.0 -&gt;<br>bart/xt。查了下，不是很强的壳，试试手动脱壳。</p>
+<h3><span id="脱fsg-20-gt-bartxt">脱FSG 2.0 -&gt; bart/xt</span></h3><p>拖入OD，显示入口点警告</p>
+<p><img src="/images/Panda4.PNG" alt="Panda的壳2&lt;span
+data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>查了下，可用ESP定律法脱壳。</p>
+<p>这里先用脱壳软件UnFSG 2.0脱壳。</p>
+<h3><span id="初步分析">初步分析</span></h3><p>把脱好壳的程序拖入IDA，也同时用OD载入，这样可达到事半功倍的效果。</p>
+<p><img src="/images/Panda5.PNG" alt="Panda OEP处代码&lt;span
+data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda6.PNG" alt="Panda 代码片段分析之校验部分&lt;span
+data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这段代码是程序的校验分析，其中包含了作者以及为作者提供帮助的相关人员的信息。验证成功后，会进入病毒启动部分，根据上图可知在标号loc_40D5FD。</p>
+<p><img src="/images/Panda7.PNG" alt="Panda 代码片段分析之病毒验证和启动&lt;span
+data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这段代码再次验证程序是否为病毒程序，若通过验证，则启动病毒程序，通过三个函数（这三个函数名是手动重命名的）：CreateAndRunPanda；InfectOtherFile、VirusProtect这三个函数完成病毒的运行、感染以及病毒自身的保护，可以说是该病毒的主要功能模块。</p>
+<h3><span id="分析createandrunpanda">分析CreateAndRunPanda</span></h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda片段1&lt;span
+data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda片段2&lt;span
+data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>上述代码主要获取当前路径，并将“Desktop_.ini”拼接到当前路径中，同时检查此文件是否存在，如果文件存在，则将其删除。之后将病毒文件信息读取到内存，接着进行了标记检查工作，以判断病毒程序是否被多次运行，同时设置相关的标记信息。</p>
+<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda片段3&lt;span
+data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda片段4&lt;span
+data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>上述代码的目的只有一个：找到进程中运行的“spcolsv.exe”并将其终止，在系统目录中删除“spcolsv.exe”，将病毒自身伪造成“spcolsv.exe”并启动，这是病毒第一次运行时需要执行的。</p>
+<h3><span id="运行测试">运行测试</span></h3><p><img src="/images/Panda12.PNG" alt="Panda 运行后的情况&lt;span
+data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>运行后因为各种原因，反正没有感染其他文件。这里暂且放下，毕竟年代久远，变数太多。</p>
+<h3><span id="ininfectotherfile">InInfectOtherFile</span></h3><p>这里我们继续分析InfectOtherFile函数。</p>
+<p><img src="/images/Panda13.PNG" alt="Panda 的三种感染方式&lt;span
+data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>如图[fig:Panda13_PNG]，此病毒通过3种方式进行感染，前两种是在本地进行病毒的感染，第三种则需要网络的支持。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/26/PEID/" itemprop="url">
                   PEiD原理分析
                 </a>
@@ -956,168 +1118,6 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
 <li><p>显示编译器版本</p>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/26/Panda/" itemprop="url">
-                  熊猫烧香病毒分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
-              2017-02-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/逆向/" itemprop="url" rel="index">
-                    <span itemprop="name">逆向</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/26/Panda/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/Panda/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本</p>
-<p>先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]</p>
-<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
-data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>先保存下虚拟机环境，创建一个快照。</p>
-<p>然后拖入IDA中看看。</p>
-<p><img src="/images/Panda2.PNG" alt="IDA警告&lt;span
-data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>觉得应该是有壳。放入PEiD中扫扫，果然。</p>
-<p><img src="/images/Panda3.PNG" alt="Panda的壳&lt;span
-data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>是一个压缩变形壳FSG 2.0 -&gt;<br>bart/xt。查了下，不是很强的壳，试试手动脱壳。</p>
-<h3><span id="脱fsg-20-gt-bartxt">脱FSG 2.0 -&gt; bart/xt</span></h3><p>拖入OD，显示入口点警告</p>
-<p><img src="/images/Panda4.PNG" alt="Panda的壳2&lt;span
-data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>查了下，可用ESP定律法脱壳。</p>
-<p>这里先用脱壳软件UnFSG 2.0脱壳。</p>
-<h3><span id="初步分析">初步分析</span></h3><p>把脱好壳的程序拖入IDA，也同时用OD载入，这样可达到事半功倍的效果。</p>
-<p><img src="/images/Panda5.PNG" alt="Panda OEP处代码&lt;span
-data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda6.PNG" alt="Panda 代码片段分析之校验部分&lt;span
-data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码是程序的校验分析，其中包含了作者以及为作者提供帮助的相关人员的信息。验证成功后，会进入病毒启动部分，根据上图可知在标号loc_40D5FD。</p>
-<p><img src="/images/Panda7.PNG" alt="Panda 代码片段分析之病毒验证和启动&lt;span
-data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码再次验证程序是否为病毒程序，若通过验证，则启动病毒程序，通过三个函数（这三个函数名是手动重命名的）：CreateAndRunPanda；InfectOtherFile、VirusProtect这三个函数完成病毒的运行、感染以及病毒自身的保护，可以说是该病毒的主要功能模块。</p>
-<h3><span id="分析createandrunpanda">分析CreateAndRunPanda</span></h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda片段1&lt;span
-data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda片段2&lt;span
-data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码主要获取当前路径，并将“Desktop_.ini”拼接到当前路径中，同时检查此文件是否存在，如果文件存在，则将其删除。之后将病毒文件信息读取到内存，接着进行了标记检查工作，以判断病毒程序是否被多次运行，同时设置相关的标记信息。</p>
-<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda片段3&lt;span
-data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda片段4&lt;span
-data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码的目的只有一个：找到进程中运行的“spcolsv.exe”并将其终止，在系统目录中删除“spcolsv.exe”，将病毒自身伪造成“spcolsv.exe”并启动，这是病毒第一次运行时需要执行的。</p>
-<h3><span id="运行测试">运行测试</span></h3><p><img src="/images/Panda12.PNG" alt="Panda 运行后的情况&lt;span
-data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>运行后因为各种原因，反正没有感染其他文件。这里暂且放下，毕竟年代久远，变数太多。</p>
-<h3><span id="ininfectotherfile">InInfectOtherFile</span></h3><p>这里我们继续分析InfectOtherFile函数。</p>
-<p><img src="/images/Panda13.PNG" alt="Panda 的三种感染方式&lt;span
-data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>如图[fig:Panda13_PNG]，此病毒通过3种方式进行感染，前两种是在本地进行病毒的感染，第三种则需要网络的支持。</p>
 
           
         
