@@ -255,6 +255,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/" itemprop="url">
+                  wordpress 更改固定链接出现404解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-01T16:14:46+08:00" content="2016-03-01">
+              2016-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/配置相关/" itemprop="url" rel="index">
+                    <span itemprop="name">配置相关</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="背景">背景</span></h3><blockquote>
+<p>在wordpres后台设置中修改固定链接，发现打开具体文章出现404页面。</p>
+</blockquote>
+<h3><span id="解决方案">解决方案</span></h3><blockquote>
+<p>修改httpd.conf文件，把#LoadModule rewrite_module modules/mod_rewrite.so 改为 LoadModule rewrite_module modules/mod_rewrite.so，即去掉注释。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/01/2016-03-01-Markdwown 常用语法/" itemprop="url">
                   Markdwown 常用语法
                 </a>
@@ -1454,142 +1579,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/19/2015-05-19-nmap/" itemprop="url">
-                  nmap
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-19T21:53:08+08:00" content="2015-05-19">
-              2015-05-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ToolView/" itemprop="url" rel="index">
-                    <span itemprop="name">ToolView</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/19/2015-05-19-nmap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/19/2015-05-19-nmap/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="获取远程主机的系统类型及开放端口">获取远程主机的系统类型及开放端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>S -P0 <span class="_">-s</span>V -O &lt;target&gt;</span><br></pre></td></tr></table></figure>
-<p>这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网</p>
-<p>-sS TCP SYN 扫描 (又称半开放,或隐身扫描)</p>
-<p>-P0 允许你关闭 ICMP pings.</p>
-<p>-sV 打开系统版本检测</p>
-<p>-O 尝试识别远程操作系统</p>
-<p>其它选项:</p>
-<p>-A 同时打开操作系统指纹和版本检测</p>
-<p>-v 详细输出扫描情况.</p>
-<p>nmap -sS -P0 -A -v &lt; target &gt;</p>
-<h3><span id="列出开放了指定端口的主机列表">列出开放了指定端口的主机列表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>T -p 80 -oG – 192.168.1.* | grep open</span><br></pre></td></tr></table></figure>
-<h3><span id="在网络寻找所有在线主机">在网络寻找所有在线主机</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.0.*</span><br><span class="line">//或者也可用以下命令指定 subnet:</span><br><span class="line">nmap <span class="_">-s</span>P 192.168.0.0/24</span><br></pre></td></tr></table></figure>
-<h3><span id="ping-指定范围内的-ip-地址">Ping 指定范围内的 IP 地址</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.1.100-254</span><br></pre></td></tr></table></figure>
-<h3><span id="在某段子网上查找未占用的-ip">在某段子网上查找未占用的 IP</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -T4 <span class="_">-s</span>P 192.168.2.0/24 &amp;&amp; egrep “00:00:00:00:00:00″ /proc/net/arp</span><br></pre></td></tr></table></figure>
-<h3><span id="在局域网上扫找-conficker-蠕虫病毒">在局域网上扫找 Conficker 蠕虫病毒</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PN -T4 -p139,445 -n -v –script=smb-check-vulns –script-args safe=1 192.168.0.1-254</span><br></pre></td></tr></table></figure>
-<h3><span id="扫描网络上的恶意接入点-rogue-aps">扫描网络上的恶意接入点 （rogue APs）.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -p1-85,113,443,8080-8100 -T4 –min-hostgroup 50 –max-rtt-timeout 2000 –initial-rtt-timeout 300 –max-retries 3 –host-timeout 20m –max-scan-delay 1000 -oA wapscan 10.0.0.0/8</span><br></pre></td></tr></table></figure>
-<h3><span id="使用诱饵扫描方法来扫描主机端口">使用诱饵扫描方法来扫描主机端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap <span class="_">-s</span>S 192.168.0.10 -D 192.168.0.2</span><br><span class="line"></span><br><span class="line">// 为一个子网列出反向 DNS 记录</span><br><span class="line"></span><br><span class="line">nmap -R <span class="_">-s</span>L 209.85.229.99/27 | awk ‘&#123;<span class="keyword">if</span>(<span class="variable">$3</span>==”not”)<span class="built_in">print</span>”(“<span class="variable">$2</span>″) no PTR”;<span class="keyword">else</span> <span class="built_in">print</span><span class="variable">$3</span>″ is “<span class="variable">$2</span>&#125;’ | grep ‘(‘</span><br></pre></td></tr></table></figure>
-<h3><span id="显示网络上共有多少台-linux-及-win-设备">显示网络上共有多少台 Linux 及 Win 设备?</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -F -O 192.168.0.1-255 | grep “Running: ” &gt; /tmp/os; <span class="built_in">echo</span> “$(cat /tmp/os | grep Linux | wc <span class="_">-l</span>) Linux device(s)”; <span class="built_in">echo</span> “$(cat /tmp/os | grep Windows | wc <span class="_">-l</span>) Window(s) device”</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1635,7 +1624,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1643,7 +1632,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1652,7 +1641,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

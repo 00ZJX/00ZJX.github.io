@@ -255,6 +255,146 @@
             
               
                 
+                <a class="post-title-link" href="/2018/07/24/pltgot/" itemprop="url">
+                  .plt/.got.plt及延迟绑定重定位技术详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-07-24T15:30:00+08:00" content="2018-07-24">
+              2018-07-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Compiler/" itemprop="url" rel="index">
+                    <span itemprop="name">Compiler</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/07/24/pltgot/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/24/pltgot/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前做的一个验证实验，直观了解下延迟绑定重定位技术。</p>
+<h1><span id="pltgotplt">.plt/.got.plt</span></h1><p>.plt存储的是过程连接表 (Procedure Linkege Table,PLT) 。包含了共享库函数地址解析的代码。每个 PLT entry 对应一个function的解析。</p>
+<p>.got.plt存储着全局偏移表。每个 entry 存储着一个函数的实际地址，其中前3个 entry 是特殊的。</p>
+<ul>
+<li>GOT[0]:存放了指向可执行文件动态段的地址</li>
+<li>GOT[1]:存放link_map结构的地址</li>
+<li>GOT[2]:存放了指向动态链接器_dl_runtime_resolve()函数的地址</li>
+</ul>
+<h1><span id="示例分析">示例分析</span></h1><p>.plt和.got.plt共同构成了共享库重定位延迟绑定技术，实现了对共享库的动态解析。这里以调用write()函数为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">write(STDOUT_FILENO,&quot;Hello,World\n&quot;,13);</span><br><span class="line">write(STDOUT_FILENO,&quot;Second run\n&quot;,12);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#compiler</span><br><span class="line">gcc -z norelro -no-pie -fno-stack-protector -g -o test_plt_got test_plt_got.c</span><br></pre></td></tr></table></figure></p>
+<p>这个程序会连续两次调用write()函数。</p>
+<h2><span id="查看-plt">查看 .plt</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$objdump -d -j .plt ./test_plt_got</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">080482d0 &lt;.plt&gt;:</span><br><span class="line">80482d0:       ff 35 a8 97 04 08       pushl  0x80497a8</span><br><span class="line">80482d6:       ff 25 ac 97 04 08       jmp    *0x80497ac</span><br><span class="line">80482dc:       00 00                   add    %al,(%eax)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">08048300 &lt;write@plt&gt;:</span><br><span class="line">8048300:       ff 25 b8 97 04 08       jmp    *0x80497b8</span><br><span class="line">8048306:       68 10 00 00 00          push   $0x10</span><br><span class="line">804830b:       e9 c0 ff ff ff          jmp    80482d0 &lt;.plt&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="查看-gotplt">查看 .got.plt</span></h2><p>*0x80497b8存储的就是write()的.got.plt entry 地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$objdump -R ./test_plt_got</span><br><span class="line"></span><br><span class="line">./test_plt_got:     file format elf32-i386</span><br><span class="line"></span><br><span class="line">DYNAMIC RELOCATION RECORDS</span><br><span class="line">OFFSET   TYPE              VALUE</span><br><span class="line">080497a0 R_386_GLOB_DAT    __gmon_start__</span><br><span class="line">080497b0 R_386_JUMP_SLOT   read@GLIBC_2.0</span><br><span class="line">080497b4 R_386_JUMP_SLOT   __libc_start_main@GLIBC_2.0</span><br><span class="line">080497b8 R_386_JUMP_SLOT   write@GLIBC_2.0</span><br></pre></td></tr></table></figure></p>
+<h1><span id="运行过程解析">运行过程解析</span></h1><p>peda-gdb 调试，b write@plt 下断点，r运行，解析过程如下：</p>
+<h3><span id="1程序运行第一次调用write函数调用writeplt-reffigplt1_png">1.程序运行，第一次调用write()函数，调用write@plt() \ref{fig:plt1_PNG}</span></h3><p><img src="/images/pltgot/plt1.PNG" alt="调用write@plt"></p>
+<h3><span id="2plt-代码做一次到-got-中地址的间接跳转jmp-0x80497b8-即-writegot-地址为0x80497b8">2.PLT 代码做一次到 GOT 中地址的间接跳转：jmp *0x80497b8 , 即 write@got 地址为0x80497b8</span></h3><p>x 0x80497b8,可以发现存储的数据为0x8048306,也就是write@plt的第二行指令<br><img src="/images/pltgot/plt2.PNG" alt="0x80497b8存储的数据"></p>
+<h3><span id="3这样就又回到了-plt-代码执行push-0x10">3.这样就又回到了 PLT 代码，执行push 0x10</span></h3><h3><span id="4执行-plt-第三行代码jmp-0x80482d0跳转到-plt0">4.执行 PLT 第三行代码：jmp 0x80482d0，跳转到 PLT[0]</span></h3><p>查看 PLT[0] 前两行涉及到的指针，查看其存储的数据分别为：0xb7fff920;0xb7fee2f0<br><img src="/images/pltgot/plt3.PNG" alt="PLT[0]"></p>
+<h3><span id="5plt0-第一行指令-push-got1-的地址该地址中存放了指向link_map的偏移地址">5.PLT[0] 第一行指令 push GOT[1] 的地址，该地址中存放了指向link_map的偏移地址</span></h3><h3><span id="6plt0-第二行指令跳转到-got2-存放的地址该地址指向了动态链接器的-_dl_runtime_resolve-函数">6.PLT[0] 第二行指令跳转到 GOT[2] 存放的地址，该地址指向了动态链接器的 _dl_runtime_resolve() 函数</span></h3><p>_dl_runtime_resolve() 会将write()函数真正的内存地址加到 GOT entry 中<br><img src="/images/pltgot/plt4.PNG" alt="重定位write()"></p>
+<h3><span id="7第二次调用write函数时可以发现-writeplt-将直接跳转到-glibc-中的-write-函数地址0xb7ead760">7.第二次调用write()函数时，可以发现 write@plt 将直接跳转到 glibc 中的 write() 函数地址0xb7ead760</span></h3><p><img src="/images/pltgot/plt5.PNG" alt="重定位write()"></p>
+<h1><span id="参考">参考</span></h1><ul>
+<li>Learning Linux Binary Analysis.Ryan O’Neill</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/07/21/ldpreload-2014hitb_bin100/" itemprop="url">
                   详解2014hitb_bin100.elf，LD_PRELOAD注入so
                 </a>
@@ -1715,131 +1855,6 @@ toc:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/" itemprop="url">
-                  wordpress 更改固定链接出现404解决方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T16:14:46+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/配置相关/" itemprop="url" rel="index">
-                    <span itemprop="name">配置相关</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="背景">背景</span></h3><blockquote>
-<p>在wordpres后台设置中修改固定链接，发现打开具体文章出现404页面。</p>
-</blockquote>
-<h3><span id="解决方案">解决方案</span></h3><blockquote>
-<p>修改httpd.conf文件，把#LoadModule rewrite_module modules/mod_rewrite.so 改为 LoadModule rewrite_module modules/mod_rewrite.so，即去掉注释。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1885,7 +1900,7 @@ toc:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1893,7 +1908,7 @@ toc:
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1902,7 +1917,7 @@ toc:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

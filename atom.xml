@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://asanzjx.github.io/"/>
-  <updated>2018-07-21T10:46:43.951Z</updated>
+  <updated>2018-07-24T09:17:31.422Z</updated>
   <id>https://asanzjx.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.plt/.got.plt及延迟绑定重定位技术详解</title>
+    <link href="https://asanzjx.github.io/2018/07/24/pltgot/"/>
+    <id>https://asanzjx.github.io/2018/07/24/pltgot/</id>
+    <published>2018-07-24T07:30:00.000Z</published>
+    <updated>2018-07-24T09:17:31.422Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前做的一个验证实验，直观了解下延迟绑定重定位技术。</p><h1><span id="pltgotplt">.plt/.got.plt</span></h1><p>.plt存储的是过程连接表 (Procedure Linkege Table,PLT) 。包含了共享库函数地址解析的代码。每个 PLT entry 对应一个function的解析。</p><p>.got.plt存储着全局偏移表。每个 entry 存储着一个函数的实际地址，其中前3个 entry 是特殊的。</p><ul><li>GOT[0]:存放了指向可执行文件动态段的地址</li><li>GOT[1]:存放link_map结构的地址</li><li>GOT[2]:存放了指向动态链接器_dl_runtime_resolve()函数的地址</li></ul><h1><span id="示例分析">示例分析</span></h1><p>.plt和.got.plt共同构成了共享库重定位延迟绑定技术，实现了对共享库的动态解析。这里以调用write()函数为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">write(STDOUT_FILENO,&quot;Hello,World\n&quot;,13);</span><br><span class="line">write(STDOUT_FILENO,&quot;Second run\n&quot;,12);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#compiler</span><br><span class="line">gcc -z norelro -no-pie -fno-stack-protector -g -o test_plt_got test_plt_got.c</span><br></pre></td></tr></table></figure></p><p>这个程序会连续两次调用write()函数。</p><h2><span id="查看-plt">查看 .plt</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$objdump -d -j .plt ./test_plt_got</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">080482d0 &lt;.plt&gt;:</span><br><span class="line">80482d0:       ff 35 a8 97 04 08       pushl  0x80497a8</span><br><span class="line">80482d6:       ff 25 ac 97 04 08       jmp    *0x80497ac</span><br><span class="line">80482dc:       00 00                   add    %al,(%eax)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">08048300 &lt;write@plt&gt;:</span><br><span class="line">8048300:       ff 25 b8 97 04 08       jmp    *0x80497b8</span><br><span class="line">8048306:       68 10 00 00 00          push   $0x10</span><br><span class="line">804830b:       e9 c0 ff ff ff          jmp    80482d0 &lt;.plt&gt;</span><br></pre></td></tr></table></figure><h2><span id="查看-gotplt">查看 .got.plt</span></h2><p>*0x80497b8存储的就是write()的.got.plt entry 地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$objdump -R ./test_plt_got</span><br><span class="line"></span><br><span class="line">./test_plt_got:     file format elf32-i386</span><br><span class="line"></span><br><span class="line">DYNAMIC RELOCATION RECORDS</span><br><span class="line">OFFSET   TYPE              VALUE</span><br><span class="line">080497a0 R_386_GLOB_DAT    __gmon_start__</span><br><span class="line">080497b0 R_386_JUMP_SLOT   read@GLIBC_2.0</span><br><span class="line">080497b4 R_386_JUMP_SLOT   __libc_start_main@GLIBC_2.0</span><br><span class="line">080497b8 R_386_JUMP_SLOT   write@GLIBC_2.0</span><br></pre></td></tr></table></figure></p><h1><span id="运行过程解析">运行过程解析</span></h1><p>peda-gdb 调试，b write@plt 下断点，r运行，解析过程如下：</p><h3><span id="1程序运行第一次调用write函数调用writeplt-reffigplt1_png">1.程序运行，第一次调用write()函数，调用write@plt() \ref{fig:plt1_PNG}</span></h3><p><img src="/images/pltgot/plt1.PNG" alt="调用write@plt"></p><h3><span id="2plt-代码做一次到-got-中地址的间接跳转jmp-0x80497b8-即-writegot-地址为0x80497b8">2.PLT 代码做一次到 GOT 中地址的间接跳转：jmp *0x80497b8 , 即 write@got 地址为0x80497b8</span></h3><p>x 0x80497b8,可以发现存储的数据为0x8048306,也就是write@plt的第二行指令<br><img src="/images/pltgot/plt2.PNG" alt="0x80497b8存储的数据"></p><h3><span id="3这样就又回到了-plt-代码执行push-0x10">3.这样就又回到了 PLT 代码，执行push 0x10</span></h3><h3><span id="4执行-plt-第三行代码jmp-0x80482d0跳转到-plt0">4.执行 PLT 第三行代码：jmp 0x80482d0，跳转到 PLT[0]</span></h3><p>查看 PLT[0] 前两行涉及到的指针，查看其存储的数据分别为：0xb7fff920;0xb7fee2f0<br><img src="/images/pltgot/plt3.PNG" alt="PLT[0]"></p><h3><span id="5plt0-第一行指令-push-got1-的地址该地址中存放了指向link_map的偏移地址">5.PLT[0] 第一行指令 push GOT[1] 的地址，该地址中存放了指向link_map的偏移地址</span></h3><h3><span id="6plt0-第二行指令跳转到-got2-存放的地址该地址指向了动态链接器的-_dl_runtime_resolve-函数">6.PLT[0] 第二行指令跳转到 GOT[2] 存放的地址，该地址指向了动态链接器的 _dl_runtime_resolve() 函数</span></h3><p>_dl_runtime_resolve() 会将write()函数真正的内存地址加到 GOT entry 中<br><img src="/images/pltgot/plt4.PNG" alt="重定位write()"></p><h3><span id="7第二次调用write函数时可以发现-writeplt-将直接跳转到-glibc-中的-write-函数地址0xb7ead760">7.第二次调用write()函数时，可以发现 write@plt 将直接跳转到 glibc 中的 write() 函数地址0xb7ead760</span></h3><p><img src="/images/pltgot/plt5.PNG" alt="重定位write()"></p><h1><span id="参考">参考</span></h1><ul><li>Learning Linux Binary Analysis.Ryan O’Neill</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;之前做的一个验证实验，直观了解下延迟绑定重定位技术。&lt;/p&gt;
+&lt;h1&gt;&lt;span id=&quot;pltgotplt&quot;&gt;.plt/.got.plt&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;.plt存储的是过程连接表 (Procedure Linkege Table,PLT) 。包含了共享库函数
+      
+    
+    </summary>
+    
+      <category term="Compiler" scheme="https://asanzjx.github.io/categories/Compiler/"/>
+    
+    
+      <category term="Linux" scheme="https://asanzjx.github.io/tags/Linux/"/>
+    
+      <category term="Compiler" scheme="https://asanzjx.github.io/tags/Compiler/"/>
+    
+  </entry>
   
   <entry>
     <title>详解2014hitb_bin100.elf，LD_PRELOAD注入so</title>
@@ -555,31 +583,6 @@
     
     
       <category term="sqlmal" scheme="https://asanzjx.github.io/tags/sqlmal/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nmap</title>
-    <link href="https://asanzjx.github.io/2015/05/19/2015-05-19-nmap/"/>
-    <id>https://asanzjx.github.io/2015/05/19/2015-05-19-nmap/</id>
-    <published>2015-05-19T13:53:08.000Z</published>
-    <updated>2016-08-18T06:57:12.767Z</updated>
-    
-    <content type="html"><![CDATA[<h3><span id="获取远程主机的系统类型及开放端口">获取远程主机的系统类型及开放端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>S -P0 <span class="_">-s</span>V -O &lt;target&gt;</span><br></pre></td></tr></table></figure><p>这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网</p><p>-sS TCP SYN 扫描 (又称半开放,或隐身扫描)</p><p>-P0 允许你关闭 ICMP pings.</p><p>-sV 打开系统版本检测</p><p>-O 尝试识别远程操作系统</p><p>其它选项:</p><p>-A 同时打开操作系统指纹和版本检测</p><p>-v 详细输出扫描情况.</p><p>nmap -sS -P0 -A -v &lt; target &gt;</p><h3><span id="列出开放了指定端口的主机列表">列出开放了指定端口的主机列表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>T -p 80 -oG – 192.168.1.* | grep open</span><br></pre></td></tr></table></figure><h3><span id="在网络寻找所有在线主机">在网络寻找所有在线主机</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.0.*</span><br><span class="line">//或者也可用以下命令指定 subnet:</span><br><span class="line">nmap <span class="_">-s</span>P 192.168.0.0/24</span><br></pre></td></tr></table></figure><h3><span id="ping-指定范围内的-ip-地址">Ping 指定范围内的 IP 地址</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.1.100-254</span><br></pre></td></tr></table></figure><h3><span id="在某段子网上查找未占用的-ip">在某段子网上查找未占用的 IP</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -T4 <span class="_">-s</span>P 192.168.2.0/24 &amp;&amp; egrep “00:00:00:00:00:00″ /proc/net/arp</span><br></pre></td></tr></table></figure><h3><span id="在局域网上扫找-conficker-蠕虫病毒">在局域网上扫找 Conficker 蠕虫病毒</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PN -T4 -p139,445 -n -v –script=smb-check-vulns –script-args safe=1 192.168.0.1-254</span><br></pre></td></tr></table></figure><h3><span id="扫描网络上的恶意接入点-rogue-aps">扫描网络上的恶意接入点 （rogue APs）.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -p1-85,113,443,8080-8100 -T4 –min-hostgroup 50 –max-rtt-timeout 2000 –initial-rtt-timeout 300 –max-retries 3 –host-timeout 20m –max-scan-delay 1000 -oA wapscan 10.0.0.0/8</span><br></pre></td></tr></table></figure><h3><span id="使用诱饵扫描方法来扫描主机端口">使用诱饵扫描方法来扫描主机端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap <span class="_">-s</span>S 192.168.0.10 -D 192.168.0.2</span><br><span class="line"></span><br><span class="line">// 为一个子网列出反向 DNS 记录</span><br><span class="line"></span><br><span class="line">nmap -R <span class="_">-s</span>L 209.85.229.99/27 | awk ‘&#123;<span class="keyword">if</span>(<span class="variable">$3</span>==”not”)<span class="built_in">print</span>”(“<span class="variable">$2</span>″) no PTR”;<span class="keyword">else</span> <span class="built_in">print</span><span class="variable">$3</span>″ is “<span class="variable">$2</span>&#125;’ | grep ‘(‘</span><br></pre></td></tr></table></figure><h3><span id="显示网络上共有多少台-linux-及-win-设备">显示网络上共有多少台 Linux 及 Win 设备?</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -F -O 192.168.0.1-255 | grep “Running: ” &gt; /tmp/os; <span class="built_in">echo</span> “$(cat /tmp/os | grep Linux | wc <span class="_">-l</span>) Linux device(s)”; <span class="built_in">echo</span> “$(cat /tmp/os | grep Windows | wc <span class="_">-l</span>) Window(s) device”</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3&gt;&lt;span id=&quot;获取远程主机的系统类型及开放端口&quot;&gt;获取远程主机的系统类型及开放端口&lt;/span&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin
-      
-    
-    </summary>
-    
-      <category term="ToolView" scheme="https://asanzjx.github.io/categories/ToolView/"/>
-    
-    
-      <category term="nmap" scheme="https://asanzjx.github.io/tags/nmap/"/>
     
   </entry>
   
