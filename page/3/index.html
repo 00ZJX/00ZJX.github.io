@@ -255,6 +255,723 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/" itemprop="url">
+                  mongodb replSet 本地测试
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-11T21:03:49+08:00" content="2015-07-11">
+              2015-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Maual/" itemprop="url" rel="index">
+                    <span itemprop="name">Maual</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/11/2015-07-11-mongodb replSet 本地测试/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="1首先新建目录replset用来存数据库文件在replset下新建三个目录dbdb1db2">1.首先新建目录replset用来存数据库文件，在replset下新建三个目录，db,db1,db2.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  mongod --port 270xx --dbpath=\replset\dbx\ --replSet replset（这里端口测试依次为27018，27019，27020）打开三个数据库服务，</span><br></pre></td></tr></table></figure>
+<p> 登录其中一个mongo shell,输入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; _id:<span class="string">"replset"</span>, </span><br><span class="line"></span><br><span class="line">  members:[</span><br><span class="line"></span><br><span class="line">      &#123;_id:0,host:<span class="string">"127.0.0.1:27018"</span>&#125;, </span><br><span class="line"></span><br><span class="line">      &#123;_id:1,host:<span class="string">"127.0.0.1:27019"</span>&#125;,</span><br><span class="line"></span><br><span class="line">      &#123;_id:2,host:<span class="string">"127.0.0.1:27020"</span>&#125;</span><br><span class="line"></span><br><span class="line">      ]&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="2接着初始化配置">2.接着初始化配置</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<p>如果出现错误，code为93</p>
+<p>解决方法：请注意是否_id值是否写错了，应该为 _id:”replset” </p>
+<h3><span id="3-查看副本集的情况">3. 查看副本集的情况</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/6630387168002298229.png" alt=""><br><img src="/images/6630387168002298229.png" alt="">  </p>
+<h3><span id="problem">Problem：</span></h3><p>在SECONDARY数据库输入读取命令出错，errmsg:not master，且不能写入数据，查资料可知</p>
+<h3><span id="reason">Reason：</span></h3><p>首先这是正常的，因为SECONDARY是不允许读写的， 在写多读少的应用中，使用Replica Sets来实现读写分离。通过在连接时指定或者在主库指定slaveOk，由Secondary来分担读的压力，Primary只承担写操作。</p>
+<p>对于replica set 中的secondary 节点默认是不可读的</p>
+<h3><span id="try">Try：</span></h3><p>设置db.getMongo().setSlaveOk()即可正常读数据</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/13/2015-06-13-vsftpd.conf配置/" itemprop="url">
+                  vsftpd.conf配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-13T00:46:36+08:00" content="2015-06-13">
+              2015-06-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/配置相关/" itemprop="url" rel="index">
+                    <span itemprop="name">配置相关</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/13/2015-06-13-vsftpd.conf配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/13/2015-06-13-vsftpd.conf配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>进入vsftpd配置文件</li>
+</ul>
+<p>vim /etc/vsftpd/vsftpd.conf </p>
+<ul>
+<li>禁止匿名用户anonymous登录</li>
+</ul>
+<p>anonymous_enable=NO</p>
+<ul>
+<li>允许本地用户登录</li>
+</ul>
+<p>local_enable=YES</p>
+<ul>
+<li>让登录的用户有写权限(上传，删除)</li>
+</ul>
+<p>write_enable=YES</p>
+<ul>
+<li>默认umask</li>
+</ul>
+<p>local_umask=022</p>
+<ul>
+<li>把传输记录的日志保存到/var/log/vsftpd.log</li>
+</ul>
+<p>xferlog_enable=YES</p>
+<p>xferlog_file=/var/log/vsftpd.log</p>
+<p>xferlog_std_format=NO</p>
+<ul>
+<li>允许ASCII模式上传</li>
+</ul>
+<p>ascii_upload_enable=YES </p>
+<ul>
+<li>允许ASCII模式下载</li>
+</ul>
+<p>ascii_download_enable=YES</p>
+<ul>
+<li>使用20号端口传输数据</li>
+</ul>
+<p>connect_from_port_20=YES</p>
+<ul>
+<li>欢迎标语</li>
+</ul>
+<p>ftpd_banner=Welcome to use my test ftp server.</p>
+<p><strong>接下来的三条配置很重要</strong></p>
+<ul>
+<li><p>chroot_local_user设置了YES，那么所有的用户默认将被chroot，</p>
+</li>
+<li><p>也就用户目录被限制在了自己的home下，无法向上改变目录。</p>
+</li>
+<li><p>chroot_list_enable设置了YES，即让chroot用户列表有效。</p>
+</li>
+<li><p><strong>★超重要：如果chroot_local_user设置了YES，那么chroot_list_file</strong></p>
+</li>
+<li><p>设置的文件里，是不被chroot的用户(可以向上改变目录)</p>
+</li>
+<li><p><strong>★超重要：如果chroot_local_user设置了NO，那么chroot_list_file</strong></p>
+</li>
+<li><p>设置的文件里，是被chroot的用户(无法向上改变目录)</p>
+</li>
+</ul>
+<p>chroot_list_enable=YES</p>
+<ul>
+<li>touch /etc/vsftpd/chroot_list 新建</li>
+</ul>
+<p>chroot_list_file=/etc/vsftpd/chroot_list</p>
+<p>use_localtime=YES</p>
+<ul>
+<li>以standalone模式在ipv4上运行</li>
+</ul>
+<p>listen=YES</p>
+<ul>
+<li><p>PAM认证服务名，这里默认是vsftpd，在安装vsftpd的时候已经创建了这个pam文件，</p>
+</li>
+<li><p>在/etc/pam.d/vsftpd，根据这个pam文件里的设置，/etc/vsftpd/ftpusers</p>
+</li>
+<li><p>文件里的用户将禁止登录ftp服务器，比如root这样敏感的用户，所以你要禁止别的用户</p>
+</li>
+<li><p>登录的时候，也可以把该用户追加到/etc/vsftpd/ftpusers里。</p>
+</li>
+</ul>
+<p>pam_service_name=vsftpd</p>
+<ul>
+<li>重启 vsftpd</li>
+</ul>
+<p>service vsftpd restart</p>
+<ul>
+<li>添加webftp用户组，用来承载我们的ftp授权用户</li>
+</ul>
+<p>groupadd webftp</p>
+<ul>
+<li>创建用户</li>
+</ul>
+<p>useradd -g webftp -M -d /var/www/html/ftp -s /sbin/nologin ftp-zjx</p>
+<ul>
+<li>设置用户到文件夹</li>
+</ul>
+<p>chown -R username /var/www/html/ftp</p>
+<ul>
+<li>设置权限</li>
+</ul>
+<p>chown -R 777  /home/www/html/ftp</p>
+<ul>
+<li>添加密码</li>
+</ul>
+<p>passwd ftp-zjx -&gt; 密码 -&gt; 确认密码</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/10/2015-06-10-/" itemprop="url">
+                  偶然看到的一句话
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-10T00:11:15+08:00" content="2015-06-10">
+              2015-06-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/10/2015-06-10-/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/10/2015-06-10-/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>命运没有既定的轨迹</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/21/2015-05-21-php查询mongodb时的or操作/" itemprop="url">
+                  php查询mongodb时的or操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-21T16:10:52+08:00" content="2015-05-21">
+              2015-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Maual/" itemprop="url" rel="index">
+                    <span itemprop="name">Maual</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/21/2015-05-21-php查询mongodb时的or操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/21/2015-05-21-php查询mongodb时的or操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在查询时，我们也许也会用到or操作。语法格式如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;find(<span class="keyword">array</span>(<span class="string">'$or'</span> =&gt; <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">1</span>), <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'java'</span>))));</span><br></pre></td></tr></table></figure></p>
+<p>例如上面的例子，我们查询id是1，或者name是java的数据。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/19/2015-05-19-sqlmal-command/" itemprop="url">
+                  sqlmal-command
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-19T21:54:51+08:00" content="2015-05-19">
+              2015-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ToolView/" itemprop="url" rel="index">
+                    <span itemprop="name">ToolView</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/19/2015-05-19-sqlmal-command/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/19/2015-05-19-sqlmal-command/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="检查注入点">检查注入点</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11</span><br></pre></td></tr></table></figure>
+<h3><span id="列数据库信息">列数据库信息</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs</span><br></pre></td></tr></table></figure>
+<h3><span id="指定库名列出所有表">指定库名列出所有表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 --tables</span><br></pre></td></tr></table></figure>
+<h2><span id="指定库名表名列出所有字段">指定库名表名列出所有字段</span></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin --columns</span><br></pre></td></tr></table></figure>
+<h3><span id="指定库名表名字段dump出指定字段">指定库名表名字段dump出指定字段</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin -C ac,id,password --dump </span><br><span class="line">--cookie=COOKIE //在需要登录的地方，需要登录后的cookie </span><br><span class="line">--proxy=<span class="string">"http://127.0.0.1:8087"</span> 使用HTTP代理隐藏自己的身份，比如使用goagent等</span><br><span class="line"></span><br><span class="line">--sql-query=QUERY               执行一个sql语句，不一定支持</span><br><span class="line"></span><br><span class="line">.\sqlmapproject-sqlmap-17bfda1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/05/19/2015-05-19-nmap/" itemprop="url">
                   nmap
                 </a>
@@ -887,646 +1604,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/17/2015-04-17-centos下查看自己的系统是多少位的/" itemprop="url">
-                  centos下查看自己的系统是多少位的
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-17T16:14:14+08:00" content="2015-04-17">
-              2015-04-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Maual/" itemprop="url" rel="index">
-                    <span itemprop="name">Maual</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/17/2015-04-17-centos下查看自己的系统是多少位的/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/2015-04-17-centos下查看自己的系统是多少位的/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uname <span class="_">-a</span></span><br><span class="line"></span><br><span class="line">getconf WORD_BIT</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$HOSTTYPE</span></span><br></pre></td></tr></table></figure>
-<p>如果是64位的话，第一条和第三条命令会显示：x86_64</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/" itemprop="url">
-                  Centos6.5 下 Python2.6.6升级为2.7.9
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-17T16:00:02+08:00" content="2015-04-17">
-              2015-04-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Maual/" itemprop="url" rel="index">
-                    <span itemprop="name">Maual</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>下载Python-2.7.9</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装Python2.7.9</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python /usr/bin/python2.6.6  <span class="comment">#备份版本为2.6.6的Python yum程序会需要</span></span><br><span class="line">tar -xvzf Python-2.7.9rc1.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.9rc1</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试是否安装成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br><span class="line">Python 2.7.9rc1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python2.7版本后,yum不能正常工作</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum </span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python 将此行改为 #!/usr/bin/python2.6.6</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>升级完毕</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/16/2015-04-16-PuTTY(远程登录软件)/" itemprop="url">
-                  PuTTY(远程登录软件)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-16T21:44:54+08:00" content="2015-04-16">
-              2015-04-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ToolView/" itemprop="url" rel="index">
-                    <span itemprop="name">ToolView</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/16/2015-04-16-PuTTY(远程登录软件)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/16/2015-04-16-PuTTY(远程登录软件)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>PuTTY 是一套免费的SSH / Telnet 程序，是在Windows 32平台下的telnet、rlogin和ssh客户端，它是一个跨平台的远程登录工具，包含了一组程序，包括：</p>
-<ul>
-<li><p>PuTTY (Telnet 和 SSH 客户端)</p>
-</li>
-<li><p>PSCP (SCP 客户端, 命令行下通过 SSH 拷贝文件，类似于 Unix/Linux 下的 scp 命令)</p>
-</li>
-<li><p>PSFTP (SFTP 的命令行客户端，类似于 FTP 的文件传输，只不过使用的是 SSH 的 22 端口，</p>
-</li>
-</ul>
-<p>而非 FTP 的 21 端口，类似于 Unix/Linux 下的 sftp 命令)</p>
-<ul>
-<li><p>PuTTYtel (仅仅是一个 Telnet 客户端)</p>
-</li>
-<li><p>Plink (命令行工具，执行远程服务器上的命令)</p>
-</li>
-<li><p>Pageant (PuTTY、PSCP、Plink 的 SSH 认证代理，用这个可以不用每次都输入口令了)</p>
-</li>
-<li><p>PuTTYgen (用来生成 RSA 和 DSA 密钥的工具). </p>
-</li>
-</ul>
-<p>PuTTY作为一个组件也存在于众多软件中，比如 FileZilla、WinSCP，默认登录协议是SSH(安全命令解释程序)，通过ssh可以使客户端和服务器之间的数据通讯进行加密,这也是Putty强大功能所在.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/13/2015-04-13-Notepad++修改配色方案/" itemprop="url">
-                  Notepad++修改配色方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-13T14:13:35+08:00" content="2015-04-13">
-              2015-04-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/配置相关/" itemprop="url" rel="index">
-                    <span itemprop="name">配置相关</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/13/2015-04-13-Notepad++修改配色方案/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/13/2015-04-13-Notepad++修改配色方案/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在Notpad++下选择设置—&gt;语言格式设置—&gt;选择主题，，，用Choco主题用得比较顺手！！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/11/2015-04-11-pycharm有中文注释报错/" itemprop="url">
-                  Python 中文
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-11T16:36:34+08:00" content="2015-04-11">
-              2015-04-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/11/2015-04-11-pycharm有中文注释报错/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/11/2015-04-11-pycharm有中文注释报错/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Try：<br>把 # -<em>- encoding:”utf-8”-</em>-写在第一行</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1567,7 +1649,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1575,7 +1657,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1584,7 +1666,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

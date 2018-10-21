@@ -255,6 +255,752 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/26/PEID/" itemprop="url">
+                  PEiD原理分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T18:53:00+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逆向/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/26/PEID/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/26/PEID/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA<br>6.8.150423(32-bit)</p>
+<p>首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序</p>
+<p><img src="/images/PEID1.PNG" alt="PEID界面&lt;span
+data-label=&quot;fig:PEID1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>这里我们从字符串“Microsoft Visual C++<br>6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsoft<br>Visual C++<br>6.0”字符串信息是PEID根据软件的特征侦察出来的。因此找到这个字符串的地址信息，以此来为入口分析PEID的工作原理是一个很好的切入点。<a href="从字符串入手也是逆向和调试软件的常见方法。">^1</a></p>
+<p>OD载入程序，使用字符串参考插件，这里查找ASCII模式的字符串。Ctrl+F查找“Microsoft<br>Visual C++ 6.0”，可能会找到多条信息，z或p查找下一个，b或n查找上一个。</p>
+<p><img src="/images/PEID2.PNG" alt="找到字符串地址&lt;span
+data-label=&quot;fig:PEID2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>找到后，Enter进入，F2下断点。这个地址是0x00438fff,上一行的地址是0x00438ffd，现在我们需要找到调用这个此处的代码在哪（也就是找到需要什么条件才能使PEID判断程序为Microsoft<br>Visual C++<br>6.0），顺藤摸瓜，其实我们可以找到很多处跳转到0x00438ffd的代码，我们以最前面的地址0x00438d13来向上分析，</p>
+<p><img src="/images/PEID3.PNG" alt="调用0x00428ffd的代码IDA和OD分析&lt;span
+data-label=&quot;fig:PEID3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>其有效代码如图[fig:PEID3_PNG]所示，可以看到0x00438c20前面的代码为int3的指令，而且IDA和OD此处的代码并无异同。</p>
+<p><img src="/images/PEID4.PNG" alt="PE节数目位置&lt;span
+data-label=&quot;fig:PEID4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/PEID5.PNG" alt="节表项&lt;span
+data-label=&quot;fig:PEID5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p><img src="/images/PEID6.PNG" alt="0x00438C2C 0x00438D60分析&lt;span
+data-label=&quot;fig:PEID6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>如图[fig:PEID6_PNG]可以看出，开始就定义了一个很大的数组，并对数组进行了初始化。可以推断出这个数组中存放的数据应该为相关特征码。这段代码主要的做的就是检查OEP是否在“.text”中，若条件成立，则跳转到显示编译器版本的代码处。如果条件不成立，程序会先根据入口特征码比较OEP入口处的8字节机器码，分析目标是否为其他编译器所生成。如果不符合特征，将会调整OEP，加入文件偏移与虚拟地址偏移的转换过程，再次用特征码对比OEP处的机器码。如符合特征，则程序流程进入字符串文本输出部分。</p>
+<p>OK，其实这只是判定过程的结尾，我们继续向上查找调用0x438d13(因为在此地址处是经过分类处理后执行的代码)的程序。</p>
+<p>怎么找调用它的函数呢？根据函数调用机制，函数被调用后会在栈的最顶端压入函数的返回地址，执行到0x438d13查看堆栈窗口，我们可以得到0x00452f46这个地址。</p>
+<p><img src="/images/PEID7.PNG" alt="返回地址分析&lt;span
+data-label=&quot;fig:PEID7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>那么我们就可以推断出0x452f3f这个地址就是调用0x438d13的函数，跟踪进去，跳到0x401E8C处。</p>
+<p><img src="/images/PEID8.PNG" alt="0x401e8c处的部分数组数据&lt;span
+data-label=&quot;fig:PEID8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>0x401e8c这个处保存了大量的数据。</p>
+<p>我们接着向上分析[fig:PEID9_PNG]</p>
+<p><img src="/images/PEID9.PNG" alt="0x00452e90 0x00452f58编译器检查分类函数&lt;span
+data-label=&quot;fig:PEID9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>图[fig:PEID9_PNG]完成了对OEP处特征码的比较并根据比较结果，从函数指针数组中找到符合此特征的处理流程，记录下标值，记录下标值，然后将它们保存在另一个存放下标值的数组中。这时第一次过滤已经完成，进入第二次过滤检查分析程序中是否存在第二个节。</p>
+<p>OK，我们可以继续分析0x0045A3E0查看PEID会将OEP处的哪些机器码作为特征码进行对比。</p>
+<p><img src="/images/PEID10.PNG" alt="特征码校验分析&lt;span
+data-label=&quot;fig:PEID10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>找到重要的比较函数0x0045A1D0，这个函数完成分析程序的机器码与事先准备好的特征码的比较，最终提取出了具有相同特性的编译器的版本。</p>
+<p><img src="/images/PEID11.PNG" alt="VC++6.0特征码&lt;span
+data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+<p>至此我们可以推断出PEID的工作流程：</p>
+<ol>
+<li><p>读取分析文件到内存中，并分析出相关的PE文件的信息，然后保存</p>
+</li>
+<li><p>　检查OEP，计算地址偏移，并修正OEP</p>
+</li>
+<li><p>　再次检查OEP地址的合法性</p>
+</li>
+<li><p>　将OEP处的机器码与特征码进行比较</p>
+</li>
+<li><p>　检查分析文件中是否存在“.rdata”节</p>
+</li>
+<li><p>根据分析结构获取对应处理函数所在数组中的下标并保存</p>
+</li>
+<li><p>循环调用处理函数</p>
+</li>
+<li><p>在处理函数中再次检查</p>
+</li>
+<li><p>显示编译器版本</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/18/Pandoc/" itemprop="url">
+                  Pandoc
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-18T15:54:11+08:00" content="2016-08-18">
+              2016-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ToolView/" itemprop="url" rel="index">
+                    <span itemprop="name">ToolView</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/18/Pandoc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/18/Pandoc/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>官网：<a href="http://pandoc.org/" target="_blank" rel="external">http://pandoc.org/</a>，支持转换的格式：<a href="http://pandoc.org/diagram.jpg" target="_blank" rel="external">http://pandoc.org/diagram.jpg</a>。</p>
+<figure class="highlight plain"><figcaption><span>title="常用命令"&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pandoc -o &lt;outputFileName&gt; &lt;inputFileName&gt;</span><br><span class="line"># example</span><br><span class="line">pandoc -o outputfile.md inputfile.tex</span><br></pre></td></tr></table></figure>
+<p>这样就把tex文件转化为md格式的文件，效果还是不错的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/15/导出PPT中的图片/" itemprop="url">
+                  导出PPT中的图片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-15T00:01:14+08:00" content="2016-06-15">
+              2016-06-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/效率/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/15/导出PPT中的图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/15/导出PPT中的图片/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="problem">Problem：</span></h1><p>需要导出PPT中的图片，一张一张“另存为”效率太低了。</p>
+<h1><span id="try">Try</span></h1><ol>
+<li>确认源文件格式为.pptx，否则用office打开另存为pptx格式；</li>
+<li>直接修改后缀名，改为.rar或者.zip等压缩文件格式；</li>
+<li>解压缩文件，可以得到如图所示的目录结构;</li>
+<li>在ppt/media文件夹即可找到所有导出的图片。</li>
+</ol>
+<p><img src="/images/20160615-1.PNG" alt="目录结构"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/30/NewBlog/" itemprop="url">
+                  NewBlog
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-30T21:09:41+08:00" content="2016-05-30">
+              2016-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/30/NewBlog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/NewBlog/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;我又回来了！<br><br>&emsp;生活逐渐走上正轨，做了一些计划，把文档也重新写起来了，这几天折腾了下把博客也开起来（反正买了三年的域名）。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/29/在Github上搭建个人博客/" itemprop="url">
+                  在Github上搭建个人博客
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-29T00:00:00+08:00" content="2016-05-29">
+              2016-05-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/配置相关/" itemprop="url" rel="index">
+                    <span itemprop="name">配置相关</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/29/在Github上搭建个人博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/在Github上搭建个人博客/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="摘要">摘要</span></h1><p>本文档记录在Github上搭建个人博客的学习笔记，涉及git,github,Hexo的内容。</p>
+<h2><span id="updaterecordes">Updaterecordes</span></h2><ul>
+<li><p>2016-08-17\<br>添加“其他页面配置”；“图片显示资源引用问题”；”写文章“；”代码高亮“</p>
+</li>
+<li><p>2016-08-18\<br>添加“本地测试”；“评论”</p>
+</li>
+</ul>
+<h1><span id="hexo笔记">Hexo笔记</span></h1><p>Hexo官方文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a>。</p>
+<h2><span id="简介">简介</span></h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用<br>Markdown来解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2><span id="安装">安装</span></h2><p>安装前请确认电脑中已经安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>和<a href="https://git-scm.com/" target="_blank" rel="external">Git</a>(本文安装<a href="https://desktop.github.com/" target="_blank" rel="external">Github</a>)并配置好环境变量。</p>
+<pre><code>npm install -g hexo-cli
+</code></pre><h2><span id="安装插件">安装插件</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-archive --save</span><br><span class="line">npm install hexo-generator-category --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-deployer-heroku --save</span><br><span class="line">npm install hexo-deployer-rsync --save</span><br><span class="line">npm install hexo-deployer-openshift --save</span><br><span class="line">npm install hexo-renderer-marked@0.2 --save</span><br><span class="line">npm install hexo-renderer-stylus@0.2 --save</span><br><span class="line">npm install hexo-generator-feed@1 --save</span><br><span class="line">npm install hexo-generator-sitemap@1 --save</span><br><span class="line">npm install hexo-generator-cname --save</span><br></pre></td></tr></table></figure>
+<p>如果我们直接创建一个新文件CNAME，填好域名。但会发现在下一次部署后这个文件就消失了。不用惊讶，因为hexo并不会自动生成CNAME文件，所以在部署时被覆盖删除了。这个插件自动在public里生成一个CNAME文件，把你的域名加进去再部署一下,</p>
+<h2><span id="常用操作">常用操作</span></h2><h3><span id="写文章">写文章</span></h3><p><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/writing.html</a>\<br>当然也可以直接在source目录下新建一个.md文件</p>
+<pre><code>hexo new [layout] &lt;title&gt;
+# or
+hexo n &lt;title&gt;
+#`将草稿转为post`
+hexo publish [layout] &lt;title&gt;
+
+#Scaffold`（模板）`
+hexo new photo &quot;My Gallery&quot;
+</code></pre><p>Hexo 会尝试在 scaffolds 文件夹中寻找 photo.md，并根据其内容建立文章。</p>
+<h4><span id="layout">Layout</span></h4><p>默认为post。Hexo<br>有三种默认布局：post（存储在source/_posts下）、page（存储在source下）<br>和 draft（草稿，存储在source/_drafts）.</p>
+<h3><span id="生成文件及部署">生成文件及部署</span></h3><pre><code>hexo generate
+# or
+hexo g
+
+
+hexo generate --watch
+# or
+hexo g -w
+</code></pre><p>Hexo 能够监视文件变动并立即重新生成静态文件，在生成时会比对文件的 SHA1<br>checksum，只有变动的文件才会写入。</p>
+<p>执行下列的其中一个命令，让 Hexo<br>在生成完毕后自动部署网站，这些命令的作用是相同的。</p>
+<pre><code>hexo generate --deply
+hexo deploy --generate
+hexo d -g
+hexo g -d
+</code></pre><h3><span id="本地测试">本地测试</span></h3><p>默认地址：127.0.0.1:4000</p>
+<pre><code>hexo server
+# or
+hexo s
+
+hexo s -p PORT
+
+# `自定义IP`
+hexo server -i 192.168.1.1
+
+# `静态模式`
+hexo server -s
+</code></pre><p>在静态模式下，服务器只处理 public<br>文件夹内的文件，而不会处理文件变动，在执行时，您应该先自行执行 hexo<br>generate。</p>
+<h2><span id="主题相关">主题相关</span></h2><p>这里使用NexT主题。<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">http://theme-next.iissnan.com/</a></p>
+<h3><span id="代码高亮">代码高亮</span></h3><p>NexT 使用 Tomorrow Theme 作为代码高亮，共有5款主题供你选择。<br>默认使用的是白色的 normal。</p>
+<figure class="highlight plain"><figcaption><span>language="bash"&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">highlit_theme:  night</span><br></pre></td></tr></table></figure>
+<h2><span id="个性化配置">个性化配置</span></h2><p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。<br>其中，一份位于站点根目录下，主要包含 Hexo<br>站点本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。配置文件使用的是Yml语言。</p>
+<h3><span id="图片显示及资源引用问题">图片显示及资源引用问题</span></h3><h4><span id="problem">Problem：</span></h4><p>主页无法显示图片，文章具体页面可以显示</p>
+<h4><span id="try">Try：</span></h4><p>修改站点配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+<p>#开启文章资源文件夹，为每篇文章创建一个目录。这个目录包含所有的资源，这样可以通过相对路径引用。</p>
+<h3><span id="hexo生成文章目录">Hexo生成文章目录</span></h3><p>hexo-toc插件，此插件可以生成文章目录。</p>
+<pre><code>npm install hexo-toc --save
+</code></pre><p>在站点配置文件（_config.yml）中配置如下</p>
+<pre><code>#toc configuration
+toc:
+   maxDepth: 3 #`最多可生成三级目录`
+</code></pre><p>重新生成即可。</p>
+<h3><span id="其他页面生成">其他页面生成</span></h3><p>这里以分类页面为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories #`新建一个页面`</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure>
+<p>编辑刚新建的页面，将页面的类型设置为 categories<br>，主题将自动为这个页面显示所有分类。</p>
+<h3><span id="评论系统">评论系统</span></h3><p>这里采用DISQUS：<a href="https://disqus.com/" target="_blank" rel="external">https://disqus.com/</a>。</p>
+<p>具体步骤：</p>
+<ol>
+<li><p>首先在官网上注册一个号</p>
+</li>
+<li><p>依据步骤填写shortname等信息，\<br>在Choose your platform 页面，这里依据实际情况选择Universal Code</p>
+</li>
+<li><p>复制第一个代码块中的代码，然后打开<br>comment.ejs，删除所有代码并粘贴刚才复制的代码，保存即可。</p>
+</li>
+<li><p>在站点配置文件添加“disqus_shortname: YourShortName”</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/" itemprop="url">
                   wordpress 更改固定链接出现404解决方案
                 </a>
@@ -862,728 +1608,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/" itemprop="url">
-                  mongodb replSet 本地测试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-11T21:03:49+08:00" content="2015-07-11">
-              2015-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Maual/" itemprop="url" rel="index">
-                    <span itemprop="name">Maual</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/11/2015-07-11-mongodb replSet 本地测试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="1首先新建目录replset用来存数据库文件在replset下新建三个目录dbdb1db2">1.首先新建目录replset用来存数据库文件，在replset下新建三个目录，db,db1,db2.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  mongod --port 270xx --dbpath=\replset\dbx\ --replSet replset（这里端口测试依次为27018，27019，27020）打开三个数据库服务，</span><br></pre></td></tr></table></figure>
-<p> 登录其中一个mongo shell,输入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; _id:<span class="string">"replset"</span>, </span><br><span class="line"></span><br><span class="line">  members:[</span><br><span class="line"></span><br><span class="line">      &#123;_id:0,host:<span class="string">"127.0.0.1:27018"</span>&#125;, </span><br><span class="line"></span><br><span class="line">      &#123;_id:1,host:<span class="string">"127.0.0.1:27019"</span>&#125;,</span><br><span class="line"></span><br><span class="line">      &#123;_id:2,host:<span class="string">"127.0.0.1:27020"</span>&#125;</span><br><span class="line"></span><br><span class="line">      ]&#125;</span><br></pre></td></tr></table></figure></p>
-<h3><span id="2接着初始化配置">2.接着初始化配置</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
-<p>如果出现错误，code为93</p>
-<p>解决方法：请注意是否_id值是否写错了，应该为 _id:”replset” </p>
-<h3><span id="3-查看副本集的情况">3. 查看副本集的情况</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/6630387168002298229.png" alt=""><br><img src="/images/6630387168002298229.png" alt="">  </p>
-<h3><span id="problem">Problem：</span></h3><p>在SECONDARY数据库输入读取命令出错，errmsg:not master，且不能写入数据，查资料可知</p>
-<h3><span id="reason">Reason：</span></h3><p>首先这是正常的，因为SECONDARY是不允许读写的， 在写多读少的应用中，使用Replica Sets来实现读写分离。通过在连接时指定或者在主库指定slaveOk，由Secondary来分担读的压力，Primary只承担写操作。</p>
-<p>对于replica set 中的secondary 节点默认是不可读的</p>
-<h3><span id="try">Try：</span></h3><p>设置db.getMongo().setSlaveOk()即可正常读数据</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/13/2015-06-13-vsftpd.conf配置/" itemprop="url">
-                  vsftpd.conf配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-13T00:46:36+08:00" content="2015-06-13">
-              2015-06-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/配置相关/" itemprop="url" rel="index">
-                    <span itemprop="name">配置相关</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/13/2015-06-13-vsftpd.conf配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/13/2015-06-13-vsftpd.conf配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>进入vsftpd配置文件</li>
-</ul>
-<p>vim /etc/vsftpd/vsftpd.conf </p>
-<ul>
-<li>禁止匿名用户anonymous登录</li>
-</ul>
-<p>anonymous_enable=NO</p>
-<ul>
-<li>允许本地用户登录</li>
-</ul>
-<p>local_enable=YES</p>
-<ul>
-<li>让登录的用户有写权限(上传，删除)</li>
-</ul>
-<p>write_enable=YES</p>
-<ul>
-<li>默认umask</li>
-</ul>
-<p>local_umask=022</p>
-<ul>
-<li>把传输记录的日志保存到/var/log/vsftpd.log</li>
-</ul>
-<p>xferlog_enable=YES</p>
-<p>xferlog_file=/var/log/vsftpd.log</p>
-<p>xferlog_std_format=NO</p>
-<ul>
-<li>允许ASCII模式上传</li>
-</ul>
-<p>ascii_upload_enable=YES </p>
-<ul>
-<li>允许ASCII模式下载</li>
-</ul>
-<p>ascii_download_enable=YES</p>
-<ul>
-<li>使用20号端口传输数据</li>
-</ul>
-<p>connect_from_port_20=YES</p>
-<ul>
-<li>欢迎标语</li>
-</ul>
-<p>ftpd_banner=Welcome to use my test ftp server.</p>
-<p><strong>接下来的三条配置很重要</strong></p>
-<ul>
-<li><p>chroot_local_user设置了YES，那么所有的用户默认将被chroot，</p>
-</li>
-<li><p>也就用户目录被限制在了自己的home下，无法向上改变目录。</p>
-</li>
-<li><p>chroot_list_enable设置了YES，即让chroot用户列表有效。</p>
-</li>
-<li><p><strong>★超重要：如果chroot_local_user设置了YES，那么chroot_list_file</strong></p>
-</li>
-<li><p>设置的文件里，是不被chroot的用户(可以向上改变目录)</p>
-</li>
-<li><p><strong>★超重要：如果chroot_local_user设置了NO，那么chroot_list_file</strong></p>
-</li>
-<li><p>设置的文件里，是被chroot的用户(无法向上改变目录)</p>
-</li>
-</ul>
-<p>chroot_list_enable=YES</p>
-<ul>
-<li>touch /etc/vsftpd/chroot_list 新建</li>
-</ul>
-<p>chroot_list_file=/etc/vsftpd/chroot_list</p>
-<p>use_localtime=YES</p>
-<ul>
-<li>以standalone模式在ipv4上运行</li>
-</ul>
-<p>listen=YES</p>
-<ul>
-<li><p>PAM认证服务名，这里默认是vsftpd，在安装vsftpd的时候已经创建了这个pam文件，</p>
-</li>
-<li><p>在/etc/pam.d/vsftpd，根据这个pam文件里的设置，/etc/vsftpd/ftpusers</p>
-</li>
-<li><p>文件里的用户将禁止登录ftp服务器，比如root这样敏感的用户，所以你要禁止别的用户</p>
-</li>
-<li><p>登录的时候，也可以把该用户追加到/etc/vsftpd/ftpusers里。</p>
-</li>
-</ul>
-<p>pam_service_name=vsftpd</p>
-<ul>
-<li>重启 vsftpd</li>
-</ul>
-<p>service vsftpd restart</p>
-<ul>
-<li>添加webftp用户组，用来承载我们的ftp授权用户</li>
-</ul>
-<p>groupadd webftp</p>
-<ul>
-<li>创建用户</li>
-</ul>
-<p>useradd -g webftp -M -d /var/www/html/ftp -s /sbin/nologin ftp-zjx</p>
-<ul>
-<li>设置用户到文件夹</li>
-</ul>
-<p>chown -R username /var/www/html/ftp</p>
-<ul>
-<li>设置权限</li>
-</ul>
-<p>chown -R 777  /home/www/html/ftp</p>
-<ul>
-<li>添加密码</li>
-</ul>
-<p>passwd ftp-zjx -&gt; 密码 -&gt; 确认密码</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/10/2015-06-10-/" itemprop="url">
-                  偶然看到的一句话
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-10T00:11:15+08:00" content="2015-06-10">
-              2015-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/10/2015-06-10-/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/10/2015-06-10-/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>命运没有既定的轨迹</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/21/2015-05-21-php查询mongodb时的or操作/" itemprop="url">
-                  php查询mongodb时的or操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-21T16:10:52+08:00" content="2015-05-21">
-              2015-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Maual/" itemprop="url" rel="index">
-                    <span itemprop="name">Maual</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/21/2015-05-21-php查询mongodb时的or操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/21/2015-05-21-php查询mongodb时的or操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在查询时，我们也许也会用到or操作。语法格式如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;find(<span class="keyword">array</span>(<span class="string">'$or'</span> =&gt; <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">1</span>), <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'java'</span>))));</span><br></pre></td></tr></table></figure></p>
-<p>例如上面的例子，我们查询id是1，或者name是java的数据。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/19/2015-05-19-sqlmal-command/" itemprop="url">
-                  sqlmal-command
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-19T21:54:51+08:00" content="2015-05-19">
-              2015-05-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ToolView/" itemprop="url" rel="index">
-                    <span itemprop="name">ToolView</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/19/2015-05-19-sqlmal-command/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/19/2015-05-19-sqlmal-command/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3><span id="检查注入点">检查注入点</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11</span><br></pre></td></tr></table></figure>
-<h3><span id="列数据库信息">列数据库信息</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs</span><br></pre></td></tr></table></figure>
-<h3><span id="指定库名列出所有表">指定库名列出所有表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 --tables</span><br></pre></td></tr></table></figure>
-<h2><span id="指定库名表名列出所有字段">指定库名表名列出所有字段</span></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin --columns</span><br></pre></td></tr></table></figure>
-<h3><span id="指定库名表名字段dump出指定字段">指定库名表名字段dump出指定字段</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin -C ac,id,password --dump </span><br><span class="line">--cookie=COOKIE //在需要登录的地方，需要登录后的cookie </span><br><span class="line">--proxy=<span class="string">"http://127.0.0.1:8087"</span> 使用HTTP代理隐藏自己的身份，比如使用goagent等</span><br><span class="line"></span><br><span class="line">--sql-query=QUERY               执行一个sql语句，不一定支持</span><br><span class="line"></span><br><span class="line">.\sqlmapproject-sqlmap-17bfda1</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1624,7 +1653,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1632,7 +1661,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1641,7 +1670,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
