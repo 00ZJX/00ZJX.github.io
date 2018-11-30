@@ -246,9 +246,9 @@
       <category term="CTF,Linux," scheme="https://asanzjx.github.io/categories/CTF-Linux/"/>
     
     
-      <category term="CTF" scheme="https://asanzjx.github.io/tags/CTF/"/>
-    
       <category term="Linux" scheme="https://asanzjx.github.io/tags/Linux/"/>
+    
+      <category term="CTF" scheme="https://asanzjx.github.io/tags/CTF/"/>
     
       <category term="LD_PRELOAD" scheme="https://asanzjx.github.io/tags/LD-PRELOAD/"/>
     
