@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,41 +63,37 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Heap," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <meta name="keywords" content="Heap,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
 
-<meta name="description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。
-由于各种各样的原因，复现的成功率还是蛮低的。
-本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。
-HeapSpray简单来说，">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。 由于各种各样的原因，复现的成功率还是蛮低的。 本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。 HeapSpray简单来说，">
+<meta name="keywords" content="Heap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从 HeapSpray( 堆喷射 ) 到 HeapFengShui( 堆风水 )">
 <meta property="og:url" content="https://asanzjx.github.io/2018/11/27/FromHeapSprayToHeapFengShui/index.html">
-<meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。
-由于各种各样的原因，复现的成功率还是蛮低的。
-本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。
-HeapSpray简单来说，">
+<meta property="og:site_name" content="Asan&#39;world">
+<meta property="og:description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。 由于各种各样的原因，复现的成功率还是蛮低的。 本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。 HeapSpray简单来说，">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://asanzjx.github.io/images/FromHeapSprayToHeapFengShui/js-1.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/FromHeapSprayToHeapFengShui/spray1.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/FromHeapSprayToHeapFengShui/spray2.PNG">
@@ -113,10 +109,7 @@ HeapSpray简单来说，">
 <meta property="og:updated_time" content="2018-11-29T05:57:47.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从 HeapSpray( 堆喷射 ) 到 HeapFengShui( 堆风水 )">
-<meta name="twitter:description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。
-由于各种各样的原因，复现的成功率还是蛮低的。
-本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。
-HeapSpray简单来说，">
+<meta name="twitter:description" content="前言HeapSpray( 堆喷射 ) 已经是项非常古老的技术（相对而言）。本文介绍的大部分内容已经不具备实战意义了，但沿着前人的脚步，可以发现这种技术背后的思想和方法是非常巧妙和有效的。 由于各种各样的原因，复现的成功率还是蛮低的。 本文首先介绍下 HeapSpray 及其相关的 js 概念，并通过一个漏洞利用来直观感受下，然后引出 HeapFengShui 的概念。 HeapSpray简单来说，">
 <meta name="twitter:image" content="https://asanzjx.github.io/images/FromHeapSprayToHeapFengShui/js-1.PNG">
 
 
@@ -138,7 +131,7 @@ HeapSpray简单来说，">
   <title> 从 HeapSpray( 堆喷射 ) 到 HeapFengShui( 堆风水 ) | Asan'world </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -159,12 +152,12 @@ HeapSpray简单来说，">
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Asan'world</span>
       <span class="logo-line-after"><i></i></span>
@@ -191,7 +184,7 @@ HeapSpray简单来说，">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -201,7 +194,7 @@ HeapSpray简单来说，">
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -211,7 +204,7 @@ HeapSpray简单来说，">
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -221,7 +214,7 @@ HeapSpray简单来说，">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -231,7 +224,7 @@ HeapSpray简单来说，">
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -264,7 +257,7 @@ HeapSpray简单来说，">
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -293,14 +286,14 @@ HeapSpray简单来说，">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/HeapFengShui-HeapSpray/" itemprop="url" rel="index">
                     <span itemprop="name">HeapFengShui HeapSpray</span>
                   </a>
@@ -354,7 +347,7 @@ HeapSpray简单来说，">
 </ol>
 <p>IE 浏览器下的堆喷射一般都是通过 js 实现的。IE6~IE8 浏览器的堆喷射是使用 Javascript String 对象进行的。</p>
 <h2><span id="基于-js-的内存分配">基于 js 的内存分配</span></h2><p>在浏览器内存中分配内存的最常见方法就是使用 javascript。这涉及到 Windows 下的 BSTR 字符串对象，jscript unescape() 函数和 js 的垃圾回收机制。</p>
-<h3><span id="bstr-字符串对象验证">BSTR 字符串对象验证</span></h3><p>在 Windows 下 BSTR 字符串对象内存布局如下：<a href="https://docs.microsoft.com/zh-cn/previous-versions/windows/desktop/automat/bstr" target="_blank" rel="external">https://docs.microsoft.com/zh-cn/previous-versions/windows/desktop/automat/bstr</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">header | data | terminator</span><br><span class="line">4 bytes | string(unicode) | \x00\x00</span><br></pre></td></tr></table></figure></p>
+<h3><span id="bstr-字符串对象验证">BSTR 字符串对象验证</span></h3><p>在 Windows 下 BSTR 字符串对象内存布局如下：<a href="https://docs.microsoft.com/zh-cn/previous-versions/windows/desktop/automat/bstr" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/previous-versions/windows/desktop/automat/bstr</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">header | data | terminator</span><br><span class="line">4 bytes | string(unicode) | \x00\x00</span><br></pre></td></tr></table></figure></p>
 <p>在 xp sp 3 + ie6 下查看 BSTR 内存布局，js_basic1.html文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script language=&apos;javascript&apos;&gt;</span><br><span class="line"></span><br><span class="line">var myvar = &quot;CORELAN!&quot;;</span><br><span class="line">alert(&quot;allocation done&quot;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
 <p>ie6 打开，弹出 “allocation done” 对话框，windbg attach,搜寻字符串，查看字符串对应的内存布局<br><img src="/images/FromHeapSprayToHeapFengShui/js-1.PNG" alt="字符串内存布局"></p>
 <h3><span id="jscript-unescape-验证">jscript unescape() 验证</span></h3><p>通过 unescape() 这个函数即可解决字符串 unicode 在内存的编码问题。</p>
@@ -378,7 +371,7 @@ HeapSpray简单来说，">
 <p>vmmap 是微软出的实用小工具。</p>
 <p>喷射前，commit 的内存块大小是 88084<br><img src="/images/FromHeapSprayToHeapFengShui/spray1.PNG" alt="Before 喷射"></p>
 <p>喷射后提交的内存块是 93752<br><img src="/images/FromHeapSprayToHeapFengShui/spray2.PNG" alt="After 喷射"></p>
-<h3><span id="immunitydebuggermona">ImmunityDebugger+mona</span></h3><p>mona 是 Corelan Team 团队开发的一个用 Python 编写的专门用于辅助漏洞挖掘的脚本插件。<a href="https://github.com/corelan/mona" target="_blank" rel="external">https://github.com/corelan/mona</a>，download 下来，放置在 ‘PyCommands’ 目录下。</p>
+<h3><span id="immunitydebuggermona">ImmunityDebugger+mona</span></h3><p>mona 是 Corelan Team 团队开发的一个用 Python 编写的专门用于辅助漏洞挖掘的脚本插件。<a href="https://github.com/corelan/mona" target="_blank" rel="noopener">https://github.com/corelan/mona</a>，download 下来，放置在 ‘PyCommands’ 目录下。</p>
 <p>搜索字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!mona find -s &quot;CORELAN!&quot;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/FromHeapSprayToHeapFengShui/mona1.PNG" alt="Mona 搜索字符串"><br>Mona找出了201个地址，其中包括前面声明变量时分配的tag，以及200个内存块前置的tag。查看find.txt（mona命令生成的），可以找到包含tag的 201 个地址。</p>
 <p>查看 find.txt 最后一条数据 0x0557054c ( 即最后分配的内存数据 )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;d 0x0557054c</span><br></pre></td></tr></table></figure></p>
@@ -388,7 +381,7 @@ HeapSpray简单来说，">
 <h2><span id="利用-heapspray-实现-exp">利用 HeapSpray 实现 exp</span></h2><p>ENV:</p>
 <ul>
 <li>RSP MP3 Player,16fc339cccdb34dd45af52de8c046d8d</li>
-<li>COMRaider,User manual Reference:<a href="http://www.h3c.com/cn/d_201012/705330_30008_0.htm" target="_blank" rel="external">http://www.h3c.com/cn/d_201012/705330_30008_0.htm</a></li>
+<li>COMRaider,User manual Reference:<a href="http://www.h3c.com/cn/d_201012/705330_30008_0.htm" target="_blank" rel="noopener">http://www.h3c.com/cn/d_201012/705330_30008_0.htm</a></li>
 <li>OS: xp sp3 5.1.2600 + ie 6.0.2900.5512</li>
 </ul>
 <h3><span id="崩溃重现">崩溃重现</span></h3><p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regsvr32 rspmp3ocx320sw.ocx</span><br></pre></td></tr></table></figure></p>
@@ -436,11 +429,11 @@ HeapSpray简单来说，">
 <p>结合 “plunger” 技术，在任意时刻调用 GC，申请给定大小的内存块，进一步可以尝试整理堆，填补堆布局中的所有空隙，那么这样就可以保证在分配的时候堆内存是连续的。</p>
 <h1><span id="reference">Reference</span></h1><ul>
 <li>Alexander Sotirov.Heap Feng Shui in JavaScript.Black Hat Europe.2007</li>
-<li>Exploit writing tutorial part 11 : Heap Spraying Demystified: <a href="https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/" target="_blank" rel="external">https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/</a></li>
-<li>[翻译]Windows Exploit开发系列教程第八部分：堆喷射第一节[覆写EIP]: <a href="https://bbs.pediy.com/thread-207158.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-207158.htm</a></li>
-<li>[翻译]Windows exploit开发系列教程第九部分：堆喷射[第二章：UAF]—大海捞针(Finding a needle in a Haystack): <a href="https://bbs.pediy.com/thread-225210.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-225210.htm</a></li>
-<li>IE浏览器漏洞综合利用技术：堆喷射技术：<a href="https://bbs.pediy.com/thread-223106.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-223106.htm</a></li>
-<li>Heap Spray 技术要点：<a href="https://bbs.pediy.com/thread-156991.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-156991.htm</a></li>
+<li>Exploit writing tutorial part 11 : Heap Spraying Demystified: <a href="https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/" target="_blank" rel="noopener">https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/</a></li>
+<li>[翻译]Windows Exploit开发系列教程第八部分：堆喷射第一节[覆写EIP]: <a href="https://bbs.pediy.com/thread-207158.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-207158.htm</a></li>
+<li>[翻译]Windows exploit开发系列教程第九部分：堆喷射[第二章：UAF]—大海捞针(Finding a needle in a Haystack): <a href="https://bbs.pediy.com/thread-225210.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-225210.htm</a></li>
+<li>IE浏览器漏洞综合利用技术：堆喷射技术：<a href="https://bbs.pediy.com/thread-223106.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-223106.htm</a></li>
+<li>Heap Spray 技术要点：<a href="https://bbs.pediy.com/thread-156991.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-156991.htm</a></li>
 </ul>
 
       
@@ -533,7 +526,7 @@ HeapSpray简单来说，">
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -543,10 +536,8 @@ HeapSpray简单来说，">
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Asan" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
           <p class="site-author-name" itemprop="name">Asan</p>
           <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
         </div>
@@ -589,6 +580,17 @@ HeapSpray简单来说，">
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asanzjx || github" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -622,7 +624,7 @@ HeapSpray简单来说，">
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

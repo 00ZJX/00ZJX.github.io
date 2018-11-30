@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,51 +63,37 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="逆向,病毒,熊猫烧香," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <meta name="keywords" content="逆向,病毒,熊猫烧香,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
 
-<meta name="description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本
-先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]
-{width=”80.00000%”}
-先保存下虚拟机环境，创建一个快照。
-然后拖入IDA中看看。
-{width=”80.00000%”}
-觉得应该是有壳。放入PEiD中扫扫，果然。
-{width=”80.00000%”}
-是一个压缩变形壳">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本 先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG] {width=”80.00000%”} 先保存下虚拟机环境，创建一个快照。 然后拖入IDA中看看。 {width=”80.00000%”} 觉得应该是有壳。放入PEiD中扫扫，果然。 {width=”80.00000%”} 是一个压缩变形壳">
+<meta name="keywords" content="逆向,病毒,熊猫烧香">
 <meta property="og:type" content="article">
 <meta property="og:title" content="熊猫烧香病毒分析">
 <meta property="og:url" content="https://asanzjx.github.io/2017/02/26/Panda/index.html">
-<meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本
-先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]
-{width=”80.00000%”}
-先保存下虚拟机环境，创建一个快照。
-然后拖入IDA中看看。
-{width=”80.00000%”}
-觉得应该是有壳。放入PEiD中扫扫，果然。
-{width=”80.00000%”}
-是一个压缩变形壳">
+<meta property="og:site_name" content="Asan&#39;world">
+<meta property="og:description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本 先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG] {width=”80.00000%”} 先保存下虚拟机环境，创建一个快照。 然后拖入IDA中看看。 {width=”80.00000%”} 觉得应该是有壳。放入PEiD中扫扫，果然。 {width=”80.00000%”} 是一个压缩变形壳">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://asanzjx.github.io/images/Panda1.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/Panda2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/Panda3.PNG">
@@ -124,15 +110,7 @@
 <meta property="og:updated_time" content="2017-02-26T10:54:23.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熊猫烧香病毒分析">
-<meta name="twitter:description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本
-先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]
-{width=”80.00000%”}
-先保存下虚拟机环境，创建一个快照。
-然后拖入IDA中看看。
-{width=”80.00000%”}
-觉得应该是有壳。放入PEiD中扫扫，果然。
-{width=”80.00000%”}
-是一个压缩变形壳">
+<meta name="twitter:description" content="环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本 先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG] {width=”80.00000%”} 先保存下虚拟机环境，创建一个快照。 然后拖入IDA中看看。 {width=”80.00000%”} 觉得应该是有壳。放入PEiD中扫扫，果然。 {width=”80.00000%”} 是一个压缩变形壳">
 <meta name="twitter:image" content="https://asanzjx.github.io/images/Panda1.PNG">
 
 
@@ -154,7 +132,7 @@
   <title> 熊猫烧香病毒分析 | Asan'world </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -175,12 +153,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Asan'world</span>
       <span class="logo-line-after"><i></i></span>
@@ -207,7 +185,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -217,7 +195,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -227,7 +205,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -237,7 +215,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -247,7 +225,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -280,7 +258,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -309,14 +287,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/逆向/" itemprop="url" rel="index">
                     <span itemprop="name">逆向</span>
                   </a>
@@ -434,16 +412,16 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/18/Pandoc/" rel="next" title="Pandoc">
-                <i class="fa fa-chevron-left"></i> Pandoc
+              <a href="/2017/02/26/PEID/" rel="next" title="PEiD原理分析">
+                <i class="fa fa-chevron-left"></i> PEiD原理分析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/26/PEID/" rel="prev" title="PEiD原理分析">
-                PEiD原理分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/21/360Chrome/" rel="prev" title="记录一次逆向360极速浏览器修改主页设置">
+                记录一次逆向360极速浏览器修改主页设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -499,7 +477,7 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -509,10 +487,8 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Asan" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
           <p class="site-author-name" itemprop="name">Asan</p>
           <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
         </div>
@@ -555,6 +531,17 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asanzjx || github" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -572,7 +559,7 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">脱FSG 2.0 -> bart/xt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">初步分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">分析CreateAndRunPanda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">运行测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">InInfectOtherFile</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">脱FSG 2.0 -&gt; bart/xt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">初步分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">分析CreateAndRunPanda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">运行测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">InInfectOtherFile</span></a></li></ol></div>
             
           </div>
         </section>
@@ -588,7 +575,7 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,41 +63,37 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="360,逆向," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <meta name="keywords" content="360,逆向,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
 
-<meta name="description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。
-从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：
 
-计算硬件的机器码的MD">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。 从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：  计算硬件的机器码的MD">
+<meta name="keywords" content="360,逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次逆向360极速浏览器修改主页设置">
 <meta property="og:url" content="https://asanzjx.github.io/2017/03/21/360Chrome/index.html">
-<meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。
-从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：
-
-计算硬件的机器码的MD">
+<meta property="og:site_name" content="Asan&#39;world">
+<meta property="og:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。 从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：  计算硬件的机器码的MD">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-999.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-998.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-997.PNG">
@@ -112,10 +108,7 @@
 <meta property="og:updated_time" content="2018-05-06T09:52:25.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次逆向360极速浏览器修改主页设置">
-<meta name="twitter:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。
-从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：
-
-计算硬件的机器码的MD">
+<meta name="twitter:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。 从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：  计算硬件的机器码的MD">
 <meta name="twitter:image" content="https://asanzjx.github.io/images/360-999.PNG">
 
 
@@ -137,7 +130,7 @@
   <title> 记录一次逆向360极速浏览器修改主页设置 | Asan'world </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -158,12 +151,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Asan'world</span>
       <span class="logo-line-after"><i></i></span>
@@ -190,7 +183,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -200,7 +193,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -210,7 +203,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -220,7 +213,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -230,7 +223,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -263,7 +256,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -292,14 +285,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/逆向/" itemprop="url" rel="index">
                     <span itemprop="name">逆向</span>
                   </a>
@@ -340,7 +333,7 @@
       
 
       
-        <p>看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，<a href="http://www.freebuf.com/articles/terminal/128902.html" target="_blank" rel="external">http://www.freebuf.com/articles/terminal/128902.html</a>。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。</p>
+        <p>看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，<a href="http://www.freebuf.com/articles/terminal/128902.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/terminal/128902.html</a>。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。</p>
 <h2><span id="从文章中可以获取的信息">从文章中可以获取的信息</span></h2><p>按照文章所说，其设置流程为(这里把要设置的主页记作url)：</p>
 <ol>
 <li><p>计算硬件的机器码的MD5值，此处记为MD5-1</p>
@@ -385,7 +378,7 @@ data-label=&quot;360-995&quot;&gt;&lt;/span&gt;"></p>
 <p>最后设置注册表的操作[360-993]</p>
 <p><img src="/images/360-993.PNG" alt="最后进行注册表的操作&lt;span
 data-label=&quot;360-993&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>分析了一圈，可以发现在我的机器上，主要是设置urls_to_restore_on_startup。这个地址其实是我IE的主页url<a href="http://www.msn.com/zh-cn" target="_blank" rel="external">http://www.msn.com/zh-cn</a>。</p>
+<p>分析了一圈，可以发现在我的机器上，主要是设置urls_to_restore_on_startup。这个地址其实是我IE的主页url<a href="http://www.msn.com/zh-cn" target="_blank" rel="noopener">http://www.msn.com/zh-cn</a>。</p>
 <h2><span id="一些发现">一些发现</span></h2><p>当然，这期间的分析过程中是碰到诸多的麻烦，当然也会有一些意外的收获。</p>
 <h3><span id="解析各种文件">解析各种文件</span></h3><p>这段代码主要在chrome.0x1e516dc chrome.0x1e51b06。</p>
 <h3><span id="加载chromedll文件">加载chrome.dll文件</span></h3><p>继续跟踪，发现注释多次提到了chrome.01c50000，数据窗口跟随下，发现是个PE文件，根据其PE文件头中文件属性，可知值是0x2122[]，这样就可以知道是个32位的DLL文件。</p>
@@ -440,8 +433,8 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/26/PEID/" rel="next" title="PEiD原理分析">
-                <i class="fa fa-chevron-left"></i> PEiD原理分析
+              <a href="/2017/02/26/Panda/" rel="next" title="熊猫烧香病毒分析">
+                <i class="fa fa-chevron-left"></i> 熊猫烧香病毒分析
               </a>
             
           </div>
@@ -505,7 +498,7 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -515,10 +508,8 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Asan" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
           <p class="site-author-name" itemprop="name">Asan</p>
           <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
         </div>
@@ -561,6 +552,17 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asanzjx || github" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -594,7 +596,7 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

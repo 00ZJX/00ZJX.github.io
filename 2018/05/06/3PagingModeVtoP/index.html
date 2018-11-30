@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,49 +63,37 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="kernel,Paging," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <meta name="keywords" content="kernel,Paging,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
 
-<meta name="description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。
-实验环境：
 
-win 10
-windbg Preview
-VirtBox+win xp(切换PAE状态)
 
-实验">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。 实验环境：  win 10 windbg Preview VirtBox+win xp(切换PAE状态)  实验">
+<meta name="keywords" content="kernel,Paging">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
 <meta property="og:url" content="https://asanzjx.github.io/2018/05/06/3PagingModeVtoP/index.html">
-<meta property="og:site_name" content="Asan'world">
-<meta property="og:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。
-实验环境：
-
-win 10
-windbg Preview
-VirtBox+win xp(切换PAE状态)
-
-实验">
+<meta property="og:site_name" content="Asan&#39;world">
+<meta property="og:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。 实验环境：  win 10 windbg Preview VirtBox+win xp(切换PAE状态)  实验">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K32NonPAE.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/va2ra1.PNG">
@@ -119,14 +107,7 @@ VirtBox+win xp(切换PAE状态)
 <meta property="og:updated_time" content="2018-05-06T14:41:01.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换">
-<meta name="twitter:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。
-实验环境：
-
-win 10
-windbg Preview
-VirtBox+win xp(切换PAE状态)
-
-实验">
+<meta name="twitter:description" content="为了更好管理更大的内存，现代操作系统和CPU硬件引入了保护模式。其中保护模式的分页机制通过内存管理单元（MMU，Memory Management Unit）实现了物理地址到线性（虚拟）地址的转换，这个转换过程也称地址翻译。而本文探讨线性地址到物理地址的转换过程，并通过实际操作来体现。 实验环境：  win 10 windbg Preview VirtBox+win xp(切换PAE状态)  实验">
 <meta name="twitter:image" content="https://asanzjx.github.io/images/3PagingModeVtoP/4K32NonPAE.PNG">
 
 
@@ -148,7 +129,7 @@ VirtBox+win xp(切换PAE状态)
   <title> 三种分页模式(32bit,PAE,IA-32e)下的线性（虚拟）地址到物理地址的转换 | Asan'world </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -169,12 +150,12 @@ VirtBox+win xp(切换PAE状态)
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Asan'world</span>
       <span class="logo-line-after"><i></i></span>
@@ -201,7 +182,7 @@ VirtBox+win xp(切换PAE状态)
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -211,7 +192,7 @@ VirtBox+win xp(切换PAE状态)
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -221,7 +202,7 @@ VirtBox+win xp(切换PAE状态)
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -231,7 +212,7 @@ VirtBox+win xp(切换PAE状态)
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -241,7 +222,7 @@ VirtBox+win xp(切换PAE状态)
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -274,7 +255,7 @@ VirtBox+win xp(切换PAE状态)
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -303,14 +284,14 @@ VirtBox+win xp(切换PAE状态)
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/kernel/" itemprop="url" rel="index">
                     <span itemprop="name">kernel</span>
                   </a>
@@ -359,7 +340,7 @@ VirtBox+win xp(切换PAE状态)
 <li>VirtBox+win xp(切换PAE状态)</li>
 </ul>
 <p>实验环境主要涉及Windbg通过VirtBox实现内核双机调试和本地内核调试。</p>
-<p>具体理论部分可参考Intel手册中关于<strong>Paging</strong>的章节：<a href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html" target="_blank" rel="external">https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html</a></p>
+<p>具体理论部分可参考Intel手册中关于<strong>Paging</strong>的章节：<a href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html" target="_blank" rel="noopener">https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html</a></p>
 <h1><span id="涉及到的概念">涉及到的概念</span></h1><p>控制寄存器：</p>
 <ul>
 <li>cr0：分页机制的开关，PE位代表保护模式。PG位代表分页机制</li>
@@ -451,11 +432,11 @@ VirtBox+win xp(切换PAE状态)
 </ul>
 <p>具体转换步骤如下图：<br><img src="/images/3PagingModeVtoP/va2ra7.PNG" alt="IA-32e地址转换"><br>同样这里乘以8也是因为每个entry 8字节大小 </p>
 <p>Windbg有一个扩展指令，!vtop可将虚拟地址转换成物理地址，在上图中也有验证。</p>
-<h1><span id="参考链接">参考链接</span></h1><p>启用PAE后虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-180989.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-180989.htm</a></p>
-<p>X64下的虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-203391.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-203391.htm</a></p>
-<p>理解 paging：<a href="http://www.mouseos.com/arch/paging.html" target="_blank" rel="external">http://www.mouseos.com/arch/paging.html</a></p>
-<p><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/converting-virtual-addresses-to-physical-addresses" target="_blank" rel="external">https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/converting-virtual-addresses-to-physical-addresses</a></p>
-<p><a href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html" target="_blank" rel="external">https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html</a></p>
+<h1><span id="参考链接">参考链接</span></h1><p>启用PAE后虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-180989.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-180989.htm</a></p>
+<p>X64下的虚拟地址到物理地址的转换：<a href="https://bbs.pediy.com/thread-203391.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-203391.htm</a></p>
+<p>理解 paging：<a href="http://www.mouseos.com/arch/paging.html" target="_blank" rel="noopener">http://www.mouseos.com/arch/paging.html</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/converting-virtual-addresses-to-physical-addresses" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/converting-virtual-addresses-to-physical-addresses</a></p>
+<p><a href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html" target="_blank" rel="noopener">https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html</a></p>
 
       
     </div>
@@ -553,7 +534,7 @@ VirtBox+win xp(切换PAE状态)
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -563,10 +544,8 @@ VirtBox+win xp(切换PAE状态)
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Asan" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
           <p class="site-author-name" itemprop="name">Asan</p>
           <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
         </div>
@@ -609,6 +588,17 @@ VirtBox+win xp(切换PAE状态)
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asanzjx || github" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -642,7 +632,7 @@ VirtBox+win xp(切换PAE状态)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>
