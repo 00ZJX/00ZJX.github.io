@@ -68,13 +68,13 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hello,Blogger">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="asanzjx'world" type="application/atom+xml">
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="Asanzjx Personal Blog">
+<meta name="description" content="asanzjx Personal Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Asan&#39;world">
+<meta property="og:title" content="asanzjx&#39;world">
 <meta property="og:url" content="https://asanzjx.github.io/page/5/index.html">
-<meta property="og:site_name" content="Asan&#39;world">
-<meta property="og:description" content="Asanzjx Personal Blog">
+<meta property="og:site_name" content="asanzjx&#39;world">
+<meta property="og:description" content="asanzjx Personal Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asan&#39;world">
-<meta name="twitter:description" content="Asanzjx Personal Blog">
+<meta name="twitter:title" content="asanzjx&#39;world">
+<meta name="twitter:description" content="asanzjx Personal Blog">
 
 
 
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> Asan'world </title>
+  <title> asanzjx'world </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +146,7 @@
   <div class="custom-logo-site-title">
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Asan'world</span>
+      <span class="site-title">asanzjx'world</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -326,23 +326,20 @@
       
         
           
-            <p>python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）</p>
-<ul>
-<li><p>w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除</p>
-</li>
-<li><p>a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾</p>
-</li>
-<li><p>r模式，即为读取模式</p>
-</li>
-<li><p>使用python的pickle模块，可以将python对象直接存储在文件中，并且可以再以后需要的时候重新恢复到内容中</p>
-</li>
-<li><p>在调用open函数的时候，在模式的字符串中使用添加一个b即为二进制模式</p>
-</li>
-<li><p>文件读取还有一些常用到的技巧方法，像下边这两种：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read( )  <span class="comment"># 表示读取全部内容</span></span><br><span class="line">readline( ) <span class="comment"># 表示逐行读取</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+          python的open方法用来打开一个文件，第一个参数是文件的位置与文件名，第二个参数是读写模式（如果缺省就是r）
 
-          
+w模式，也就是写模式，在这种模式下，文件原有的内容将会被删除
+
+a模式，即为append模式，在这种模式下，文件的原有内容不会消失，新写入的内容会自动被添加到文件的末尾
+
+r模式，即
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/21/2015-03-21-python open()函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -460,38 +457,15 @@
       
         
           
-            <p>python2.x中urllib2库在python 3.x 中为urllib.request</p>
-<p>urlopen()函数即创建一个类文件对象为指定的 url 来读取。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(urllib.urlopen)</span><br><span class="line"></span><br><span class="line">Help on function urlopen <span class="keyword">in</span> module urllib:</span><br><span class="line"></span><br><span class="line">urlopen(url, data=<span class="keyword">None</span>, proxies=<span class="keyword">None</span>)</span><br><span class="line"></span><br><span class="line">    Create a file-like object <span class="keyword">for</span> the specified URL to read <span class="keyword">from</span>.</span><br></pre></td></tr></table></figure></p>
-<p>详细点就是，创建一个表示远程url的类文件对象，然后像本地文件一样操作这个类文件对象来获取远程数据。参数url表示远程数据的路径，一般是网址；参数data表示以post方式提交到url的数据,参数proxies用于设置代理  </p>
-<p>urlopen返回 一个类文件对象，他提供了如下方法：  </p>
-<ul>
-<li><p>参数 url 表示远程数据的路径，一般是 http 或者 ftp 路径。</p>
-</li>
-<li><p>参数 data 表示以 get 或者 post 方式提交到 url 的数据。</p>
-</li>
-<li><p>参数 proxies 表示用于代理的设置。</p>
-</li>
-</ul>
-<p>urlopen 返回一个类文件对象，它提供了如下方法：  </p>
-<ul>
-<li><p>read() , readline() , readlines()，fileno()和close()： 这些方法的使用与文件对象完全一样。</p>
-</li>
-<li><p>info()：返回一个httplib.HTTPMessage 对象，表示远程服务器返回的头信息。</p>
-</li>
-<li><p>getcode()：返回Http状态码，如果是http请求，200表示请求成功完成;404表示网址未找到。</p>
-</li>
-<li><p>geturl()：返回请求的url地址。</p>
-</li>
-</ul>
-<p>google = urllib.urlopen(‘<a href="http://www.google.com&#39;" target="_blank" rel="noopener">http://www.google.com&#39;</a>)  </p>
-<p>print ‘http header:/n’, google.info()  </p>
-<p>print ‘http status:’, google.getcode()  </p>
-<p>print ‘url:’, google.geturl()  </p>
-<p>for line in google: # 就像在操作本地文件  </p>
-<pre><code>print line,  
-</code></pre><p>google.close()</p>
+          python2.x中urllib2库在python 3.x 中为urllib.request
+urlopen()函数即创建一个类文件对象为指定的 url 来读取。1234567&gt;&gt;&gt; help(urllib.urlopen)Help on function urlopen in m
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/21/2015-03-21-python urlopen函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -609,31 +583,24 @@
       
         
           
-            <p>windows：chcp</p>
-<p>Linux：echo $LANG  #查看当前字符集</p>
-<pre><code>locale -a #查看本地字符集
+          windows：chcp
+Linux：echo $LANG  #查看当前字符集
+locale -a #查看本地字符集
 
 locale -m #查看所有支持的字符集 
-</code></pre><p>MS-DOS为以下国家和语言提供字符集： </p>
-<p><a href="http://baike.baidu.com/view/684997.htm" target="_blank" rel="noopener">代码页</a> 描述 </p>
-<p>1258 越南语 </p>
-<p>1257 波罗的语 </p>
-<p>1256 阿拉伯语 </p>
-<p>1255 希伯来语 </p>
-<p>1254 土耳其语 </p>
-<p>1253 希腊语 </p>
-<p>1252 拉丁 1 <a href="http://baike.baidu.com/view/263416.htm" target="_blank" rel="noopener">字符</a> (ANSI) </p>
-<p>1251 西里尔语 </p>
-<p>1250 中欧语言 </p>
-<p>950 繁体中文 </p>
-<p>949 朝鲜语 </p>
-<p>936 简体中文 </p>
-<p>932 日语 </p>
-<p>874 泰国语 </p>
-<p>850 多语种 (MS-DOS Latin1) </p>
-<p>437 MS-DOS 美国英语</p>
+MS-DOS为以下国家和语言提供字符集： 
+代码页 描述 
+1258 越南语 
+1257 波罗的语 
+1256 阿拉伯语 
+1255 
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/19/2015-03-19-查看操作系统字符集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -696,9 +663,9 @@ locale -m #查看所有支持的字符集
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
-          <p class="site-author-name" itemprop="name">Asan</p>
-          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="asanzjx">
+          <p class="site-author-name" itemprop="name">asanzjx</p>
+          <p class="site-description motion-element" itemprop="description">asanzjx Personal Blog</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -757,6 +724,20 @@ locale -m #查看所有支持的字符集
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dark-lbp.github.io/" title="小黑猪的技术博客" target="_blank">小黑猪的技术博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -774,12 +755,12 @@ locale -m #查看所有支持的字符集
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Asan</span>
+  <span class="author" itemprop="copyrightHolder">asanzjx</span>
 </div>
 
 <div class="powered-by">

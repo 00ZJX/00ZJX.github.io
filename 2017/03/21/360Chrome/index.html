@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="asanzjx'world" type="application/atom+xml">
 
 
 
@@ -91,7 +91,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次逆向360极速浏览器修改主页设置">
 <meta property="og:url" content="https://asanzjx.github.io/2017/03/21/360Chrome/index.html">
-<meta property="og:site_name" content="Asan&#39;world">
+<meta property="og:site_name" content="asanzjx&#39;world">
 <meta property="og:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。 从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：  计算硬件的机器码的MD">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-999.PNG">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE2.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE3.PNG">
 <meta property="og:image" content="https://asanzjx.github.io/images/360-PE4.PNG">
-<meta property="og:updated_time" content="2018-05-06T09:52:25.328Z">
+<meta property="og:updated_time" content="2018-11-30T02:51:35.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次逆向360极速浏览器修改主页设置">
 <meta name="twitter:description" content="看到FreeBUF上有一篇文章逆向360极速浏览器和360首页设置加密算法，http://www.freebuf.com/articles/terminal/128902.html。当时对这个很感兴趣，想尝试一下。这里在WindowsXP下以360极速浏览器8.5.0.144为例进行分析。 从文章中可以获取的信息按照文章所说，其设置流程为(这里把要设置的主页记作url)：  计算硬件的机器码的MD">
@@ -117,7 +117,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title> 记录一次逆向360极速浏览器修改主页设置 | Asan'world </title>
+  <title> 记录一次逆向360极速浏览器修改主页设置 | asanzjx'world </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +158,7 @@
   <div class="custom-logo-site-title">
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Asan'world</span>
+      <span class="site-title">asanzjx'world</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -386,7 +386,9 @@ data-label=&quot;360-993&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
 data-label=&quot;360-PE1&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
 <p>单步进入0x464390。首先会验证是否是PE文件，检查0x5a4d[360-PE2]。</p>
 <p><img src="/images/360-PE2.PNG" alt="chrome.01c50000验证是否为PE文件&lt;span
-data-label=&quot;360-PE2&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
+data-label=&quot;360-PE2&quot;&gt;&lt;/span&gt;"></p>
+<center>图 chrome.01c50000验证是否为PE文件</center>
+
 <p>而在0x001bb530处则存储了DLL路径数据[360-PE3]。</p>
 <p><img src="/images/360-PE3.PNG" alt="chrome.01c50000路径信息存储位置&lt;span
 data-label=&quot;360-PE3&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
@@ -509,9 +511,9 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
-          <p class="site-author-name" itemprop="name">Asan</p>
-          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="asanzjx">
+          <p class="site-author-name" itemprop="name">asanzjx</p>
+          <p class="site-description motion-element" itemprop="description">asanzjx Personal Blog</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -570,6 +572,20 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dark-lbp.github.io/" title="小黑猪的技术博客" target="_blank">小黑猪的技术博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -598,12 +614,12 @@ aHR0cDovL3d3dy5iYWlkdS5jb20vezIzMmMxN2U1OTI0NTY5ZjA1NzIwYjE5YzI3MGYwNWE1fXtmOTgx
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Asan</span>
+  <span class="author" itemprop="copyrightHolder">asanzjx</span>
 </div>
 
 <div class="powered-by">

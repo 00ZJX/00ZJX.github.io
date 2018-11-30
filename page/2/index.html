@@ -68,13 +68,13 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hello,Blogger">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="asanzjx'world" type="application/atom+xml">
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="Asanzjx Personal Blog">
+<meta name="description" content="asanzjx Personal Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Asan&#39;world">
+<meta property="og:title" content="asanzjx&#39;world">
 <meta property="og:url" content="https://asanzjx.github.io/page/2/index.html">
-<meta property="og:site_name" content="Asan&#39;world">
-<meta property="og:description" content="Asanzjx Personal Blog">
+<meta property="og:site_name" content="asanzjx&#39;world">
+<meta property="og:description" content="asanzjx Personal Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asan&#39;world">
-<meta name="twitter:description" content="Asanzjx Personal Blog">
+<meta name="twitter:title" content="asanzjx&#39;world">
+<meta name="twitter:description" content="asanzjx Personal Blog">
 
 
 
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> Asan'world </title>
+  <title> asanzjx'world </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +146,7 @@
   <div class="custom-logo-site-title">
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Asan'world</span>
+      <span class="site-title">asanzjx'world</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -326,51 +326,20 @@
       
         
           
-            <p>环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本</p>
-<p>先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]</p>
-<p><img src="/images/Panda1.PNG" alt="Panda&lt;span
-data-label=&quot;fig:Panda1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>先保存下虚拟机环境，创建一个快照。</p>
-<p>然后拖入IDA中看看。</p>
-<p><img src="/images/Panda2.PNG" alt="IDA警告&lt;span
-data-label=&quot;fig:Panda2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>觉得应该是有壳。放入PEiD中扫扫，果然。</p>
-<p><img src="/images/Panda3.PNG" alt="Panda的壳&lt;span
-data-label=&quot;fig:Panda3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>是一个压缩变形壳FSG 2.0 -&gt;<br>bart/xt。查了下，不是很强的壳，试试手动脱壳。</p>
-<h3><span id="脱fsg-20-gt-bartxt">脱FSG 2.0 -&gt; bart/xt</span></h3><p>拖入OD，显示入口点警告</p>
-<p><img src="/images/Panda4.PNG" alt="Panda的壳2&lt;span
-data-label=&quot;fig:Panda4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>查了下，可用ESP定律法脱壳。</p>
-<p>这里先用脱壳软件UnFSG 2.0脱壳。</p>
-<h3><span id="初步分析">初步分析</span></h3><p>把脱好壳的程序拖入IDA，也同时用OD载入，这样可达到事半功倍的效果。</p>
-<p><img src="/images/Panda5.PNG" alt="Panda OEP处代码&lt;span
-data-label=&quot;fig:Panda5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda6.PNG" alt="Panda 代码片段分析之校验部分&lt;span
-data-label=&quot;fig:Panda6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码是程序的校验分析，其中包含了作者以及为作者提供帮助的相关人员的信息。验证成功后，会进入病毒启动部分，根据上图可知在标号loc_40D5FD。</p>
-<p><img src="/images/Panda7.PNG" alt="Panda 代码片段分析之病毒验证和启动&lt;span
-data-label=&quot;fig:Panda7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这段代码再次验证程序是否为病毒程序，若通过验证，则启动病毒程序，通过三个函数（这三个函数名是手动重命名的）：CreateAndRunPanda；InfectOtherFile、VirusProtect这三个函数完成病毒的运行、感染以及病毒自身的保护，可以说是该病毒的主要功能模块。</p>
-<h3><span id="分析createandrunpanda">分析CreateAndRunPanda</span></h3><p><img src="/images/Panda8.PNG" alt="Panda CreateAndRunPanda片段1&lt;span
-data-label=&quot;fig:Panda8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda9.PNG" alt="Panda CreateAndRunPanda片段2&lt;span
-data-label=&quot;fig:Panda9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码主要获取当前路径，并将“Desktop_.ini”拼接到当前路径中，同时检查此文件是否存在，如果文件存在，则将其删除。之后将病毒文件信息读取到内存，接着进行了标记检查工作，以判断病毒程序是否被多次运行，同时设置相关的标记信息。</p>
-<p><img src="/images/Panda10.PNG" alt="Panda CreateAndRunPanda片段3&lt;span
-data-label=&quot;fig:Panda10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/Panda11.PNG" alt="Panda CreateAndRunPanda片段4&lt;span
-data-label=&quot;fig:Panda11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>上述代码的目的只有一个：找到进程中运行的“spcolsv.exe”并将其终止，在系统目录中删除“spcolsv.exe”，将病毒自身伪造成“spcolsv.exe”并启动，这是病毒第一次运行时需要执行的。</p>
-<h3><span id="运行测试">运行测试</span></h3><p><img src="/images/Panda12.PNG" alt="Panda 运行后的情况&lt;span
-data-label=&quot;fig:Panda12_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>运行后因为各种原因，反正没有感染其他文件。这里暂且放下，毕竟年代久远，变数太多。</p>
-<h3><span id="ininfectotherfile">InInfectOtherFile</span></h3><p>这里我们继续分析InfectOtherFile函数。</p>
-<p><img src="/images/Panda13.PNG" alt="Panda 的三种感染方式&lt;span
-data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>如图[fig:Panda13_PNG]，此病毒通过3种方式进行感染，前两种是在本地进行病毒的感染，第三种则需要网络的支持。</p>
+          环境：VMware WindowsXP；OD；IDA 6.8(32bit)；熊猫烧香样本
+先来看看大名鼎鼎的熊猫烧香长什么样子[fig:Panda1_PNG]
+{width=”80.00000%”}
+先保存下虚拟机环境，创建一个快照。
+然后拖入IDA中看看。
+{width=”80.00000%”}
 
-          
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/26/Panda/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -488,66 +457,17 @@ data-label=&quot;fig:Panda13_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}
       
         
           
-            <p>环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA<br>6.8.150423(32-bit)</p>
-<p>首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序</p>
-<p><img src="/images/PEID1.PNG" alt="PEID界面&lt;span
-data-label=&quot;fig:PEID1_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>这里我们从字符串“Microsoft Visual C++<br>6.0”入手。为什么要从这入手呢？因为PEID是一个查壳软件，我们得到的这个“Microsoft<br>Visual C++<br>6.0”字符串信息是PEID根据软件的特征侦察出来的。因此找到这个字符串的地址信息，以此来为入口分析PEID的工作原理是一个很好的切入点。<a href="从字符串入手也是逆向和调试软件的常见方法。">^1</a></p>
-<p>OD载入程序，使用字符串参考插件，这里查找ASCII模式的字符串。Ctrl+F查找“Microsoft<br>Visual C++ 6.0”，可能会找到多条信息，z或p查找下一个，b或n查找上一个。</p>
-<p><img src="/images/PEID2.PNG" alt="找到字符串地址&lt;span
-data-label=&quot;fig:PEID2_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>找到后，Enter进入，F2下断点。这个地址是0x00438fff,上一行的地址是0x00438ffd，现在我们需要找到调用这个此处的代码在哪（也就是找到需要什么条件才能使PEID判断程序为Microsoft<br>Visual C++<br>6.0），顺藤摸瓜，其实我们可以找到很多处跳转到0x00438ffd的代码，我们以最前面的地址0x00438d13来向上分析，</p>
-<p><img src="/images/PEID3.PNG" alt="调用0x00428ffd的代码IDA和OD分析&lt;span
-data-label=&quot;fig:PEID3_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>其有效代码如图[fig:PEID3_PNG]所示，可以看到0x00438c20前面的代码为int3的指令，而且IDA和OD此处的代码并无异同。</p>
-<p><img src="/images/PEID4.PNG" alt="PE节数目位置&lt;span
-data-label=&quot;fig:PEID4_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/PEID5.PNG" alt="节表项&lt;span
-data-label=&quot;fig:PEID5_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p><img src="/images/PEID6.PNG" alt="0x00438C2C 0x00438D60分析&lt;span
-data-label=&quot;fig:PEID6_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>如图[fig:PEID6_PNG]可以看出，开始就定义了一个很大的数组，并对数组进行了初始化。可以推断出这个数组中存放的数据应该为相关特征码。这段代码主要的做的就是检查OEP是否在“.text”中，若条件成立，则跳转到显示编译器版本的代码处。如果条件不成立，程序会先根据入口特征码比较OEP入口处的8字节机器码，分析目标是否为其他编译器所生成。如果不符合特征，将会调整OEP，加入文件偏移与虚拟地址偏移的转换过程，再次用特征码对比OEP处的机器码。如符合特征，则程序流程进入字符串文本输出部分。</p>
-<p>OK，其实这只是判定过程的结尾，我们继续向上查找调用0x438d13(因为在此地址处是经过分类处理后执行的代码)的程序。</p>
-<p>怎么找调用它的函数呢？根据函数调用机制，函数被调用后会在栈的最顶端压入函数的返回地址，执行到0x438d13查看堆栈窗口，我们可以得到0x00452f46这个地址。</p>
-<p><img src="/images/PEID7.PNG" alt="返回地址分析&lt;span
-data-label=&quot;fig:PEID7_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>那么我们就可以推断出0x452f3f这个地址就是调用0x438d13的函数，跟踪进去，跳到0x401E8C处。</p>
-<p><img src="/images/PEID8.PNG" alt="0x401e8c处的部分数组数据&lt;span
-data-label=&quot;fig:PEID8_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>0x401e8c这个处保存了大量的数据。</p>
-<p>我们接着向上分析[fig:PEID9_PNG]</p>
-<p><img src="/images/PEID9.PNG" alt="0x00452e90 0x00452f58编译器检查分类函数&lt;span
-data-label=&quot;fig:PEID9_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>图[fig:PEID9_PNG]完成了对OEP处特征码的比较并根据比较结果，从函数指针数组中找到符合此特征的处理流程，记录下标值，记录下标值，然后将它们保存在另一个存放下标值的数组中。这时第一次过滤已经完成，进入第二次过滤检查分析程序中是否存在第二个节。</p>
-<p>OK，我们可以继续分析0x0045A3E0查看PEID会将OEP处的哪些机器码作为特征码进行对比。</p>
-<p><img src="/images/PEID10.PNG" alt="特征码校验分析&lt;span
-data-label=&quot;fig:PEID10_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>找到重要的比较函数0x0045A1D0，这个函数完成分析程序的机器码与事先准备好的特征码的比较，最终提取出了具有相同特性的编译器的版本。</p>
-<p><img src="/images/PEID11.PNG" alt="VC++6.0特征码&lt;span
-data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}</p>
-<p>至此我们可以推断出PEID的工作流程：</p>
-<ol>
-<li><p>读取分析文件到内存中，并分析出相关的PE文件的信息，然后保存</p>
-</li>
-<li><p>　检查OEP，计算地址偏移，并修正OEP</p>
-</li>
-<li><p>　再次检查OEP地址的合法性</p>
-</li>
-<li><p>　将OEP处的机器码与特征码进行比较</p>
-</li>
-<li><p>　检查分析文件中是否存在“.rdata”节</p>
-</li>
-<li><p>根据分析结构获取对应处理函数所在数组中的下标并保存</p>
-</li>
-<li><p>循环调用处理函数</p>
-</li>
-<li><p>在处理函数中再次检查</p>
-</li>
-<li><p>显示编译器版本</p>
-</li>
-</ol>
+          环境：Win10；Ollydbg v1.10 dyk158修改版；PEID v0.94；IDA6.8.150423(32-bit)
+首先熟悉PEID的界面及其功能，PEID载入之前用VC++6.0编写的程序
+{width=”80.00000%”}
+这里我们从字符串“Microsoft Visual 
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/26/PEID/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -665,11 +585,15 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
       
         
           
-            <p>官网：<a href="http://pandoc.org/" target="_blank" rel="noopener">http://pandoc.org/</a>，支持转换的格式：<a href="http://pandoc.org/diagram.jpg" target="_blank" rel="noopener">http://pandoc.org/diagram.jpg</a>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pandoc -o &lt;outputFileName&gt; &lt;inputFileName&gt;</span><br><span class="line"># example</span><br><span class="line">pandoc -o outputfile.md inputfile.tex</span><br></pre></td></tr></table></figure>
-<p>这样就把tex文件转化为md格式的文件，效果还是不错的。</p>
+          官网：http://pandoc.org/，支持转换的格式：http://pandoc.org/diagram.jpg。
+123pandoc -o &lt;outputFileName&gt; &lt;inputFileName&gt;# examplepandoc -o outputfile.md
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/18/Pandoc/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -787,16 +711,19 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
       
         
           
-            <h1><span id="problem">Problem：</span></h1><p>需要导出PPT中的图片，一张一张“另存为”效率太低了。</p>
-<h1><span id="try">Try</span></h1><ol>
-<li>确认源文件格式为.pptx，否则用office打开另存为pptx格式；</li>
-<li>直接修改后缀名，改为.rar或者.zip等压缩文件格式；</li>
-<li>解压缩文件，可以得到如图所示的目录结构;</li>
-<li>在ppt/media文件夹即可找到所有导出的图片。</li>
-</ol>
-<p><img src="/images/20160615-1.PNG" alt="目录结构"></p>
+          Problem：需要导出PPT中的图片，一张一张“另存为”效率太低了。
+Try
+确认源文件格式为.pptx，否则用office打开另存为pptx格式；
+直接修改后缀名，改为.rar或者.zip等压缩文件格式；
+解压缩文件，可以得到如图所示的目录结构;
+在ppt/media文件夹即可找到所有导出的图片
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/15/导出PPT中的图片/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -914,9 +841,15 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
       
         
           
-            <p>&emsp;我又回来了！<br><br>&emsp;生活逐渐走上正轨，做了一些计划，把文档也重新写起来了，这几天折腾了下把博客也开起来（反正买了三年的域名）。</p>
+          &emsp;我又回来了！&emsp;生活逐渐走上正轨，做了一些计划，把文档也重新写起来了，这几天折腾了下把博客也开起来（反正买了三年的域名）。
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/30/NewBlog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1034,89 +967,21 @@ data-label=&quot;fig:PEID11_PNG&quot;&gt;&lt;/span&gt;">{width=”80.00000%”}<
       
         
           
-            <h1><span id="摘要">摘要</span></h1><p>本文档记录在Github上搭建个人博客的学习笔记，涉及git,github,Hexo的内容。</p>
-<h2><span id="updaterecordes">Updaterecordes</span></h2><ul>
-<li><p>2016-08-17\<br>添加“其他页面配置”；“图片显示资源引用问题”；”写文章“；”代码高亮“</p>
-</li>
-<li><p>2016-08-18\<br>添加“本地测试”；“评论”</p>
-</li>
-</ul>
-<h1><span id="hexo笔记">Hexo笔记</span></h1><p>Hexo官方文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a>。</p>
-<h2><span id="简介">简介</span></h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用<br>Markdown来解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h2><span id="安装">安装</span></h2><p>安装前请确认电脑中已经安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>和<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>(本文安装<a href="https://desktop.github.com/" target="_blank" rel="noopener">Github</a>)并配置好环境变量。</p>
-<pre><code>npm install -g hexo-cli
-</code></pre><h2><span id="安装插件">安装插件</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-archive --save</span><br><span class="line">npm install hexo-generator-category --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-deployer-heroku --save</span><br><span class="line">npm install hexo-deployer-rsync --save</span><br><span class="line">npm install hexo-deployer-openshift --save</span><br><span class="line">npm install hexo-renderer-marked@0.2 --save</span><br><span class="line">npm install hexo-renderer-stylus@0.2 --save</span><br><span class="line">npm install hexo-generator-feed@1 --save</span><br><span class="line">npm install hexo-generator-sitemap@1 --save</span><br><span class="line">npm install hexo-generator-cname --save</span><br></pre></td></tr></table></figure>
-<p>如果我们直接创建一个新文件CNAME，填好域名。但会发现在下一次部署后这个文件就消失了。不用惊讶，因为hexo并不会自动生成CNAME文件，所以在部署时被覆盖删除了。这个插件自动在public里生成一个CNAME文件，把你的域名加进去再部署一下,</p>
-<h2><span id="常用操作">常用操作</span></h2><h3><span id="写文章">写文章</span></h3><p><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/writing.html</a>\<br>当然也可以直接在source目录下新建一个.md文件</p>
-<pre><code>hexo new [layout] &lt;title&gt;
-# or
-hexo n &lt;title&gt;
-#`将草稿转为post`
-hexo publish [layout] &lt;title&gt;
+          摘要本文档记录在Github上搭建个人博客的学习笔记，涉及git,github,Hexo的内容。
+Updaterecordes
+2016-08-17\添加“其他页面配置”；“图片显示资源引用问题”；”写文章“；”代码高亮“
 
-#Scaffold`（模板）`
-hexo new photo &quot;My Gallery&quot;
-</code></pre><p>Hexo 会尝试在 scaffolds 文件夹中寻找 photo.md，并根据其内容建立文章。</p>
-<h4><span id="layout">Layout</span></h4><p>默认为post。Hexo<br>有三种默认布局：post（存储在source/_posts下）、page（存储在source下）<br>和 draft（草稿，存储在source/_drafts）.</p>
-<h3><span id="生成文件及部署">生成文件及部署</span></h3><pre><code>hexo generate
-# or
-hexo g
+2016-08-18\添加“本地测试”；“评论”
 
 
-hexo generate --watch
-# or
-hexo g -w
-</code></pre><p>Hexo 能够监视文件变动并立即重新生成静态文件，在生成时会比对文件的 SHA1<br>checksum，只有变动的文件才会写入。</p>
-<p>执行下列的其中一个命令，让 Hexo<br>在生成完毕后自动部署网站，这些命令的作用是相同的。</p>
-<pre><code>hexo generate --deply
-hexo deploy --generate
-hexo d -g
-hexo g -d
-</code></pre><h3><span id="本地测试">本地测试</span></h3><p>默认地址：127.0.0.1:4000</p>
-<pre><code>hexo server
-# or
-hexo s
+Hexo笔记Hexo
+          ...
 
-hexo s -p PORT
-
-# `自定义IP`
-hexo server -i 192.168.1.1
-
-# `静态模式`
-hexo server -s
-</code></pre><p>在静态模式下，服务器只处理 public<br>文件夹内的文件，而不会处理文件变动，在执行时，您应该先自行执行 hexo<br>generate。</p>
-<h2><span id="主题相关">主题相关</span></h2><p>这里使用NexT主题。<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">http://theme-next.iissnan.com/</a></p>
-<h3><span id="代码高亮">代码高亮</span></h3><p>NexT 使用 Tomorrow Theme 作为代码高亮，共有5款主题供你选择。<br>默认使用的是白色的 normal。</p>
-<figure class="highlight plain"><figcaption><span>language</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">highlit_theme:  night</span><br></pre></td></tr></table></figure>
-<h2><span id="个性化配置">个性化配置</span></h2><p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。<br>其中，一份位于站点根目录下，主要包含 Hexo<br>站点本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。配置文件使用的是Yml语言。</p>
-<h3><span id="图片显示及资源引用问题">图片显示及资源引用问题</span></h3><h4><span id="problem">Problem：</span></h4><p>主页无法显示图片，文章具体页面可以显示</p>
-<h4><span id="try">Try：</span></h4><p>修改站点配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
-<p>#开启文章资源文件夹，为每篇文章创建一个目录。这个目录包含所有的资源，这样可以通过相对路径引用。</p>
-<h3><span id="hexo生成文章目录">Hexo生成文章目录</span></h3><p>hexo-toc插件，此插件可以生成文章目录。</p>
-<pre><code>npm install hexo-toc --save
-</code></pre><p>在站点配置文件（_config.yml）中配置如下</p>
-<pre><code>#toc configuration
-toc:
-   maxDepth: 3 #`最多可生成三级目录`
-</code></pre><p>重新生成即可。</p>
-<h3><span id="其他页面生成">其他页面生成</span></h3><p>这里以分类页面为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories #`新建一个页面`</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure>
-<p>编辑刚新建的页面，将页面的类型设置为 categories<br>，主题将自动为这个页面显示所有分类。</p>
-<h3><span id="评论系统">评论系统</span></h3><p>这里采用DISQUS：<a href="https://disqus.com/" target="_blank" rel="noopener">https://disqus.com/</a>。</p>
-<p>具体步骤：</p>
-<ol>
-<li><p>首先在官网上注册一个号</p>
-</li>
-<li><p>依据步骤填写shortname等信息，\<br>在Choose your platform 页面，这里依据实际情况选择Universal Code</p>
-</li>
-<li><p>复制第一个代码块中的代码，然后打开<br>comment.ejs，删除所有代码并粘贴刚才复制的代码，保存即可。</p>
-</li>
-<li><p>在站点配置文件添加“disqus_shortname: YourShortName”</p>
-</li>
-</ol>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/29/在Github上搭建个人博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1234,14 +1099,18 @@ toc:
       
         
           
-            <h3><span id="背景">背景</span></h3><blockquote>
-<p>在wordpres后台设置中修改固定链接，发现打开具体文章出现404页面。</p>
-</blockquote>
-<h3><span id="解决方案">解决方案</span></h3><blockquote>
-<p>修改httpd.conf文件，把#LoadModule rewrite_module modules/mod_rewrite.so 改为 LoadModule rewrite_module modules/mod_rewrite.so，即去掉注释。</p>
-</blockquote>
+          背景
+在wordpres后台设置中修改固定链接，发现打开具体文章出现404页面。
 
-          
+解决方案
+修改httpd.conf文件，把#LoadModule rewrite_module modules/mod_rewrite.so 改为 LoadModule rewrite_module modules/
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/01/2016-03-01-wordpress 更改固定链接出现404解决方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1359,13 +1228,19 @@ toc:
       
         
           
-            <h1><span id="导言">导言</span></h1><h2><span id="updaterecords">UpdateRecords</span></h2><ul>
-<li>2016-08-18\ Optimize</li>
-</ul>
-<p>本文使用MarkdownPad 2（可在<a href="http://markdownpad.com/" target="_blank" rel="noopener">官网</a>上下载） 编写。</p>
-<p><strong>注意：win10下载安装后可能会出现无法预览的问题，下载安装<a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">awesomiumv1.6.6sdk_win</a>，这是一个 HTML UI ENGINE。</strong></p>
-<h2><span id="常用语法">常用语法</span></h2><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#  一级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">##  二级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">##  三级标题</span></span><br><span class="line"></span><br><span class="line">---  分隔符</span><br><span class="line"></span><br><span class="line">–  无序列表</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.  </span>有序列表</span><br><span class="line"></span><br><span class="line">[<span class="string">文本</span>](<span class="link">链接</span>)  超链接</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt;  引用</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**粗体**</span>  粗体</span><br><span class="line"></span><br><span class="line"><span class="emphasis">*斜体*</span>  斜体</span><br><span class="line"></span><br><span class="line">![<span class="string">图片名</span>](<span class="link">链接</span>)  插入图片</span><br></pre></td></tr></table></figure>
-          
+          导言UpdateRecords
+2016-08-18\ Optimize
+
+本文使用MarkdownPad 2（可在官网上下载） 编写。
+注意：win10下载安装后可能会出现无法预览的问题，下载安装awesomiumv1.6.6sdk_win，这是一个 HTML UI ENGINE。
+常用语法123
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/01/2016-03-01-Markdwown 常用语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1483,23 +1358,22 @@ toc:
       
         
           
-            <p>在winserver 2003下配置FTP（用IIS6.0搭建），提示“打开FTP服务器上的文件夹时发生错误,请检查是否有权限访问”，这里提供几个解决方案：</p>
-<ul>
-<li><p>检查文件的访问权限，是否给了FTP用户权限访问</p>
-</li>
-<li><p>关闭ie增强安全配置</p>
-</li>
-<li><p>在配置时选择“不启用用户隔离模式”</p>
-</li>
-<li><p>关闭“使用被动FTP（为防火墙和DSL调制解调器兼容性）”（在Internet 选项-&gt;高级-&gt;浏览）</p>
-</li>
-<li><p>干完这些，重启服务，不行的话，直接重启服务器！！！</p>
-</li>
-</ul>
-<p>由于是winserver2003环境，安装wampserver 2.5 32位提示httpd.exe不是有效的win32应用程序，下载安装2.4及其以下的版本安装即可。</p>
-<p>wordpress在下载更新的时候，提示”下载失败。: 没有可以完成请求的HTTP传输器。”，直接修改php配置文件，php.ini，找到;extension=php_curl.dll，去掉注释即可。</p>
+          在winserver 2003下配置FTP（用IIS6.0搭建），提示“打开FTP服务器上的文件夹时发生错误,请检查是否有权限访问”，这里提供几个解决方案：
 
-          
+检查文件的访问权限，是否给了FTP用户权限访问
+
+关闭ie增强安全配置
+
+在配置时选择“不启用用户隔离模式”
+
+关闭“使用被动FTP（为防火
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/04/2016-02-04-winserver2003 配置FTP，wampserver环境，wordpress等问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1617,10 +1491,14 @@ toc:
       
         
           
-            <p><strong>打开虚拟机VMware—-&gt;install vmware tools</strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /media/cdrom0/</span><br><span class="line"></span><br><span class="line">cp VMwareTools*.tar.gz /root/</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/</span><br><span class="line"></span><br><span class="line">tar -zxvf VMwareTools*.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> vmware-toos-distrib</span><br><span class="line"></span><br><span class="line">./vmware-install.pl</span><br></pre></td></tr></table></figure></p>
-<p><strong>接下来根据提示操作。有的地方需要选择no</strong></p>
+          打开虚拟机VMware—-&gt;install vmware tools1234567891011cd /media/cdrom0/cp VMwareTools*.tar.gz /root/cd /root/tar -zxvf VMwareTools*.tar.gzcd vmware-toos-d
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/03/2015-09-03-kali 安装VMwareToos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1683,9 +1561,9 @@ toc:
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
-          <p class="site-author-name" itemprop="name">Asan</p>
-          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="asanzjx">
+          <p class="site-author-name" itemprop="name">asanzjx</p>
+          <p class="site-description motion-element" itemprop="description">asanzjx Personal Blog</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -1744,6 +1622,20 @@ toc:
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dark-lbp.github.io/" title="小黑猪的技术博客" target="_blank">小黑猪的技术博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -1761,12 +1653,12 @@ toc:
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Asan</span>
+  <span class="author" itemprop="copyrightHolder">asanzjx</span>
 </div>
 
 <div class="powered-by">

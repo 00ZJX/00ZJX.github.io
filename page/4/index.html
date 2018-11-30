@@ -68,13 +68,13 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hello,Blogger">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Asan'world" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="asanzjx'world" type="application/atom+xml">
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="Asanzjx Personal Blog">
+<meta name="description" content="asanzjx Personal Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Asan&#39;world">
+<meta property="og:title" content="asanzjx&#39;world">
 <meta property="og:url" content="https://asanzjx.github.io/page/4/index.html">
-<meta property="og:site_name" content="Asan&#39;world">
-<meta property="og:description" content="Asanzjx Personal Blog">
+<meta property="og:site_name" content="asanzjx&#39;world">
+<meta property="og:description" content="asanzjx Personal Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asan&#39;world">
-<meta name="twitter:description" content="Asanzjx Personal Blog">
+<meta name="twitter:title" content="asanzjx&#39;world">
+<meta name="twitter:description" content="asanzjx Personal Blog">
 
 
 
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> Asan'world </title>
+  <title> asanzjx'world </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +146,7 @@
   <div class="custom-logo-site-title">
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Asan'world</span>
+      <span class="site-title">asanzjx'world</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -326,32 +326,24 @@
       
         
           
-            <ol>
-<li>原文转载自<a href="http://www.wubiaoblog.com/archives/513" target="_blank" rel="noopener">http://www.wubiaoblog.com/archives/513</a></li>
-</ol>
-<p>目录[-]</p>
-<p>一、yum配置</p>
-<p>1.1、检查相关包信息：</p>
-<p>1.2、配置10gen.repo文件：</p>
-<p>1.3、执行yum update：</p>
-<p>1.4、再次查看相关的包信息：</p>
-<p>1.5、可能遇到的错误信息：</p>
-<p>1.5.1）、网络问题：</p>
-<p>1.5.2）、校验和不匹配：</p>
-<p>1.5.3）、解决方法：</p>
-<p>二、安装</p>
-<p>2.1、安装相关包：</p>
-<p>2.2、检查安装的文件：</p>
-<p>三、mongodb相关配置</p>
-<p>3.1、建立数据文件及日志文件的目录：</p>
-<p>3.2、配置/etc/mongod.conf：</p>
-<p>四、启动与简单测试</p>
-<p>4.1、service mongod start：</p>
-<p>4.2、mongod -f /etc/mongod.conf：</p>
-<p>4.3、检查启动情况：</p>
-<p>4.4、客户端测试：</p>
-
           
+原文转载自http://www.wubiaoblog.com/archives/513
+
+目录[-]
+一、yum配置
+1.1、检查相关包信息：
+1.2、配置10gen.repo文件：
+1.3、执行yum update：
+1.4、再次查看相关的包信息：
+1.5、可能遇到的错误信息：
+1.5.1）、网
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/19/2015-04-19-Centos6.5配置mongodb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -469,10 +461,16 @@
       
         
           
-            <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uname <span class="_">-a</span></span><br><span class="line"></span><br><span class="line">getconf WORD_BIT</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$HOSTTYPE</span></span><br></pre></td></tr></table></figure>
-<p>如果是64位的话，第一条和第三条命令会显示：x86_64</p>
+          12345uname -agetconf WORD_BITecho $HOSTTYPE
+如果是64位的话，第一条和第三条命令会显示：x86_64
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/17/2015-04-17-centos下查看自己的系统是多少位的/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -590,23 +588,19 @@
       
         
           
-            <ol>
-<li><p>下载Python-2.7.9</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装Python2.7.9</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python /usr/bin/python2.6.6  <span class="comment">#备份版本为2.6.6的Python yum程序会需要</span></span><br><span class="line">tar -xvzf Python-2.7.9rc1.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.9rc1</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试是否安装成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br><span class="line">Python 2.7.9rc1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python2.7版本后,yum不能正常工作</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum </span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python 将此行改为 #!/usr/bin/python2.6.6</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>升级完毕</p>
-
           
+下载Python-2.7.9
+1wget http://python.org/ftp/python/2.7.9/Python-2.7.9rc1.tgz
+
+安装Python2.7.9
+1234mv /usr/bin/python /usr/bin/python2.6.6  #备份版本为2.6.6的P
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/17/2015-04-17-Centos6.5 下 Python2.6.6升级为2.7.9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -724,29 +718,18 @@
       
         
           
-            <p>PuTTY 是一套免费的SSH / Telnet 程序，是在Windows 32平台下的telnet、rlogin和ssh客户端，它是一个跨平台的远程登录工具，包含了一组程序，包括：</p>
-<ul>
-<li><p>PuTTY (Telnet 和 SSH 客户端)</p>
-</li>
-<li><p>PSCP (SCP 客户端, 命令行下通过 SSH 拷贝文件，类似于 Unix/Linux 下的 scp 命令)</p>
-</li>
-<li><p>PSFTP (SFTP 的命令行客户端，类似于 FTP 的文件传输，只不过使用的是 SSH 的 22 端口，</p>
-</li>
-</ul>
-<p>而非 FTP 的 21 端口，类似于 Unix/Linux 下的 sftp 命令)</p>
-<ul>
-<li><p>PuTTYtel (仅仅是一个 Telnet 客户端)</p>
-</li>
-<li><p>Plink (命令行工具，执行远程服务器上的命令)</p>
-</li>
-<li><p>Pageant (PuTTY、PSCP、Plink 的 SSH 认证代理，用这个可以不用每次都输入口令了)</p>
-</li>
-<li><p>PuTTYgen (用来生成 RSA 和 DSA 密钥的工具). </p>
-</li>
-</ul>
-<p>PuTTY作为一个组件也存在于众多软件中，比如 FileZilla、WinSCP，默认登录协议是SSH(安全命令解释程序)，通过ssh可以使客户端和服务器之间的数据通讯进行加密,这也是Putty强大功能所在.</p>
+          PuTTY 是一套免费的SSH / Telnet 程序，是在Windows 32平台下的telnet、rlogin和ssh客户端，它是一个跨平台的远程登录工具，包含了一组程序，包括：
 
-          
+PuTTY (Telnet 和 SSH 客户端)
+
+PSCP (SCP 客户端, 命令行下通过 SSH 拷贝文件，
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/16/2015-04-16-PuTTY(远程登录软件)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -864,9 +847,15 @@
       
         
           
-            <p>在Notpad++下选择设置—&gt;语言格式设置—&gt;选择主题，，，用Choco主题用得比较顺手！！</p>
+          在Notpad++下选择设置—&gt;语言格式设置—&gt;选择主题，，，用Choco主题用得比较顺手！！
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/13/2015-04-13-Notepad++修改配色方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -984,9 +973,15 @@
       
         
           
-            <p>Try：<br>把 # -<em>- encoding:”utf-8”-</em>-写在第一行</p>
+          Try：把 # -- encoding:”utf-8”--写在第一行
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/11/2015-04-11-pycharm有中文注释报错/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1104,9 +1099,15 @@
       
         
           
-            <p><img src="images/658932920497598863.png" alt=""><br>打开IE浏览器-&gt;找到设置<img src="/images/2967309204584148892.png" alt="">——&gt;点击选择下拉菜单—–&gt;找到“关于Internet Exploer”即可</p>
+          打开IE浏览器-&gt;找到设置——&gt;点击选择下拉菜单—–&gt;找到“关于Internet Exploer”即可
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/11/2015-04-11-查看IE版本号/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1224,20 +1225,21 @@
       
         
           
-            <ol>
-<li><p>客户端向服务器发送登录请求</p>
-</li>
-<li><p>服务器接收到登录请求后会生成相应的密匙返回给客户端</p>
-</li>
-<li><p>客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息</p>
-</li>
-<li><p>成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的一些数据资源</p>
-</li>
-<li><p>伪代码：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Begin</span><br><span class="line"></span><br><span class="line">  Step1:</span><br><span class="line"></span><br><span class="line">     Send Login Request</span><br><span class="line"></span><br><span class="line">  Step2:</span><br><span class="line"></span><br><span class="line">     Get Request From Server</span><br><span class="line"></span><br><span class="line">     Get Encrypt Information From Response</span><br><span class="line"></span><br><span class="line">  Step3:</span><br><span class="line"></span><br><span class="line">     Encrypt User Information</span><br><span class="line"></span><br><span class="line">     Send Encrypt Information</span><br><span class="line"></span><br><span class="line">  Step4:</span><br><span class="line"></span><br><span class="line">     Get Login Status</span><br><span class="line"></span><br><span class="line">End</span><br></pre></td></tr></table></figure></li>
-</ol>
-
           
+客户端向服务器发送登录请求
+
+服务器接收到登录请求后会生成相应的密匙返回给客户端
+
+客户端将用户的用户名，密码以及2中服务器结合在一起再向服务器提交登录信息，服务器验证成功后将返回正确的登录状态以及当前用户的个人信息
+
+成功登录后客户端只需要保持与服务器的session会话将可以方便地访问微博中的
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/10/2015-04-10-python爬虫之模拟登录逻辑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1355,10 +1357,16 @@
       
         
           
-            <p>官方建议安装beautiful4，下载地址：<a href="http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/" target="_blank" rel="noopener">http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/</a></p>
-<p>或者pip直接安装：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bs4</span><br></pre></td></tr></table></figure></p>
+          官方建议安装beautiful4，下载地址：http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/
+或者pip直接安装：1pip install bs4
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/10/2015-04-10-安装beautiful/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1476,99 +1484,17 @@
       
         
           
-            <p>如果某项请求发送到您的服务器要求显示您网站上的某个网页(例如，用户通过浏览器访问您的网页或 Googlebot 抓取网页时)，服务器将会返回 HTTP 状态码响应请求。 此状态码提供关于请求状态的信息，告诉 Googlebot 关于您的网站和请求的网页的信息。</p>
-<p>  一些常见的状态码为：</p>
-<ul>
-<li><p>200 - 服务器成功返回网页</p>
-</li>
-<li><p>404 - 请求的网页不存在</p>
-</li>
-<li><p>503 - 服务器超时</p>
-</li>
-<li><p>1xx(临时响应) 表示临时响应并需要请求者继续执行操作的状态码。</p>
-</li>
-<li><p>100(继续)请求者应当继续提出请求。服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p>
-</li>
-<li><p>101(切换协议)请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
-</li>
-<li><p>2xx (成功) 表示成功处理了请求的状态码。 200(成功)服务器已成功处理了请求。通常，这表示服务器提供了请求的网页。如果是对您的 robots.txt 文件显示此状态码，则表示 Googlebot 已成功检索到该文件。</p>
-</li>
-<li><p>201(已创建)请求成功并且服务器创建了新的资源。</p>
-</li>
-<li><p>202(已接受)服务器已接受请求，但尚未处理。</p>
-</li>
-<li><p>203(非授权信息)服务器已成功处理了请求，但返回的信息可能来自另一来源。 </p>
-</li>
-<li><p>204(无内容)服务器成功处理了请求，但没有返回任何内容。</p>
-</li>
-<li><p>205(重置内容)服务器成功处理了请求，但没有返回任何内容。与 204 响应不同，此响应要求请求者重置文档视图(例如，清除表单内容以输入新内容)。</p>
-</li>
-<li><p>206(部分内容)服务器成功处理了部分 GET 请求。 3xx (重定向) 要完成请求，需要进一步操作。通常，这些状态码用来重定向。Google 建议您在每次请求中使用重定向不要超过 5 次。您可以使用网站管理员工具查看一下 Googlebot 在抓取重定向网页时是否遇到问题。诊断下的网络抓取页列出了由于重定向错误导致 Googlebot 无法抓取的网址。</p>
-</li>
-<li><p>300(多种选择)针对请求，服务器可执行多种操作。服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p>
-</li>
-<li><p>301(永久移动)请求的网页已永久移动到新位置。服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。您应使用此代码告诉 Googlebot 某个网页或网站已永久移动到新位置。</p>
-</li>
-<li><p>302(临时移动)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个网页或网站已经移动，因为 Googlebot 会继续抓取原有位置并编制索引。</p>
-</li>
-<li><p>303(查看其他位置)请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。对于除 HEAD 之外的所有请求，服务器会自动转到其他位置。</p>
-</li>
-<li><p>304(未修改)自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。 如果网页自请求者上次请求后再也没有更改过，您应将服务器配置为返回此响应(称为 If-Modified-Since HTTP 标头)。服务器可以告诉 Googlebot 自从上次抓取后网页没有变更，进而节省带宽和开销。</p>
-</li>
-<li><p>305(使用代理)请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</p>
-</li>
-<li><p>307(临时重定向)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个页面或网站已经移动，因为 Googlebot 会继续抓取原有位置并编制索引。</p>
-</li>
-<li><p>4xx(请求错误) 这些状态码表示请求可能出错，妨碍了服务器的处理。</p>
-</li>
-<li><p>400(错误请求)服务器不理解请求的语法。 401(未授权)请求要求身份验证。对于登录后请求的网页，服务器可能返回此响应。</p>
-</li>
-<li><p>403(禁止)服务器拒绝请求。如果您在 Googlebot 尝试抓取您网站上的有效网页时看到此状态码(您可以在 Google 网站管理员工具诊断下的网络抓取页面上看到此信息)，可能是您的服务器或主机拒绝了 Googlebot 访问。</p>
-</li>
-<li><p>404(未找到)服务器找不到请求的网页。例如，对于服务器上不存在的网页经常会返回此代码。 如果您的网站上没有 robots.txt 文件，而您在 Google 网站管理员工具”诊断”标签的 robots.txt 页上看到此状态码，则这是正确的状态码。但是，如果您有 robots.txt 文件而又看到此状态码，则说明您的 robots.txt 文件可能命名错误或位于错误的位置(该文件应当位于顶级域，名为 robots.txt)。 如果对于 Googlebot 抓取的网址看到此状态码(在”诊断”标签的 HTTP 错误页面上)，则表示 Googlebot 跟随的可能是另一个页面的无效链接(是旧链接或输入有误的链接)。</p>
-</li>
-<li><p>405(方法禁用)禁用请求中指定的方法。 406(不接受)无法使用请求的内容特性响应请求的网页。</p>
-</li>
-<li><p>407(需要代理授权)此状态码与 401(未授权)类似，但指定请求者应当授权使用代理。如果服务器返回此响应，还表示请求者应当使用代理。</p>
-</li>
-<li><p>408(请求超时)服务器等候请求时发生超时。</p>
-</li>
-<li><p>409(冲突)服务器在完成请求时发生冲突。服务器必须在响应中包含有关冲突的信息。服务器在响应与前一个请求相冲突的 PUT 请求时可能会返回此代码，以及两个请求的差异列表。</p>
-</li>
-<li><p>410(已删除)如果请求的资源已永久删除，服务器就会返回此响应。该代码与 404(未找到)代码类似，但在资源以前存在而现在不存在的情况下，有时会用来替代 404 代码。如果资源已永久移动，您应使用 301 指定资源的新位置。</p>
-</li>
-<li><p>411(需要有效长度)服务器不接受不含有效内容长度标头字段的请求。</p>
-</li>
-<li><p>412(未满足前提条件)服务器未满足请求者在请求中设置的其中一个前提条件。</p>
-</li>
-<li><p>413(请求实体过大)服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</p>
-</li>
-<li><p>414(请求的 URI 过长)请求的 URI(通常为网址)过长，服务器无法处理。</p>
-</li>
-<li><p>415(不支持的媒体类型)请求的格式不受请求页面的支持。</p>
-</li>
-<li><p>416(请求范围不符合要求)如果页面无法提供请求的范围，则服务器会返回此状态码。</p>
-</li>
-<li><p>417(未满足期望值)服务器未满足”期望”请求标头字段的要求。</p>
-</li>
-<li><p>5xx(服务器错误) 这些状态码表示服务器在处理请求时发生内部错误。这些错误可能是服务器本身的错误，而不是请求出错。</p>
-</li>
-<li><p>500(服务器内部错误)服务器遇到错误，无法完成请求。</p>
-</li>
-<li><p>501(尚未实施)服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。</p>
-</li>
-<li><p>502(错误网关)服务器作为网关或代理，从上游服务器收到无效响应。</p>
-</li>
-<li><p>503(服务不可用)服务器目前无法使用(由于超载或停机维护)。通常，这只是暂时状态。</p>
-</li>
-<li><p>504(网关超时)服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p>
-</li>
-<li><p>505(HTTP 版本不受支持)服务器不支持请求中所用的 HTTP 协议版本。</p>
-<p>上书大部分实际内容源自googel管理员博客近日文章所引用的有关301说明的有些链接，感觉非常有用，因此收藏注释，以备以后警戒注意学习。</p>
-</li>
-</ul>
+          如果某项请求发送到您的服务器要求显示您网站上的某个网页(例如，用户通过浏览器访问您的网页或 Googlebot 抓取网页时)，服务器将会返回 HTTP 状态码响应请求。 此状态码提供关于请求状态的信息，告诉 Googlebot 关于您的网站和请求的网页的信息。
+  一些常见的状态码为：
 
-          
+200 -
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/22/2015-03-22-HTTP状态码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1631,9 +1557,9 @@
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Asan">
-          <p class="site-author-name" itemprop="name">Asan</p>
-          <p class="site-description motion-element" itemprop="description">Asanzjx Personal Blog</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="asanzjx">
+          <p class="site-author-name" itemprop="name">asanzjx</p>
+          <p class="site-description motion-element" itemprop="description">asanzjx Personal Blog</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -1692,6 +1618,20 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dark-lbp.github.io/" title="小黑猪的技术博客" target="_blank">小黑猪的技术博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -1709,12 +1649,12 @@
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Asan</span>
+  <span class="author" itemprop="copyrightHolder">asanzjx</span>
 </div>
 
 <div class="powered-by">
