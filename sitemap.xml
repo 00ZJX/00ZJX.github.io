@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asanzjx.github.io/about/index.html</loc>
+    
+    <lastmod>2018-12-02T02:55:18.068Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asanzjx.github.io/2017/03/21/360Chrome/</loc>
     
     <lastmod>2018-11-30T02:51:35.665Z</lastmod>
@@ -306,13 +313,6 @@
     <loc>https://asanzjx.github.io/categories/index.html</loc>
     
     <lastmod>2016-08-18T05:26:00.807Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asanzjx.github.io/about/index.html</loc>
-    
-    <lastmod>2016-08-18T05:25:32.153Z</lastmod>
     
   </url>
   
